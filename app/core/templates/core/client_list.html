@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block container %}
+
+<h1>{% trans "Clients" %}</h1>
+
+
+<input class="input" type="text" placeholder="{% trans "Search..." %}">
+
+
+<table class="table">
+    <thead>
+    <th>
+        <td>Name</td>
+        <td>Phone</td>
+        <td></td>
+    </th>
+    </thead>
+    <tbody id="object_list">
+        {% for obj in object_list  %}
+        <tr>
+            <td>{{obj.name}}</td>
+            <td>{{obj.phone}}</td>
+            <td></td>
+        </tr>
+           
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock  %}
