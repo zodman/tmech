@@ -3,10 +3,14 @@
 
 {% block container %}
 
-<h1>{% trans "Clients" %}</h1>
+<h1 class="title">{% trans "Clients" %}</h1>
 
 
-<input class="input" type="text" placeholder="{% trans "Search..." %}">
+<div class="level">
+    <div class="level-left">
+            <input class="input" type="text" placeholder="{% trans "Search..." %}">
+    </div>
+</div>
 
 
 <table class="table">
@@ -29,5 +33,6 @@
     </tbody>
 
 </table>
+{% include "pagination.html" %}
 
 {% endblock  %}

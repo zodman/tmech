@@ -25,10 +25,20 @@
 {% block body %}
 
     <section class="section">
-    
-        {% block container %}
+
+        <div class="columns">
+            <div class="column">
+                {% include "menu.html" %}
+            
+            </div>
+            <div class="column">
+         {% block container %}
             
         {% endblock container %}
+           
+            </div>
+        </div>
+
     
     </section>
 

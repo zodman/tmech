@@ -1,2 +1,2 @@
-bsync: browser-sync start --proxy localhost:8000 --files core/tempates/**/**/*.html --files core/**/**/*.py --files core/templates/**/*.html
+bsync: browser-sync start --proxy localhost:8000 -f core/**/**/*.{py,html}
 web: python manage.py runserver

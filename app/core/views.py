@@ -4,6 +4,7 @@ from .models import Client
 
 class ClientList(ListView):
     model = Client
+    paginate_by=3
 
 
 client_list = ClientList.as_view()
