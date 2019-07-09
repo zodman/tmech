@@ -1,0 +1,8 @@
+
+        {% for obj in object_list  %}
+        <tr>
+            <td>{{obj.id}}</td>
+            <td>{{obj.name}}</td>
+            <td>{{obj.phone|default:""}}</td>
+        </tr>
+        {% endfor %}

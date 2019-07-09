@@ -1,13 +1,12 @@
-{% load i18n %}
+{% load i18n active_link_tags %}
 <nav class="menu">
     <ul class="menu-list">
         <li>
-            <a href="{% url 'client_list' %}">
+            <a href="{% url 'client_list' %}" class=" {% active_link 'client_list' 'is-active' %}">
             <span class="icon">
-            
                 <i class="fas fa-users"></i>
             </span>
-            
+                <span> {% trans "Clients" %}</span>
             </a>
         </li>
         <li></li>

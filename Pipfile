@@ -9,6 +9,7 @@ verify_ssl = true
 django = "*"
 django-widget-tweaks = {git = "https://github.com/jazzband/django-widget-tweaks.git"}
 django-autofixture = "*"
+django-active-link = "*"
 
 [requires]
 python_version = "3.6"

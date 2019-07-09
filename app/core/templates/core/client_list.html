@@ -8,27 +8,28 @@
 
 <div class="level">
     <div class="level-left">
-            <input class="input" type="text" placeholder="{% trans "Search..." %}">
+            <input class="input" type="text" name="search"
+                ic-get-from="{% url 'search_client' %}" ic-trigger-on="keyup changed" 
+                ic-trigger-delay="500ms" ic-target="#object_list" 
+                placeholder="{% trans "Search..." %}">
+    </div>
+
+    <div class="level-right">
+        <a class="button is-info" href="{% url 'client_add' %}"> {% trans "Add" %}</a>
     </div>
 </div>
 
 
-<table class="table">
+<table class="table is-fullwidth">
     <thead>
     <tr>
+        <td></td>
         <th>Name</th>
         <th>Phone</th>
     </tr>
     </thead>
     <tbody id="object_list">
-        {% for obj in object_list  %}
-        <tr>
-            <td>{{obj.name}}</td>
-            <td>{{obj.phone}}</td>
-        
-        </tr>
-           
-        {% endfor %}
+            {% include "core/_client.html" %}
     </tbody>
 
 </table>

@@ -29,17 +29,15 @@
         <div class="columns">
             <div class="column is-1">
                 {% include "menu.html" %}
-            
             </div>
             <div class="column">
-         {% block container %}
-            
-        {% endblock container %}
-           
+                   <div class="" ic-src="{% url 'messages'%}" ic-deps="*">
+                     {% include "messages.html" %}
+                   </div>
+                 {% block container %}
+                {% endblock container %}
             </div>
         </div>
-
-    
     </section>
 
 
