@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block container %}
+
+<h1 class="title"> {% trans "Add Car" %}</h1>
+
+<form ic-post-to="{% url 'car_add' %}" ic-target="#form">
+    {% csrf_token %}
+
+
+    <input type="hidden" name="client_id">
+    <div id="form">
+    
+        {% include "form.html" %}
+
+    </div>
+
+<div class="field">
+
+    <div class="buttons">
+        <button  type="submit"
+            class="button is-info"> {% trans "Add" %}</button>
+    </div>
+
+</div>
+
+</form>
+
+{% endblock %}

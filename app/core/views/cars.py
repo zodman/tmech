@@ -4,6 +4,17 @@ from django.urls import reverse_lazy as reverse
 from django.contrib import messages
 from ..models import Car
 from django.db.models import Q
+from .utils import CreateIntercoolerMix
+
+__all__=["search_car_clients", "car_list", "car_add"]
+
+
+class CarAdd(CreateIntercoolerMix):
+    model  = Car
+    fields = ("brand","model","year")
+
+car_add = CarAdd.as_view()
+
 
 def search_car_clients(request):
     search = request.GET.get("search")
