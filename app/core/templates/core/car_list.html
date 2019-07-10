@@ -9,7 +9,7 @@
 <div class="level">
     <div class="level-left">
             <input class="input" type="text" name="search"
-                ic-get-from="{% url 'search_client' %}" ic-trigger-on="keyup changed" 
+                ic-get-from="{% url 'search_car_clients' %}" ic-trigger-on="keyup changed" 
                 ic-trigger-delay="500ms" ic-target="#object_list" 
                 placeholder="{% trans "Search..." %}">
     </div>
@@ -18,12 +18,12 @@
         <div class="buttons is-right">
         
         
-        <a class="button is-info" href="{% url 'client_add' %}"> {% trans "Add" %}</a>
+        <a class="button is-info" href="{# url 'car_add' #}"> {% trans "Add" %}</a>
 
             <button class="button is-warning" 
             ic-confirm="are you sure?"
             ic-include="#form"
-            ic-post-to="{% url 'delete_clients' %}">
+            ic-post-to="{# url 'delete_cars' #}">
             {% trans "Delete checked" %}
             </button>
         </div>

@@ -8,4 +8,5 @@ urlpatterns = [
     path("client/delete/", delete_clients, name="delete_clients"),
 
     path("cars/", car_list, name="car_list"),
+    path("cars/search/", search_car_clients, name="search_car_clients"),
 ]
