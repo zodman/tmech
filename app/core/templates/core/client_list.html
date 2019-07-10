@@ -20,20 +20,19 @@
         
         <a class="button is-info" href="{% url 'client_add' %}"> {% trans "Add" %}</a>
 
-            {% csrf_token %}
             <button class="button is-warning" 
-            ic-include="[name='csrfmiddlewaretoken']"
             ic-confirm="are you sure?"
+            ic-include="#form"
             ic-post-to="{% url 'delete_clients' %}">
             {% trans "Delete checked" %}
-            
             </button>
         </div>
     </div>
 </div>
 
 
-<form >
+<form id="form">
+            {% csrf_token %}
 
 <table class="table is-fullwidth">
     <thead>
