@@ -1,0 +1,13 @@
+
+        {% for obj in object_list  %}
+        <tr>
+            <td>
+            <input type="checkbox" name="ids" value="{{obj.id}}">
+            </td>
+            <td>{{obj.client.name}}</td>
+            <td>{{obj.brand}}</td>
+            <td>{{obj.model|default:""}}</td>
+            <td>{{obj.year|default:""}}</td>
+
+        </tr>
+        {% endfor %}
