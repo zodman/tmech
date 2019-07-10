@@ -9,6 +9,14 @@
                 <span> {% trans "Clients" %}</span>
             </a>
         </li>
+        <li>
+            <a href="{% url 'car_list' %}" class=" {% active_link 'car_list' 'is-active' %}">
+            <span class="icon">
+                <i class="fas fa-users"></i>
+            </span>
+                <span> {% trans "Cars" %}</span>
+            </a>
+        </li>
         <li></li>
         <li></li>
     </ul>

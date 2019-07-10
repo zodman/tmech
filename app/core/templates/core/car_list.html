@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block container %}
+
+<h1 class="title">{% trans "Cars" %}</h1>
+
+
+<div class="level">
+    <div class="level-left">
+            <input class="input" type="text" name="search"
+                ic-get-from="{% url 'search_client' %}" ic-trigger-on="keyup changed" 
+                ic-trigger-delay="500ms" ic-target="#object_list" 
+                placeholder="{% trans "Search..." %}">
+    </div>
+
+    <div class="level-right">
+        <div class="buttons is-right">
+        
+        
+        <a class="button is-info" href="{% url 'client_add' %}"> {% trans "Add" %}</a>
+
+            <button class="button is-warning" 
+            ic-confirm="are you sure?"
+            ic-include="#form"
+            ic-post-to="{% url 'delete_clients' %}">
+            {% trans "Delete checked" %}
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<form id="form">
+            {% csrf_token %}
+
+<table class="table is-fullwidth">
+    <thead>
+    <tr>
+        <td></td>
+        <th>brand</th>
+        <th>model</th>
+        <th>year</th>
+        <th>client</th>
+    </tr>
+    </thead>
+    <tbody id="object_list">
+            {% include "core/_cars.html" %}
+    </tbody>
+
+</table>
+</form>
+
+{% include "pagination.html" %}
+
+{% endblock  %}
