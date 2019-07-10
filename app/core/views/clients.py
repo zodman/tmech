@@ -9,8 +9,16 @@ from django.utils.translation import gettext_lazy as _
 
 
 
-__all__ = ["search_client", "client_list", "client_add"]
+__all__ = ["search_client", "client_list", "client_add", "delete_clients"]
 
+
+def delete_clients(request):
+    ids = request.POST.getlist("ids")
+    Client.objects.filter(id__in=ids).delete()
+    resp = HttpResponse("")
+    messages.info(request, _("Clients deleted"))
+    resp["X-IC-Redirect"] = reverse("client_list")
+    return resp
 
 class CreateIntercoolerMix(CreateView):
     ic_template = "form.html"

@@ -1,7 +1,9 @@
 
         {% for obj in object_list  %}
         <tr>
-            <td>{{obj.id}}</td>
+            <td>
+            <input type="checkbox" name="ids" value="{{obj.id}}">
+            </td>
             <td>{{obj.name}}</td>
             <td>{{obj.phone|default:""}}</td>
         </tr>

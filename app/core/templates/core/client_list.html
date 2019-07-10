@@ -15,10 +15,25 @@
     </div>
 
     <div class="level-right">
+        <div class="buttons is-right">
+        
+        
         <a class="button is-info" href="{% url 'client_add' %}"> {% trans "Add" %}</a>
+
+            {% csrf_token %}
+            <button class="button is-warning" 
+            ic-include="[name='csrfmiddlewaretoken']"
+            ic-confirm="are you sure?"
+            ic-post-to="{% url 'delete_clients' %}">
+            {% trans "Delete checked" %}
+            
+            </button>
+        </div>
     </div>
 </div>
 
+
+<form >
 
 <table class="table is-fullwidth">
     <thead>
@@ -33,6 +48,8 @@
     </tbody>
 
 </table>
+</form>
+
 {% include "pagination.html" %}
 
 {% endblock  %}
