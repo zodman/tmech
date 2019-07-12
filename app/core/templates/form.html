@@ -2,10 +2,10 @@
 
 
 {% if form.errors %}
-  <p class="help is-danger">
- {% trans "Errors on form." %}
-    {{ form.non_field_errors }}
-  </p>
+  <div class="help is-danger">
+             {% trans "Errors on form." %}
+    {{ form.non_field_errors|add_error_class:"is-danger" }}
+  </div>
 {% endif %}
 
 {% for field in form %}

@@ -8,6 +8,31 @@
 <form ic-post-to="{% url 'car_add' %}" ic-target="#form">
     {% csrf_token %}
 
+    <div class="field is-horizontal">
+        <div class="field-label">
+            {% trans "Search Client" %}
+        </div>
+        <div class="field-body">
+            <div class="field">
+                 <div class="control">
+                        <input id="prova" type="text is-static" class="input"
+                            ic-src="{% url 'car_client_search' %}" 
+                            ic-trigger-delay="500ms"
+                            name="search"  placeholder="{% trans "client" %}"/>
+                </div>
+            </div>
+
+        </div>
+   </div>
+
+    <div class="field">
+        <div class="control">
+        
+           <div class="dropdown-menu" id="prova-menu" role="menu" /></div>
+        
+        </div>
+    </div>
+
 
     <input type="hidden" name="client_id">
     <div id="form">
@@ -26,5 +51,25 @@
 </div>
 
 </form>
+
+<script charset="utf-8">
+
+    function api(value) {
+        return new Promise(function(rs, js) {
+             Intercooler.triggerRequest($('#prova'), function (data) {
+                console.log("ic-trigger",data);
+                resp = $.parseJSON(data);
+                rs(resp);
+              });
+        })
+    }
+    bulmahead("prova", "prova-menu", api, function( item) {
+
+        $("input[name='client_id']").val(item.value);
+        $("prova").val(item.name);
+        
+    },0);
+
+</script>
 
 {% endblock %}
