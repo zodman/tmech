@@ -14,7 +14,7 @@
                  <div class="control has-icons-left has-icons-right">
                         <input id="prova" type="text is-static" class="input"
                             ic-src="{% url 'car_client_search' %}" 
-                            ic-trigger-delay="500ms"
+                            ic-trigger-delay="1500ms"
                             autocomplete="off"
                             ic-indicator="#indicator"
                             name="search"  placeholder="{% trans "Search client ..." %}"/>
@@ -72,11 +72,9 @@
         })
     }
     bulmahead("prova", "prova-menu", api, function( item) {
-
         $("input[name='client_id']").val(item.value);
         $("prova").val(item.name);
         $("#check").show();
-        
     },0);
 
 </script>
