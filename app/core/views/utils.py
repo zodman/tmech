@@ -17,7 +17,7 @@ class CreateIntercoolerMix(CreateView):
         form = super().form_valid(form)
         url = self.get_success_url()
         resp = HttpResponse("")
-        messages.info(self.request, _("Contact added"))
+        messages.info(self.request, _("{} Added").format(self.model.__name__))
         resp["X-IC-Redirect"] = url
         return resp
 

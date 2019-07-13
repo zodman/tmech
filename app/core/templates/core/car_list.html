@@ -23,7 +23,7 @@
             <button class="button is-warning" 
             ic-confirm="are you sure?"
             ic-include="#form"
-            ic-post-to="{# url 'delete_cars' #}">
+            ic-post-to="{% url 'delete_cars' %}">
             {% trans "Delete checked" %}
             </button>
         </div>

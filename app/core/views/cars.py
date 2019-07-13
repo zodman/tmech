@@ -7,24 +7,33 @@ from ..models import Car, Client
 from django.db.models import Q
 from .utils import CreateIntercoolerMix
 import json
-__all__ = ["search_car_clients", "search_car", "car_list", "car_add"]
+from django.utils.translation import gettext_lazy as _
+from django.db.utils import IntegrityError
+
+
+__all__ = ["search_car_clients", "search_car", "car_list", "car_add","delete_cars"]
 
 
 class CarAdd(CreateIntercoolerMix):
     model = Car
     fields = ("brand","model","year")
 #    fields = ("__all__")
+    success_url = reverse("car_list")
 
     def form_valid(self, form):
         client_id = self.request.POST.get("client_id")
         if not client_id:
-            form.add_error(None, "Missing client")
+            form.add_error(None, _("Missing client"))
             return super().form_invalid(form)
         else:
             instance = form.save(commit=False)
             instance.client = Client.objects.get(id=client_id)
-            instance.save()
-        return super().form_valid()
+            try:
+                instance.save()
+            except IntegrityError:
+                form.add_error(None, _("client with brand,model,year exists"))
+                return super().form_invalid(form)
+        return super().form_valid(form)
 
 car_add = CarAdd.as_view()
 
@@ -58,3 +67,16 @@ class CarList(ListView):
 
 
 car_list = CarList.as_view()
+
+
+
+
+
+
+def delete_cars(request):
+    ids = request.POST.getlist("ids")
+    Car.objects.filter(id__in=ids).delete()
+    resp = HttpResponse("")
+    messages.info(request, _("cars deleted"))
+    resp["X-IC-Redirect"] = reverse("car_list")
+    return resp

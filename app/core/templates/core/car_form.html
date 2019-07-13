@@ -8,22 +8,27 @@
 <form ic-post-to="{% url 'car_add' %}" ic-target="#form">
     {% csrf_token %}
 
-    <div class="field is-horizontal">
-        <div class="field-label">
-            {% trans "Search Client" %}
-        </div>
-        <div class="field-body">
+       
+
             <div class="field">
-                 <div class="control">
+                 <div class="control has-icons-left has-icons-right">
                         <input id="prova" type="text is-static" class="input"
                             ic-src="{% url 'car_client_search' %}" 
                             ic-trigger-delay="500ms"
-                            name="search"  placeholder="{% trans "client" %}"/>
+                            autocomplete="off"
+                            ic-indicator="#indicator"
+                            name="search"  placeholder="{% trans "Search client ..." %}"/>
+                         <span id="check" class="icon is-small is-right"  style="display:none">
+                          <i class="fas fa-check has-text-primary	"></i>
+                            </span>
+
+                              <span id="indicator" class="icon is-small is-left" style="display:none" >
+                                   <i class="fas fa-spinner fa-spin	"></i>
+                            </span
+                            
                 </div>
             </div>
 
-        </div>
-   </div>
 
     <div class="field">
         <div class="control">
@@ -56,6 +61,9 @@
 
     function api(value) {
         return new Promise(function(rs, js) {
+                     $("#check").hide();
+                    $("#indicator").show();
+
              Intercooler.triggerRequest($('#prova'), function (data) {
                 console.log("ic-trigger",data);
                 resp = $.parseJSON(data);
@@ -67,6 +75,7 @@
 
         $("input[name='client_id']").val(item.value);
         $("prova").val(item.name);
+        $("#check").show();
         
     },0);
 
