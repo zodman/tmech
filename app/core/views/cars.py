@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy as reverse
 from django.contrib import messages
 from django.http import HttpResponse
@@ -11,8 +11,19 @@ from django.utils.translation import gettext_lazy as _
 from django.db.utils import IntegrityError
 
 
-__all__ = ["search_car_clients", "search_car", "car_list", "car_add","delete_cars"]
+__all__ = ["search_car_clients", "search_car", "car_edit",
+           "car_list", "car_add","delete_cars"]
 
+
+
+class CarEdit(UpdateView):
+    model = Car
+    fields = ("brand","model","year")
+#    fields = ("__all__")
+    success_url = reverse("car_list")
+
+
+car_edit = CarEdit.as_view()
 
 class CarAdd(CreateIntercoolerMix):
     model = Car

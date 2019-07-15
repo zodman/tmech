@@ -3,13 +3,18 @@
 
 {% block container %}
 
-<h1 class="title"> {% trans "Add Car" %}</h1>
+<h1 class="title">
+    {% if object %}
+        
+        {% trans "Update Car" %}
+    {% else %}
+        {% trans "Add Car" %}
+        
+    {% endif %}
+</h1>
 
 <form ic-post-to="{% url 'car_add' %}" ic-target="#form">
     {% csrf_token %}
-
-       
-
             <div class="field">
                  <div class="control has-icons-left has-icons-right">
                         <input id="prova" type="text is-static" class="input"
@@ -32,14 +37,21 @@
 
     <div class="field">
         <div class="control">
-        
            <div class="dropdown-menu" id="prova-menu" role="menu" /></div>
         
         </div>
     </div>
 
+    <div class="field">
+        <div class="control">
+        
+            <label id="prova-label"> not set
+            </label>
+            <input type="hidden" name="client_id">
+        
+        </div>
+    </div>
 
-    <input type="hidden" name="client_id">
     <div id="form">
     
         {% include "form.html" %}
@@ -72,8 +84,9 @@
         })
     }
     bulmahead("prova", "prova-menu", api, function( item) {
+        console.log("selected", item);
         $("input[name='client_id']").val(item.value);
-        $("prova").val(item.name);
+        $("#prova-label").text(item.label);
         $("#check").show();
     },0);
 

@@ -8,10 +8,19 @@
 
 <div class="level">
     <div class="level-left">
+
+        <div class="control has-icons-left">
+        
             <input class="input" type="text" name="search"
                 ic-get-from="{% url 'search_car' %}" ic-trigger-on="keyup changed" 
                 ic-trigger-delay="500ms" ic-target="#object_list" 
+                ic-indicator="#indicator" autocomplete="off"
                 placeholder="{% trans "Search..." %}">
+            <span class="icon is-left">
+              <i id="indicator" class="fa fa-spinner fa-spin" style="display:none"></i>
+            </span>
+
+        </div>
     </div>
 
     <div class="level-right">
@@ -42,6 +51,7 @@
         <th>brand</th>
         <th>model</th>
         <th>year</th>
+        <th></th>
     </tr>
     </thead>
     <tbody id="object_list">
