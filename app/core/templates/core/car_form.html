@@ -12,8 +12,11 @@
         
     {% endif %}
 </h1>
-
-<form ic-post-to="{% url 'car_add' %}" ic-target="#form">
+{% if not object  %}
+    <form ic-post-to="{% url 'car_add' %}" ic-target="#form">
+{% else %}
+    <form ic-post-to="{% url 'car_edit' object.id %}" ic-target="#form">
+{% endif %}
     {% csrf_token %}
             <div class="field">
                  <div class="control has-icons-left has-icons-right">
@@ -45,10 +48,8 @@
     <div class="field">
         <div class="control">
         
-            <label id="prova-label"> not set
-            </label>
-            <input type="hidden" name="client_id">
-        
+            <label id="prova-label"> {{object.client.name|default:"not set"}} </label>
+            <input type="hidden" name="client_id" value="{{object.client.id}}">
         </div>
     </div>
 

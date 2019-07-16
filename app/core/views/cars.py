@@ -16,14 +16,6 @@ __all__ = ["search_car_clients", "search_car", "car_edit",
 
 
 
-class CarEdit(UpdateView):
-    model = Car
-    fields = ("brand","model","year")
-#    fields = ("__all__")
-    success_url = reverse("car_list")
-
-
-car_edit = CarEdit.as_view()
 
 class CarAdd(CreateIntercoolerMix):
     model = Car
@@ -47,6 +39,16 @@ class CarAdd(CreateIntercoolerMix):
         return super().form_valid(form)
 
 car_add = CarAdd.as_view()
+
+class CarEdit(CarAdd, UpdateView):
+    model = Car
+    fields = ("brand","model","year")
+#    fields = ("__all__")
+    success_url = reverse("car_list")
+
+car_edit = CarEdit.as_view()
+
+
 
 
 def search_car(request):
