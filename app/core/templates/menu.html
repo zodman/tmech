@@ -2,7 +2,8 @@
 <nav class="menu">
     <ul class="menu-list">
         <li>
-            <a href="{% url 'client_list' %}" class=" {% active_link 'client_list' 'is-active' %}">
+            <a href="{% url 'client_list' %}" 
+                class=" {% active_link 'client_list' 'is-active' %}">
             <span class="icon">
                 <i class="fas fa-user"></i>
             </span>
@@ -22,7 +23,7 @@
             <span class="icon">
                 <i class="fas fa-car-side"></i>
             </span>
-                <span> {% trans "Visit" %}</span>
+                <span> {% trans "Service" %}</span>
             </a>
         
         </li>

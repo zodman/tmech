@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class Personal(models.Model):
@@ -41,10 +42,10 @@ class Service(models.Model):
 
 class Diagnostic(models.Model):
     service = models.ForeignKey("Service", verbose_name=_("Service"), on_delete=models.CASCADE)
-    reception_datetime = models.DateTimeField()
-    initial = models.TextField()
-    final = models.TextField()
-    repairs = models.TextField()
+    reception_datetime = models.DateTimeField(help_text="YYYY/mm/dd HH:MM")
+    initial = models.TextField(_("Initial Diagnostic"))
+    final = models.TextField(_("Final Diagnostic"))
+    repairs = models.TextField(_("Repairs"))
     notes = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

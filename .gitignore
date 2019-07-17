@@ -138,3 +138,7 @@ dmypy.json
 
 tags
 # End of https://www.gitignore.io/api/django
+
+app/node_modules
+app/core/static/dist/*
+

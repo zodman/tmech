@@ -1,7 +1,10 @@
 from django.urls import path
+from django.views.generic import TemplateView
 from .views import *
 
+
 urlpatterns = [
+    path("", TemplateView.as_view(template_name="base.html"), name="index"),
     path("client/", client_list, name="client_list"),
     path("client/add", client_add, name="client_add"),
     path("client/search/", search_client, name="search_client"),
@@ -12,5 +15,7 @@ urlpatterns = [
     path("cars/delete/", delete_cars, name="delete_cars"),
     path("cars/search/", search_car, name="search_car"),
     path("cars/search/client/", search_car_clients, name="car_client_search"),
-    path("visit/", list_visit, name="list_visit"),
+    path("service/", list_visit, name="list_visit"),
+    path("service/add", service_add, name="service_add"),
+
 ]

@@ -3,7 +3,7 @@
 
 {% block container %}
 
-<h1 class="title">{% trans "Visit" %}</h1>
+<!-- h1 class="title">{% trans "Service" %}</h1-->
 
 
 <div class="level">
@@ -15,7 +15,7 @@
                 ic-get-from="{% url 'search_car' %}" ic-trigger-on="keyup changed" 
                 ic-trigger-delay="500ms" ic-target="#object_list" 
                 ic-indicator="#indicator" autocomplete="off"
-                placeholder="{% trans "Search..." %}">
+                placeholder="{% trans "Search car" %}">
             <span class="icon is-left">
               <i id="indicator" class="fa fa-spinner fa-spin" style="display:none"></i>
             </span>
@@ -25,15 +25,12 @@
 
     <div class="level-right">
         <div class="buttons is-right">
-        
-        
-        <a class="button is-info" href="{% url 'car_add' %}"> {% trans "Add" %}</a>
-
+            <a class="button is-info" href="{% url 'service_add' %}"> {% trans "Add" %}</a>
             <button class="button is-warning" 
-            ic-confirm="are you sure?"
-            ic-include="#form"
-            ic-post-to="{% url 'delete_cars' %}">
-            {% trans "Delete checked" %}
+                ic-confirm="are you sure?"
+                ic-include="#form"
+                ic-post-to="{% url 'delete_cars' %}">
+                {% trans "Delete checked" %}
             </button>
         </div>
     </div>

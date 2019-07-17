@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'widget_tweaks',
-
+    'bsync',
+    'djangomix',
     'autofixture',
     'active_link',
 ]

@@ -9,5 +9,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("messages/", messages, name="messages"),
     path("app/", include("core.urls")),
-    path("", RedirectView.as_view(url="/app/client"), name="index" )
+    path("", RedirectView.as_view(url="/app/"), name="index" )
 ]
