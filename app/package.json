@@ -12,7 +12,10 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "dependencies": {
+    "bulma": "^0.7.5",
     "cross-env": "^5.2.0",
+    "css-spaces": "^0.3.5",
+    "font-awesome": "^4.7.0",
     "laravel-mix": "^4.1.2"
   },
   "devDependencies": {

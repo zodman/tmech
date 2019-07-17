@@ -15,6 +15,7 @@ let mix = require('laravel-mix');
 mix.setPublicPath('core/static/');
 mix.js('core/static/src/app.js', 'core/static/dist/')
 mix.sass('core/static/src/app.scss', 'core/static/dist/')
+mix.options({ processCssUrls: false });
 
 // Full API
 // mix.js(src, output);
