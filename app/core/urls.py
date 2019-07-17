@@ -10,7 +10,7 @@ urlpatterns = [
     path("cars/add/", car_add, name="car_add"),
     path("cars/edit/<int:pk>", car_edit, name="car_edit"),
     path("cars/delete/", delete_cars, name="delete_cars"),
-
     path("cars/search/", search_car, name="search_car"),
     path("cars/search/client/", search_car_clients, name="car_client_search"),
+    path("visit/", list_visit, name="list_visit"),
 ]

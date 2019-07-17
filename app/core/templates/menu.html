@@ -17,7 +17,15 @@
                 <span> {% trans "Cars" %}</span>
             </a>
         </li>
-        <li></li>
+        <li>
+                    <a href="{% url 'list_visit' %}" class=" {% active_link 'list_visit' 'is-active' %}">
+            <span class="icon">
+                <i class="fas fa-car-side"></i>
+            </span>
+                <span> {% trans "Visit" %}</span>
+            </a>
+        
+        </li>
         <li></li>
     </ul>
 </nav>

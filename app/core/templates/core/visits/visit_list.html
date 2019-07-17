@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block container %}
+
+<h1 class="title">{% trans "Visit" %}</h1>
+
+
+<div class="level">
+    <div class="level-left">
+
+        <div class="control has-icons-left">
+        
+            <input class="input" type="text" name="search"
+                ic-get-from="{% url 'search_car' %}" ic-trigger-on="keyup changed" 
+                ic-trigger-delay="500ms" ic-target="#object_list" 
+                ic-indicator="#indicator" autocomplete="off"
+                placeholder="{% trans "Search..." %}">
+            <span class="icon is-left">
+              <i id="indicator" class="fa fa-spinner fa-spin" style="display:none"></i>
+            </span>
+
+        </div>
+    </div>
+
+    <div class="level-right">
+        <div class="buttons is-right">
+        
+        
+        <a class="button is-info" href="{% url 'car_add' %}"> {% trans "Add" %}</a>
+
+            <button class="button is-warning" 
+            ic-confirm="are you sure?"
+            ic-include="#form"
+            ic-post-to="{% url 'delete_cars' %}">
+            {% trans "Delete checked" %}
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<form id="form">
+            {% csrf_token %}
+
+<table class="table is-fullwidth" >
+    <thead>
+    <tr>
+        <td></td>
+        <th>client</th>
+        <th>car</th>
+        <th>diagnostic</th>
+        <th>release</th>
+        <th>created</th>
+    </tr>
+    </thead>
+    <tbody id="object_list">
+            {% include "core/visits/_visit.html" %}
+    </tbody>
+
+</table>
+</form>
+
+{% include "pagination.html" %}
+
+{% endblock  %}

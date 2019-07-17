@@ -1,0 +1,16 @@
+
+        {% for obj in object_list  %}
+        <tr>
+            <td>
+            <input type="checkbox" name="ids" value="{{obj.id}}">
+            </td>
+            <td>{{obj.car.client.name}}</td>
+            <td>{{obj.car.brand}}</td>
+            <td>{{obj.car.model|default:""}}</td>
+            <td>{{obj.car.year|default:""}}</td>
+            <td>{{obj.created_at}}</td>
+            <td>
+                <a class="button as-text" href="{% url 'car_edit' obj.id  %}" target="_blank">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}

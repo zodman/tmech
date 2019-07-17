@@ -33,16 +33,14 @@ class Car(models.Model):
         return f"{self.brand} -- {self.model}"
 
 
-class Visit(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    car = models.ForeignKey(Car, on_delete=models.CASCADE)
-    diagnostic = models.ForeignKey("Diagnostic", on_delete=models.CASCADE)
-    release = models.ForeignKey("Release", on_delete=models.CASCADE)
+class Service(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
 class Diagnostic(models.Model):
+    service = models.ForeignKey("Service", verbose_name=_("Service"), on_delete=models.CASCADE)
     reception_datetime = models.DateTimeField()
     initial = models.TextField()
     final = models.TextField()
@@ -62,6 +60,7 @@ class Item(models.Model):
 
 
 class Quote(models.Model):
+    name = models.CharField(_("name"), max_length=200)
     client = models.ForeignKey("Client", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
