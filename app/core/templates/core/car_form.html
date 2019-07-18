@@ -72,24 +72,6 @@
 
 <script charset="utf-8">
 
-    function api(value) {
-        return new Promise(function(rs, js) {
-                     $("#check").hide();
-                    $("#indicator").show();
-
-             Intercooler.triggerRequest($('#prova'), function (data) {
-                console.log("ic-trigger",data);
-                resp = $.parseJSON(data);
-                rs(resp);
-              });
-        })
-    }
-    bulmahead("prova", "prova-menu", api, function( item) {
-        console.log("selected", item);
-        $("input[name='client_id']").val(item.value);
-        $("#prova-label").text(item.label);
-        $("#check").show();
-    },0);
 
 </script>
 
