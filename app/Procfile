@@ -1,2 +1,2 @@
 bsync: browser-sync start --proxy localhost:8000 -f core/**/**/*.{py,html}
-web:  PYTHONUNBUFFERED=true  python manage.py runserver
+web: cross-env PYTHONUNBUFFERED=true  python manage.py runserver
