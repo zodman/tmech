@@ -1,3 +1,4 @@
+{% load mix %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,15 +10,8 @@
             {% endblock title %}
     
     </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/bulma-dashboard@0.1.40/dist/bulma-dashboard.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="https://unpkg.com/css-spaces@0.3.5/dist/spaces.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
-    <script defer src="https://use.fontawesome.com/releases/v5.6.0/js/all.js"></script>
-    <script  src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/intercooler-js/1.2.2/intercooler.min.js"></script>
 
-    <script src="https://cdn.rawgit.com/mattmezza/bulmahead/master/dist/bulmahead.bundle.js"></script>
-
+    <link rel="stylesheet" href="{% mix 'dist/app.css' %}" type="text/css" media="screen" title="no title" charset="utf-8">
   </head>
 <body class=" has-background-white">
 
@@ -27,11 +21,10 @@
         <div class="columns">
             <div class="column is-2 has-background-white-ter">
             <div class="mt-xs ml-xxs">
-              <span class="is-family-code has-text-weight-light	is-size-2	">tMech</span>
-
+              <!-- span class="is-family-code has-text-weight-light	is-size-2	">tMech</span-->
             </div>
             
-              <div class="mt-xxs ml-xxs">
+              <div class="mt-xxs ml-xxs card">
                 {% include "menu.html" %}
               </div>
               
@@ -40,8 +33,9 @@
                    <div class="" ic-src="{% url 'messages'%}" ic-deps="*">
                      {% include "messages.html" %}
                    </div>
-              <div class="m-xxs mt-s">
-                 {% block container %}
+              <div class="m-xxs mt-s" id="container">
+                {% block container %}
+                yey
                 {% endblock container %}
               </div>
             
@@ -51,6 +45,6 @@
 
 {% endblock body %}
 
-
+    <script charset="utf-8" src="{% mix 'dist/app.js' %}"></script>
   </body>
 </html>

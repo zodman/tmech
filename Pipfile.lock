@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9a1cf1cecb66fb336fbfed93f336617efc730b73539df7c82d7a4d6d44ab5d8e"
+            "sha256": "1ebefefa8f8daf35c97650567e27dbd6ff91fa86d1685aff2cd73f8fe05f3667"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -39,9 +39,24 @@
             "index": "pypi",
             "version": "==0.12.1"
         },
+        "django-bsync": {
+            "hashes": [
+                "sha256:b808f9cd36436a4d30036f457b7a8378b47d07148d6fcc96179fdb333e6a9178"
+            ],
+            "index": "pypi",
+            "version": "==1.4.3"
+        },
         "django-widget-tweaks": {
             "git": "https://github.com/jazzband/django-widget-tweaks.git",
             "ref": "4d163cb2289e8971283e6207badbd7f8c13dfbc1"
+        },
+        "djangomix": {
+            "hashes": [
+                "sha256:5d0cddd99a537f63bb314e61620561011ea1e546029bb63bae6b09a803428f77",
+                "sha256:e893e47e3f37953e6298cb6d41a7e3c84c15c890173a9e16117aa3d97140ffc4"
+            ],
+            "index": "pypi",
+            "version": "==1.1.0"
         },
         "pytz": {
             "hashes": [

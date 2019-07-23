@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'widget_tweaks',
-
+    'bsync',
+    'djangomix',
     'autofixture',
     'active_link',
 ]
@@ -111,3 +112,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
+LARAVELMIX_MANIFEST_DIRECTORY =  os.path.join(BASE_DIR, "core","static")
+
+
