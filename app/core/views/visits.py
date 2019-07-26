@@ -12,6 +12,21 @@ from django.forms import modelform_factory
 __all__ = ["list_visit","service_add"]
 
 
+
+
+
+def search_cars(request):
+    ServiceForm = modelform_factory(Service, fields=("__all__"))
+    f = ServiceForm()
+    client_id = request.POST.get("client_id")
+    f["car"].queryset= Car.objects.filter(client__id=client_id)
+    context = {
+        'form':f
+    }
+    return render(request, "core/service/_cars.html",context)
+
+
+
 class ListVisit(ListView):
     model = Service
     template_name = "core/visits/visit_list.html"

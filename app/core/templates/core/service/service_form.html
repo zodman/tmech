@@ -17,42 +17,53 @@
     <form ic-post-to="{% url 'service_add' %}" ic-target="#form">
     {% csrf_token %}
             <div class="field">
-                 <div class="control has-icons-left has-icons-right">
+                <div class="control has-icons-left has-icons-right">
                         <input id="prova" type="text is-static" class="input"
                             ic-src="{% url 'car_client_search' %}" 
                             ic-trigger-delay="1500ms"
                             autocomplete="off"
                             ic-indicator="#indicator"
-                            name="search"  placeholder="{% trans "Search client ..." %}"/>
-                         <span id="check" class="icon is-small is-right"  style="display:none">
-                          <i class="fas fa-check has-text-primary	"></i>
+                            name="search"  placeholder='{% trans "Search client ..." %}' />
+                            <span id="check" class="icon is-small is-right"  style="display:none">
+                                <i class="fas fa-check has-text-primary	"></i>
                             </span>
 
-                              <span id="indicator" class="icon is-small is-left" style="display:none" >
+                            <span id="indicator" class="icon is-small is-left" style="display:none" >
                                    <i class="fas fa-spinner fa-spin	"></i>
-                            </span
+                            </span>
                             
+                </div>
+                <div class="control" id="cars">
+                
+                    
                 </div>
             </div>
 
 
     <div class="field">
         <div class="control">
-           <div class="dropdown-menu" id="prova-menu" role="menu" /></div>
+           <div class="dropdown-menu" id="prova-menu" role="menu" >
+           </div>
         </div>
     </div>
 
     <div class="field">
         <div class="control">
-            <label id="prova-label"> {{object.client.name|default:"not set"}} </label>
+            <label id="prova-label"> {{object.client.name|default:"Client not set"}} </label>
             <input type="hidden" name="client_id" value="{{object.client.id}}">
         </div>
     </div>
 
-    
-
-
-
+    <div class="field" id="cars">
+        <div class="control" >
+            <span class="select">
+            
+            <select name="cars">
+            </select>
+            </span>
+        
+        </div>
+    </div>
 
     <div id="form">
         {% include "form.html" %}
