@@ -16,11 +16,14 @@ function api(value) {
     })
 }
 if ($("#prova").length > 0 ) {
-
     bulmahead("prova", "prova-menu", api, function( item) {
         console.log("selected", item);
         $("input[name='client_id']").val(item.value);
         $("#prova-label").text(item.label);
         $("#check").show();
+        if( $("#cars").length  > 0 ) {
+            console.log("service"); 
+        }
+
     },0);
 }
