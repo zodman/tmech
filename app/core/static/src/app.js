@@ -1,7 +1,8 @@
 import '@fortawesome/fontawesome-free/js/all.js';
-window.Intercooler = require("intercooler");
-window.$ = window.jQuery = require('jquery'); 
+
+
 require("bulmahead/src/bulmahead.js");
+
 
 function api(value) {
     return new Promise(function(rs, js) {

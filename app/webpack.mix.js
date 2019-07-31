@@ -14,6 +14,7 @@ let mix = require('laravel-mix');
 //mix.setResourceRoot("/static/");
 mix.setPublicPath('core/static/');
 mix.js('core/static/src/app.js', 'core/static/dist/');
+mix.js('core/static/src/main.js', 'core/static/dist/');
 mix.sass('core/static/src/app.scss', 'core/static/dist/');
 mix.version();
 mix.browserSync('localhost:8000');
