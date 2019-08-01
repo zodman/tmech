@@ -13,6 +13,9 @@ django-autofixture = "*"
 django-active-link = "*"
 django-bsync = "*"
 djangomix = "*"
+django-test-plus = "*"
+coverage = "*"
+django-test-without-migrations = "*"
 
 [requires]
 python_version = "3.6"

@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'djangomix',
     'autofixture',
     'active_link',
+    'test_without_migrations',
 ]
 
 MIDDLEWARE = [
