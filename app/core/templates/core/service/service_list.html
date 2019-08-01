@@ -3,7 +3,7 @@
 
 {% block container %}
 
-<!-- h1 class="title">{% trans "Service" %}</h1-->
+<h1 class="title">{% trans "Services" %}</h1>
 
 
 <div class="level">
@@ -12,10 +12,10 @@
         <div class="control has-icons-left">
         
             <input class="input" type="text" name="search"
-                ic-get-from="{% url 'search_car' %}" ic-trigger-on="keyup changed" 
+                ic-get-from="{# url 'search_car' #}" ic-trigger-on="keyup changed" 
                 ic-trigger-delay="500ms" ic-target="#object_list" 
                 ic-indicator="#indicator" autocomplete="off"
-                placeholder="{% trans "Search car" %}">
+                placeholder="{% trans "Search car or client" %}">
             <span class="icon is-left">
               <i id="indicator" class="fa fa-spinner fa-spin" style="display:none"></i>
             </span>
@@ -46,9 +46,9 @@
         <td></td>
         <th>client</th>
         <th>car</th>
-        <th>diagnostic</th>
-        <th>release</th>
-        <th>created</th>
+        <th>status</th>
+        <th>reception</th>
+        <th></th>
     </tr>
     </thead>
     <tbody id="object_list">

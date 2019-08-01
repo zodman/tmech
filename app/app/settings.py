@@ -113,6 +113,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_DIR = os.path.join(BASE_DIR, "static")
+MEDIA_URL = "/media/"
 
 LARAVELMIX_MANIFEST_DIRECTORY =  os.path.join(BASE_DIR, "core","static")
 

@@ -34,14 +34,14 @@ class Car(models.Model):
         return f"{self.brand} -- {self.model} -- {self.year}"
 
 
-class Service(models.Model):
-    car = models.ForeignKey(Car, on_delete=models.SET_NULL, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-
 class Diagnostic(models.Model):
-    service = models.ForeignKey("Service", verbose_name=_("Service"), on_delete=models.CASCADE)
+    STATUS = (
+        ("o",_("Open")),
+        ("c",_("Completed")),
+        ("p",_("Paid")),
+    )
+    status = models.CharField(max_length=10, choices=STATUS, default="o")
+    car = models.ForeignKey(Car, on_delete=models.SET_NULL, null=True)
     reception_datetime = models.DateTimeField(help_text="YYYY/mm/dd HH:MM")
     initial = models.TextField(_("Initial Diagnostic"))
     final = models.TextField(_("Final Diagnostic"))
@@ -50,19 +50,27 @@ class Diagnostic(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def get_status(self):
+        return dict(self.STATUS).get(self.status)
+
 
 class Item(models.Model):
     quantity = models.PositiveIntegerField()
     description = models.TextField()
     price = models.DecimalField(decimal_places=2, max_digits=8)
-    quote = models.ForeignKey("Quote", on_delete=models.CASCADE)
+    quote = models.ForeignKey("Quote", on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
 class Quote(models.Model):
+    STATUS=(
+        ('o',_('Open')),
+        ('a',_('Accepted'))
+    )
     name = models.CharField(_("name"), max_length=200)
-    client = models.ForeignKey("Client", on_delete=models.CASCADE)
+    diagnostic = models.ForeignKey("Diagnostic", on_delete=models.PROTECT)
+    status = models.CharField(max_length=10, choices=STATUS, default="o")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

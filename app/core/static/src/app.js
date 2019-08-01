@@ -4,11 +4,11 @@ require("bulmahead/src/bulmahead.js");
 
 function api(value) {
     return new Promise(function(rs, js) {
-                 $("#check").hide();
-                $("#indicator").show();
+        $("#check").hide();
+        $("#indicator").show();
 
          Intercooler.triggerRequest($('#prova'), function (data) {
-            console.log("ic-trigger",data);
+            //console.log("ic-trigger",data);
             var resp = $.parseJSON(data);
             rs(resp);
           });
@@ -16,14 +16,14 @@ function api(value) {
 }
 if ($("#prova").length > 0 ) {
     bulmahead("prova", "prova-menu", api, function( item) {
-        $("input[name='client_id']").val(item.value);
+        $("[name='client_id']").val(item.value);
         $("#prova-label").text(item.label);
         $("#check").show();
-        
-        if( $("#cars").length  > 0 ) {
-            console.log("process", $("#cars").length);    
-            Intercooler.refresh($("[name='client_id']"));
-        }
+            if ($("[name='client_id']").attr("ic-get-from")) {
+                Intercooler.refresh($("[name='client_id']"));
+            }
+            
+     
 
     },0);
 }

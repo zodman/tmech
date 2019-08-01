@@ -79,7 +79,7 @@ def search_car_clients(request):
 class CarList(ListView):
     model = Car
     paginate_by = 20
-    template_name="core/car/car_form.html"
+    template_name="core/car/car_list.html"
 
 car_list = CarList.as_view()
 

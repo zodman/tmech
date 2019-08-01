@@ -3,14 +3,14 @@
 
 {% block container %}
 
-<!-- h1 class="title">
+<h1 class="title">
     {% if object %}
         
         {% trans "Update Service" %}
     {% else %}
         {% trans "Add Service" %}
     {% endif %}
-</h1-->
+</h1>
 
 
 
@@ -20,7 +20,7 @@
                 <div class="control has-icons-left has-icons-right">
                         <input id="prova" type="text is-static" class="input"
                             ic-src="{% url 'car_client_search' %}" 
-                            ic-trigger-delay="1500ms"
+                            ic-trigger-delay="500ms"
                             autocomplete="off"
                             ic-indicator="#indicator"
                             name="search"  placeholder='{% trans "Search client ..." %}' />
@@ -48,32 +48,24 @@
     <label id="prova-label"> {{object.client.name|default:"Client not set"}} </label>
         <div class="control">
             
-            <input type="hidden"  ic-target="#cars"
+            <input type="hidden"  ic-target="#form"
              ic-get-from="{% url 'get_cars' %}" 
+
              name="client_id" value="{{object.client.id}}">
                 
         </div>
     </div>
 
-    <div class="field" id="cars">
-            <label class="label " for="id_car">Car:</label>
-        <div class="control">
-                <div class="select">
-                <select name="" id=""></select>
-             </div>  
-        </div>
-       
-    </div>
 
     <div id="form">
-        {% include "form.html" %}
+       
     </div>
 
 
 <div class="field">
     <div class="buttons">
-        <button  type="submit"
-            class="button is-info"> {% trans "Add" %}</button>
+        <button  type="submit" style="display:none"
+            class="button is-info"> {% trans "Send" %}</button>
     </div>
 
 </div>
