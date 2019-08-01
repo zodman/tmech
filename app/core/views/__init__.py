@@ -1,4 +1,4 @@
 from .clients import *
 from .cars import *
-from .visits import *
+from .services import *
 

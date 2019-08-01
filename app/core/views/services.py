@@ -2,24 +2,20 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy as reverse
 from django.contrib import messages
-from ..models import Client, Service, Diagnostic
+from ..models import Client, Service, Diagnostic, Car
 from .utils import CreateIntercoolerMix
 from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
 from django.forms import modelform_factory
 
 
-__all__ = ["list_visit","service_add"]
+__all__ = ["list_visit","service_add","service_search_cars"]
 
-
-
-
-
-def search_cars(request):
+def service_search_cars(request):
     ServiceForm = modelform_factory(Service, fields=("__all__"))
     f = ServiceForm()
-    client_id = request.POST.get("client_id")
-    f["car"].queryset= Car.objects.filter(client__id=client_id)
+    client_id = request.GET.get("client_id")
+    f.fields["car"].queryset=Car.objects.filter(client__id=client_id)
     context = {
         'form':f
     }
@@ -29,7 +25,7 @@ def search_cars(request):
 
 class ListVisit(ListView):
     model = Service
-    template_name = "core/visits/visit_list.html"
+    template_name = "core/service/visit_list.html"
 
 list_visit = ListVisit.as_view()
 

@@ -31,7 +31,7 @@ class Car(models.Model):
         unique_together = ("client","brand","model","year")
         ordering = ("-id",)
     def __str__(self):
-        return f"{self.brand} -- {self.model}"
+        return f"{self.brand} -- {self.model} -- {self.year}"
 
 
 class Service(models.Model):

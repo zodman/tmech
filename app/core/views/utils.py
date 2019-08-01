@@ -19,5 +19,6 @@ class CreateIntercoolerMix(CreateView):
         resp = HttpResponse("")
         #messages.info(self.request, _("{} Added").format(self.model.__name__))
         resp["X-IC-Redirect"] = url
+        #resp["Turbolinks-Location"] = url
         return resp
 

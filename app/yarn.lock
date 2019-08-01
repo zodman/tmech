@@ -2156,10 +2156,9 @@ css-selector-tokenizer@^0.7.0:
     fastparse "^1.1.1"
     regexpu-core "^1.0.0"
 
-css-spaces@^0.3.5:
+"css-spaces@git+https://github.com/zodman/css-spaces.git":
   version "0.3.5"
-  resolved "https://registry.yarnpkg.com/css-spaces/-/css-spaces-0.3.5.tgz#2f85c3cf5373342d80607237313a3aee9af1a8b4"
-  integrity sha1-L4XDz1NzNC2AYHI3MTo67prxqLQ=
+  resolved "git+https://github.com/zodman/css-spaces.git#77aa28cc6be02efd348b6b2228a218c9c9fd591a"
 
 css-tree@1.0.0-alpha.29:
   version "1.0.0-alpha.29"

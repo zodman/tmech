@@ -22,6 +22,7 @@ class CarAdd(CreateIntercoolerMix):
     fields = ("brand","model","year")
 #    fields = ("__all__")
     success_url = reverse("car_list")
+    template_name="core/car/car_form.html"
 
     def form_valid(self, form):
         client_id = self.request.POST.get("client_id")
@@ -45,6 +46,7 @@ class CarEdit(CarAdd, UpdateView):
     fields = ("brand","model","year")
 #    fields = ("__all__")
     success_url = reverse("car_list")
+    template_name="core/car/car_form.html"
 
 car_edit = CarEdit.as_view()
 
@@ -60,7 +62,7 @@ def search_car(request):
     else:
         cars = Car.objects.none()
     context = dict(object_list=cars)
-    return render(request, "core/_cars.html", context)
+    return render(request, "core/car/_cars.html", context)
 
 
 def search_car_clients(request):
@@ -77,14 +79,9 @@ def search_car_clients(request):
 class CarList(ListView):
     model = Car
     paginate_by = 20
-
+    template_name="core/car/car_form.html"
 
 car_list = CarList.as_view()
-
-
-
-
-
 
 def delete_cars(request):
     ids = request.POST.getlist("ids")

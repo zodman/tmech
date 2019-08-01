@@ -1,6 +1,4 @@
 import '@fortawesome/fontawesome-free/js/all.js';
-
-
 require("bulmahead/src/bulmahead.js");
 
 
@@ -18,12 +16,13 @@ function api(value) {
 }
 if ($("#prova").length > 0 ) {
     bulmahead("prova", "prova-menu", api, function( item) {
-        console.log("selected", item);
         $("input[name='client_id']").val(item.value);
         $("#prova-label").text(item.label);
         $("#check").show();
+        
         if( $("#cars").length  > 0 ) {
-            console.log("service"); 
+            console.log("process", $("#cars").length);    
+            Intercooler.refresh($("[name='client_id']"));
         }
 
     },0);

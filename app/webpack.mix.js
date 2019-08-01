@@ -32,7 +32,21 @@ mix.browserSync('localhost:8000');
 // mix.less(src, output);
 // mix.stylus(src, output);
 // mix.postCss(src, output, [require('postcss-some-plugin')()]);
-// mix.browserSync('my-site.test');
+ mix.browserSync({
+     'proxy':'localhost:8000',
+     'files':[
+         "core/static/src/*",
+         "core/templates/**/**/*.html"
+     ],
+     snippetOptions: {
+        rule: {
+          match: /<\/head>/i,
+          fn: function (snippet, match) {
+            return snippet + match;
+          }
+        }
+      }
+ });
 // mix.combine(files, destination);
 // mix.babel(files, destination); <-- Identical to mix.combine(), but also includes Babel compilation.
 // mix.copy(from, to);

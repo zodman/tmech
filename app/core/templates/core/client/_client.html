@@ -6,5 +6,8 @@
             </td>
             <td>{{obj.name}}</td>
             <td>{{obj.phone|default:""}}</td>
+            <td>
+                {{obj.car_set.count}}
+            </td>
         </tr>
         {% endfor %}

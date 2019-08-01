@@ -33,10 +33,7 @@
                             </span>
                             
                 </div>
-                <div class="control" id="cars">
-                
-                    
-                </div>
+               
             </div>
 
 
@@ -48,21 +45,24 @@
     </div>
 
     <div class="field">
+    <label id="prova-label"> {{object.client.name|default:"Client not set"}} </label>
         <div class="control">
-            <label id="prova-label"> {{object.client.name|default:"Client not set"}} </label>
-            <input type="hidden" name="client_id" value="{{object.client.id}}">
+            
+            <input type="hidden"  ic-target="#cars"
+             ic-get-from="{% url 'get_cars' %}" 
+             name="client_id" value="{{object.client.id}}">
+                
         </div>
     </div>
 
-    <div class="field" id="cars" ic-src="{% url 'get_cars'%}" ic-include="#client_id" ic-deps="*">
-        <div class="control" >
-            <span class="select">
-            
-            <select name="cars">
-            </select>
-            </span>
-        
+    <div class="field" id="cars">
+            <label class="label " for="id_car">Car:</label>
+        <div class="control">
+                <div class="select">
+                <select name="" id=""></select>
+             </div>  
         </div>
+       
     </div>
 
     <div id="form">

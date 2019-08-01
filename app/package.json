@@ -15,7 +15,7 @@
     "bulma": "^0.7.5",
     "bulmahead": "git+https://github.com/mattmezza/bulmahead.git",
     "cross-env": "^5.2.0",
-    "css-spaces": "^0.3.5",
+    "css-spaces": "git+https://github.com/zodman/css-spaces.git",
     "font-awesome": "^4.7.0",
     "intercooler": "^1.2.2",
     "jquery": "^3.4.1",
