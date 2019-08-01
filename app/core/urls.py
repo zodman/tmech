@@ -18,7 +18,7 @@ urlpatterns = [
     path("service/search/car", service_search_cars, name="get_cars"),
     path("service/add", service_add, name="service_add"),
     path("service/detail/<int:pk>", service_detail, name="service_detail"),
-    path("service/", list_visit, name="list_visit"),
+    path("service/", service_list, name="service_list"),
     
 
 ]

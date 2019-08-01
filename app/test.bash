@@ -1,4 +1,4 @@
 set -e 
-coverage run  manage.py  test   -n  # appointment.tests.AppointmentViewsTest.test_update_view
-coverage report -m 
-coverage html
+pipenv run coverage run  manage.py  test   -n  # appointment.tests.AppointmentViewsTest.test_update_view
+pipenv run coverage report -m 
+pipenv run coverage html

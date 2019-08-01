@@ -22,7 +22,6 @@ class CarTest(TestCase):
     def test_search(self):
         self.get_check_200("search_car", data={'search':'xtrail'})
         self.get_check_200("car_client_search", data={'search':'xtrail'})
-        
 
     def test_add_car(self):
         data = {

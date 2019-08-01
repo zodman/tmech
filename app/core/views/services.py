@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from django.forms import modelform_factory
 from django.utils import timezone
 
-__all__ = ["list_visit","service_add","service_search_cars", "service_detail"]
+__all__ = ["service_list","service_add","service_search_cars", "service_detail"]
 
 def service_search_cars(request):
     ServiceForm = modelform_factory(Diagnostic, fields=("__all__"))
@@ -34,17 +34,14 @@ class ListVisit(ListView):
     model = Diagnostic
     template_name = "core/service/service_list.html"
 
-list_visit = ListVisit.as_view()
+service_list = ListVisit.as_view()
 
 
 class ServiceAdd(CreateIntercoolerMix):
     model = Diagnostic
     fields = ["car","reception_datetime", "initial", "final", "repairs", "notes"]
-    success_url = reverse("list_visit")
+    success_url = reverse("service_list")
     template_name = "core/service/service_form.html"
     initial={'reception_datetime': timezone.now()}
-
-
-
 
 service_add = ServiceAdd.as_view()
