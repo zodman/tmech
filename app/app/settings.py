@@ -18,9 +18,7 @@ SECRET_KEY = '+6+a=-h4a-(8qg)r($502$1#w4y5lmr%#hu(kv8(evd)g&k)m&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config.DEBUG
 
-ALLOWED_HOSTS = []
-
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
