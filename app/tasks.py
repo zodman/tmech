@@ -18,6 +18,7 @@ def make(c):
             "--no-deps", "."
         ]
         c.run(" ".join(cmd))
+    c.run("scp ../tmech.pyz waifu.ca:apps/")
 
 @task_local
 def test(c):
