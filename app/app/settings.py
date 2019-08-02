@@ -1,4 +1,5 @@
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -16,6 +17,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -31,8 +33,12 @@ INSTALLED_APPS = [
     'djangomix',
     'autofixture',
     'active_link',
-    'test_without_migrations',
+    'django_webserver',
 ]
+
+if "test" in sys.argv:
+    INSTALLED_APPS +=['test_without_migrations',]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -113,7 +119,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_DIR = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 MEDIA_URL = "/media/"
 
 LARAVELMIX_MANIFEST_DIRECTORY =  os.path.join(BASE_DIR, "core","static")

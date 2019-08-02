@@ -141,4 +141,5 @@ tags
 
 app/node_modules
 app/core/static/dist/*
-
+*.pyz
+app/static/

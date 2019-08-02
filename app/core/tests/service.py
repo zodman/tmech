@@ -12,7 +12,7 @@ class ServiceTest(TestCase):
         self.cars = carfixture.create(10)
         self.services = AutoFixture(Diagnostic, generate_fk=True).create(1)
 
-    def test_manager(self):
+    def __test_manager(self):
         AutoFixture(Diagnostic, generate_fk=True).create(100)
         s = Diagnostic.objects.all().profit()
         

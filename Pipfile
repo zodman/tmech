@@ -5,6 +5,11 @@ verify_ssl = true
 
 [dev-packages]
 pylint = "*"
+coverage = "*"
+django-test-plus = "*"
+fabric = "*"
+shiv = "*"
+v = {editable = true,version = "*"}
 
 [packages]
 django = "*"
@@ -13,10 +18,8 @@ django-autofixture = "*"
 django-active-link = "*"
 django-bsync = "*"
 djangomix = "*"
-django-test-plus = "*"
-coverage = "*"
 django-test-without-migrations = "*"
-fabric = "*"
+django-webserver = {extras = ["pyuwsgi"],version = "*"}
 
 [requires]
 python_version = "3.6"
