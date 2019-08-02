@@ -1,0 +1,46 @@
+{% load i18n %}
+<div id="#item-quote">
+
+    {% include "core/service/_add_item.html" %}
+
+</div>
+
+
+
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>
+                    {% trans "Quant." %}
+                    </th>
+                    <th>
+                        {% trans "Description" %}
+                    </th>
+                    <th>
+                        {% trans "Unit Price" %}
+                    </th>
+                    <th>
+                        {% trans "Total Price" %}
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            
+            <tbody  ic-confirm='{% trans "Are you sure?" %}' ic-target="closest tr">
+            {% for item in object.item_set.all  %}
+                <tr id="row-{{forloop.counter}}">
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.total}}</td>
+                    <td>
+                       <button
+                       ic-delete-from="{% url 'service_delete_item' item.id %}"
+                       ic-include="[name='csrfmiddlewaretoken']"
+                        class="button">-</button>
+                        <i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>

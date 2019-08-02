@@ -12,7 +12,7 @@
         <div class="control has-icons-left">
         
             <input class="input" type="text" name="search"
-                ic-get-from="{# url 'search_car' #}" ic-trigger-on="keyup changed" 
+                ic-get-from="{% url 'service_search' %}" ic-trigger-on="keyup changed" 
                 ic-trigger-delay="500ms" ic-target="#object_list" 
                 ic-indicator="#indicator" autocomplete="off"
                 placeholder="{% trans "Search car or client" %}">

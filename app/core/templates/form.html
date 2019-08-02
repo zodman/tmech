@@ -28,6 +28,10 @@
             {{ field|add_error_class:"is-danger"|add_class:"input" }}
           {% elif widgett == "emailinput" %}  
             {{ field|add_error_class:"is-danger"|add_class:"input" }}
+          {% elif widgett == "textarea" %}  
+            {% with cols_=cols|default:"cols:40" rows_=rows|default:"rows:10"%}
+              {{ field|add_error_class:"is-danger"|add_class:"textarea"|attr:rows_|attr:cols_ }}
+            {% endwith %}
          {% elif widgett == "select" %}  
              <div class="select">
                 {{ field|add_error_class:"is-danger"}}

@@ -3,24 +3,26 @@
 
 {% block container %}
 
+
 <h1 class="title">
+
+
   {% trans "Service Detail" %} 
   
 </h1>
 
 <div class="field is-grouped">
-
     <div class="control">
         <div class="select">
-            <select name="" id="">
+            {% csrf_token %}
+            <select name="status" id="" ic-post-to="{% url 'service_change_status' object.id %}" ic-include="[name='csrfmiddlewaretoken']">
             {% for k,st in object.STATUS  %}
-                <option value="" {% if k == object.status %} selected {% endif %}  >{{st}}</option>
+                <option value="{{k}}" {% if k == object.status %} selected {% endif %}  >{{st}}</option>
             {% endfor %}
                 
             </select>
         </div>
     </div>
-    
 </div>
 
 <div class="columns">
@@ -32,7 +34,7 @@
                 </p>
                 <p class="subtitle is-5">
                     {% trans "Phone" %}:
-                        {{object.car.client.phone}}
+                        {{object.car.client.phone}} <a href="https://wa.me/{{object.car.client.phone}}"> Whatsapp </a>
                         {% if object.car.client.email %}
                         {% trans "Email" %}    {{object.car.client.email|default:""}}
             
@@ -42,6 +44,7 @@
     <div class="column">
             <p class="subtitle">
                 {% trans "Reception at" %} {{object.reception_datetime}}    
+               
             </p>
 
     
@@ -54,86 +57,44 @@
 
 
 
-<div class="columns">
-    <div class="column is-4">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-header-title">
-           <p class=" title">
-                 {% trans "Diagnostic" %}
-           </p>
+    <div class="columns">
+        <div class="column is-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header-title">
+            <p class=" title">
+                    {% trans "Diagnostic" %}
+            </p>
+                    </div>
+                    <div class="card-header-icon">
+                        <a ic-get-from="{% url 'service_edit' object.id %}" ic-target="#content">
+                            {% trans "Edit" %}
+                        </a>
+                    </div>
                 </div>
-                <div class="card-header-icon">
-                    <a href="">
-                        {% trans "Edit" %}
-                    </a>
+                <div class="card-content">  
+                    <div class="content" id="content">
+                        {% include "core/service/diagnostic_detail.html" %}
+                    </div>
                 </div>
             </div>
-            <div class="card-content">
-  
-            <div class="content">
-                <strong> {% trans "Initial" %}</strong>
-                <p>
-                {{object.initial}}
-            </p> 
-            <strong> {% trans "Notes" %}</strong>
-                <p>
-                    {{object.notes}}
-                </p>
-
-                          <strong> {% trans "Repairs" %}</strong>
-                <p>
-                    {{object.repairs}}
-                </p>
-                          <strong> {% trans "Final" %}</strong>
-                <p>
-                    {{object.final}}
-                </p>
-            </div>
-           
-            </div>
-            
-        </div>
-    
     </div>
     <div class="column">
 
         <div class="field is-grouped">
-            <div class="control">
-            
-        <h1 class="subtitle is-3">Quotes</h1>    
+            <div class="control">    
+                    <h1 class="subtitle is-3">
+                        {% trans "Quote" %}
+                    </h1>    
             </div>
-            <div class="control">
-                <button class="button">
-                    {% trans "Add" %}
-                </button>
-            </div>
+          
         </div>
         
-
-
-        <table class="table is-fullwidth">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>name</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for quote in object.quote_set.all  %}
+        <div id="quote">
             
+            {% include "core/service/_quote.html" %}
             
-                <tr>
-                    <td>#{{quote.id}}</td>
-                    <td>{{quote.name}}</td>
-                    <td>
-                        edit delete
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        </div>
         
     </div>
 </div>

@@ -1,0 +1,19 @@
+{% load i18n %}
+<form ic-post-to="{% url 'service_edit' object.id %}">
+{% csrf_token %}
+
+{% include "form.html" with rows="rows:5" cols="cols:20"%}
+
+<div class="field is-grouped">
+    <div class="control">
+        <button class="button is-info">
+            {% trans "Send" %}
+        </button>
+    </div>
+    <div class="control">
+        <a href="{% url 'service_detail' object.id %}" class="button is-text" type="button" onclick="location.refresh()">
+            Cancel
+        </>
+    </div>
+</div>
+</form>

@@ -45,7 +45,7 @@ class Diagnostic(models.Model):
     )
     status = models.CharField(max_length=10, choices=STATUS, default="o")
     car = models.ForeignKey(Car, on_delete=models.SET_NULL, null=True)
-    reception_datetime = models.DateTimeField(help_text="YYYY/mm/dd HH:MM")
+    reception_datetime = models.DateTimeField(help_text="YYYY-mm-dd HH:MM:SS")
     initial = models.TextField(_("Initial Diagnostic"))
     final = models.TextField(_("Final Diagnostic"))
     repairs = models.TextField(_("Repairs"))
@@ -60,26 +60,12 @@ class Diagnostic(models.Model):
 class Item(models.Model):
     quantity = models.PositiveIntegerField()
     description = models.TextField()
-    price = models.DecimalField(decimal_places=2, max_digits=8)
-    quote = models.ForeignKey("Quote", on_delete=models.PROTECT)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-
-class Quote(models.Model):
-    STATUS=(
-        ('o',_('Open')),
-        ('a',_('Accepted'))
-    )
-    name = models.CharField(_("name"), max_length=200)
+    price = models.DecimalField(decimal_places=2, max_digits=15)
     diagnostic = models.ForeignKey("Diagnostic", on_delete=models.PROTECT)
-    status = models.CharField(max_length=10, choices=STATUS, default="o")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def total(self):
+        return self.quantity*self.price
 
-
-class Release(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    quotes = models.ManyToManyField("Quote")

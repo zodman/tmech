@@ -8,8 +8,8 @@ class ClientTest(TestCase):
     def setUp(self):
         client_fixture = AutoFixture(Client)
         carfixture = AutoFixture(Car, generate_fk=True)
-        self.clients = client_fixture.create(10)
-        self.cars = carfixture.create(10)
+        self.clients = client_fixture.create(100)
+        self.cars = carfixture.create(1)
 
     def test_search_client(self):
         self.get("search_client", data={'q':''})

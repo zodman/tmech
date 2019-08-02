@@ -1,0 +1,16 @@
+{% load i18n %}  
+  
+  <strong> {% trans "Initial" %}</strong>
+                        <p>{{object.initial|linebreaksbr}}</p> 
+                        <strong> {% trans "Final" %}</strong>
+                        <p>
+                            {{object.final}}
+                        </p>
+                        <strong> {% trans "Repairs" %}</strong>
+                        <p>
+                            {{object.repairs|linebreaksbr}}
+                        </p>
+                        <strong> {% trans "Notes" %}</strong>
+                        <p>
+                            {{object.notes|linebreaksbr}}
+                        </p>  

@@ -1,0 +1,44 @@
+{% load widget_tweaks i18n %}
+
+
+{% if form.errors %}
+  <div class="help is-danger message is-danger">
+    <div class="message-body">
+             {% trans "Errors on form." %}
+    {{ form.non_field_errors|add_error_class:"is-danger" }}
+    </div>
+    
+  </div>
+{% endif %}
+
+<form ic-post-to="{% url 'service_add_item' object.id %}">
+{% csrf_token %}    
+<table class="table">
+<tr>
+    <td>
+                 {{ form.quantity|add_error_class:"is-danger"|add_class:"input"|attr:"placeholder:Quantity" }}
+                   <div class="help is-danger">
+    {{form.quantity.errors}}
+  </div>
+    </td>
+    <td>
+                 {{ form.description|add_error_class:"is-danger"|add_class:"input"|attr:"placeholder:Description" }}
+                   <div class="help is-danger">
+    {{form.description.errors}}
+  </div>
+    </td>
+    <td>
+                 {{ form.price|add_error_class:"is-danger"|add_class:"input"|attr:"placeholder:Price" }}
+                   <div class="help is-danger">
+           {{form.price.errors}}
+  </div>
+    </td>
+    <td>
+        <button 
+        ic-post-to="{% url 'service_add_item' object.id %}" ic-target="#quote"
+        class="button is-info">+</button>
+    </td>
+</tr>
+</table>
+
+</form>

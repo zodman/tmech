@@ -9,7 +9,7 @@ class CarTest(TestCase):
         client_fixture = AutoFixture(Client)
         carfixture = AutoFixture(Car, generate_fk=True)
         self.clients = client_fixture.create(10)
-        self.cars = carfixture.create(10)
+        self.cars = carfixture.create(1)
 
     def test_delete_cars(self):
         data = {'ids': [i.id for i in self.cars]}

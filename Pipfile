@@ -16,6 +16,7 @@ djangomix = "*"
 django-test-plus = "*"
 coverage = "*"
 django-test-without-migrations = "*"
+fabric = "*"
 
 [requires]
 python_version = "3.6"

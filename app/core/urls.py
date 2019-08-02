@@ -17,7 +17,12 @@ urlpatterns = [
     path("cars/search/client/", search_car_clients, name="car_client_search"),
     path("service/search/car", service_search_cars, name="get_cars"),
     path("service/add", service_add, name="service_add"),
+    path("service/search", service_search, name="service_search"),
+    path("service/detail/<int:pk>/item", service_add_item, name="service_add_item"),
     path("service/detail/<int:pk>", service_detail, name="service_detail"),
+    path("service/edit/<int:pk>", service_edit, name="service_edit"),
+    path("service/status/<int:pk>", service_change_status, name="service_change_status"),
+    path("service/delete/item/<int:pk>", service_delete_item, name="service_delete_item"),    
     path("service/", service_list, name="service_list"),
     
 

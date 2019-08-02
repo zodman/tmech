@@ -1,4 +1,4 @@
-
+{% load i18n %}
         {% for obj in object_list  %}
         <tr>
             <td>
@@ -9,7 +9,10 @@
             <td>{{obj.model|default:""}}</td>
             <td>{{obj.year|default:""}}</td>
             <td>
-                <a class="button as-text" href="{% url 'car_edit' obj.id  %}" target="_blank">Edit</a>
+                <a class="button as-text" href="{% url 'car_edit' obj.id  %}" >
+                {% trans "Edit" %}
+                
+                </a>
             </td>
         </tr>
         {% endfor %}
