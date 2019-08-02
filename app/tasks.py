@@ -2,6 +2,10 @@ from invoke import task as task_local
 from invoke import run as local
 
 @task_local
+def gen_conf(c):
+    c.run('pipenv run python  -c "import app.conf; print(app.conf.config.generate_yaml())"')
+
+@task_local
 def make(c):
     c.run("pipenv run python  manage.py collectstatic --noinput")
     with c.cd("../"):

@@ -143,3 +143,4 @@ app/node_modules
 app/core/static/dist/*
 *.pyz
 app/static/
+app/tmech_conf.yaml
