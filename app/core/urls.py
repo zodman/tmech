@@ -4,7 +4,7 @@ from .views import *
 
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="base.html"), name="index"),
+    path("dashboard/", dashboard, name="dashboard"),
     path("client/", client_list, name="client_list"),
     path("client/add", client_add, name="client_add"),
     path("client/search/", search_client, name="search_client"),

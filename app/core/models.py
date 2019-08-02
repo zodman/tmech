@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from .managers import ServiceManager
 
 
 class Personal(models.Model):
@@ -52,9 +53,18 @@ class Diagnostic(models.Model):
     notes = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = ServiceManager()
+
+    class Meta:
+        ordering = ("-reception_datetime", "status")
 
     def get_status(self):
         return dict(self.STATUS).get(self.status)
+
+    def total(self):
+        r = self.item_set.values("quantity","price")
+        all = [i["quantity"]*i["price"] for i in r]
+        return sum(all)
 
 
 class Item(models.Model):

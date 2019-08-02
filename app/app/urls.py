@@ -10,5 +10,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("messages/", messages, name="messages"),
     path("app/", include("core.urls")),
-    path("", RedirectView.as_view(url="/app/"), name="index" )
+    path("", RedirectView.as_view(url="/app/dashboard/"), name="index" )
 ] + staticfiles_urlpatterns()

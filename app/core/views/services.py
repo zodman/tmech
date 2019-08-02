@@ -44,7 +44,7 @@ def service_change_status(request, pk):
             return r
 
 def service_search_cars(request):
-    ServiceForm = modelform_factory(Diagnostic, fields=("__all__"))
+    ServiceForm = modelform_factory(Diagnostic, fields=["car","reception_datetime", "initial", "final", "repairs", "notes"])
     f = ServiceForm(initial={'reception_datetime': timezone.now()})
     client_id = request.GET.get("client_id")
     f.fields["car"].queryset=Car.objects.filter(client__id=client_id)

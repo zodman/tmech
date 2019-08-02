@@ -1,6 +1,12 @@
 {% load i18n active_link_tags %}
 <nav class="menu">
     <ul class="menu-list">
+     <li>
+            <a href="{% url 'dashboard' %}" 
+                class=" {% active_link 'dashboard' 'is-active' %}">
+                <span> {% trans "Dashboard" %}</span>
+            </a>
+        </li>
         <li>
             <a href="{% url 'client_list' %}" 
                 class=" {% active_link 'client_list' 'is-active' %}">

@@ -1,7 +1,5 @@
-import '@fortawesome/fontawesome-free/js/all.js';
+
 require("bulmahead/src/bulmahead.js");
-
-
 function api(value) {
     return new Promise(function(rs, js) {
         $("#check").hide();

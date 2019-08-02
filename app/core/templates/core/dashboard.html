@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block container %}
+<div class="level">
+    <div class="level-left">
+      <h1 class="subtitle is-3">Hello ..</h1>
+    </div>
+    <div class="level-rigth">
+    <div class="select">
+                <select>
+                  <option>Today</option>
+                  <option>Yesterday</option>
+                  <option>This Week</option>
+                  <option selected="">This Month</option>
+                  <option>This Year</option>
+                  <option>All time</option>
+                </select>
+              </div>
+    </div>
+</div>
+
+<div class="columns is-multiline">
+            <div class="column is-12-tablet is-6-desktop is-3-widescreen">
+              <div class="notification is-link has-text">
+                <p class="title is-1">{{services.count}}</p>
+                <p class="subtitle is-4">Services</p>
+              </div>
+            </div>
+
+
+            <div class="column is-12-tablet is-6-desktop is-3-widescreen">
+              <div class="notification is-info has-text">
+                <p class="title is-1">{{clients.count}}</p>
+                <p class="subtitle is-4">Clients</p>
+              </div>
+            </div>
+
+
+         <div class="column is-12-tablet is-6-desktop is-3-widescreen">
+              <div class="notification is-warning has-text">
+                <p class="title is-1">$ {{profit}}</p>
+                <p class="subtitle is-4">Profit</p>
+              </div>
+            </div>
+</div>
+
+<div class="columns">
+    <div class="column is-3">
+        <div class="card">
+            <div class="card-content">
+            
+                <p class="title is-3">
+                    {% trans "Services Status" %}
+                </p>
+                <div>
+
+                   OPen: {{services.count_open|pprint}}
+                   Complete:
+                   Paid: 
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    <div class="column is-3">
+        <div class="card">
+            <div class="card-content">
+                <p class="title is-3">
+                    {% trans "Last Services" %}
+                </p>
+            {% for s in services %}
+                <div class="level">
+                    <div class="level-left">
+                        <div>
+                            <p class="title is-5">
+                                {{s.car}}
+                            </p>
+                            <small>{{s.reception_datetime}}</small>
+                        </div>
+                    </div>
+                    <div class="level-right">
+                        <div class="has-text-right">
+                        <p class="title is-5 is-marginless">
+                          ${{s.total}}
+                        </p>
+                        <span class="tag is-warning">{{s.get_status}}</span>
+                      </div>
+                    
+                    </div>
+                </div>
+            
+            {% endfor %}
+
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+
+{% endblock %}

@@ -34,7 +34,11 @@
                 </p>
                 <p class="subtitle is-5">
                     {% trans "Phone" %}:
-                        {{object.car.client.phone}} <a href="https://wa.me/{{object.car.client.phone}}"> Whatsapp </a>
+                        {{object.car.client.phone}} <a href="https://wa.me/{{object.car.client.phone}}"> 
+                         <span class="icon ">
+           <i class="fab fa-whatsapp"></i>
+            </span>
+                         </a>
                         {% if object.car.client.email %}
                         {% trans "Email" %}    {{object.car.client.email|default:""}}
             

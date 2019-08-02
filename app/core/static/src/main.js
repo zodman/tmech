@@ -1,4 +1,4 @@
-
+import '@fortawesome/fontawesome-free/js/all.js';
 window.$ = window.jQuery = require('jquery'); 
 window.Intercooler = require("intercooler");
 
