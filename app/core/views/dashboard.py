@@ -19,3 +19,5 @@ class Dashboard(TemplateView):
         })
         return context
 dashboard = Dashboard.as_view()
+
+#TODO: mejorar el dashboard

@@ -4,14 +4,22 @@
             <td>
             <input type="checkbox" name="ids" value="{{obj.id}}">
             </td>
-            <td>{{obj.car.client.name}}</td>
+            <td>
+               <a class="as-text" href="{% url 'service_detail' obj.id  %}" >
+                {{obj.car.client.name}}
+                </a>
+            </td>
+           <td>{{obj.reception_datetime}}</td>
+
             <td>
               {{obj.car.brand}} {{obj.car.model}} {{obj.car.year|default:""}}
             </td>
             <td>
             {{obj.get_status}}
             </td>
-            <td>{{obj.reception_datetime}}</td>
+            <td>
+               $ {{obj.total}}
+            </td>
             <td>
                 <a class="button as-text" href="{% url 'service_detail' obj.id  %}" >
                     {% trans "Details" %}

@@ -16,17 +16,17 @@ __all__ = ["service_list","service_add","service_search_cars",
 
 def service_search(request):
     q = request.GET.get("search")
+    status = request.GET.get("status")
+    ds = Diagnostic.objects.all()
     if q:
-        ds = Diagnostic.objects.filter(
+        ds = ds.filter(
             models.Q(car__brand__icontains=q)|
             models.Q(car__model__icontains=q)|
-            models.Q(car__client__name__icontains=q)|
-            models.Q(status=q)
-            #models.Q(reception_datetime__month__gte=q)|
-            #models.Q(reception_datetime__year__gte=q)
+            models.Q(car__client__name__icontains=q)
         ).distinct()
-    else:
-        ds = Diagnostic.objects.none()
+    
+    if status:
+        ds = ds.filter(status=status)
     ctx = {'object_list': ds}
     return render(request, "core/service/_visit.html", ctx)
 

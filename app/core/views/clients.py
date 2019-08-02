@@ -49,3 +49,6 @@ class ClientList(ListView):
 
 
 client_list = ClientList.as_view()
+
+
+# TODO: edit client

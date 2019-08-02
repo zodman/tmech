@@ -8,20 +8,56 @@
 
 <div class="level">
     <div class="level-left">
+        <div class="field is-grouped ">
+            <div class="control has-icons-left">
+            
+                <input class="input" type="text" name="search"
+                    ic-include="[name='status']"
+                    ic-get-from="{% url 'service_search' %}" ic-trigger-on="keyup changed" 
+                    ic-trigger-delay="500ms" ic-target="#object_list" 
+                    ic-indicator="#indicator" autocomplete="off"
+                    placeholder="{% trans "Search car or client" %}">
+                <span class="icon is-left">
+                <i id="indicator" class="fa fa-spinner fa-spin" style="display:none"></i>
+                </span>
 
-        <div class="control has-icons-left">
-        
-            <input class="input" type="text" name="search"
-                ic-get-from="{% url 'service_search' %}" ic-trigger-on="keyup changed" 
-                ic-trigger-delay="500ms" ic-target="#object_list" 
-                ic-indicator="#indicator" autocomplete="off"
-                placeholder="{% trans "Search car or client" %}">
-            <span class="icon is-left">
-              <i id="indicator" class="fa fa-spinner fa-spin" style="display:none"></i>
-            </span>
-
+            </div>
+            <div class="control ">
+                <div class="select">
+                    <select>
+                    <option>Today</option>
+                    <option>Yesterday</option>
+                    <option>This Week</option>
+                    <option selected="">This Month</option>
+                    <option>This Year</option>
+                    <option>All time</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control">
+                <div class="select">
+                    <select name="status"   
+                    ic-include="[name='search']"
+                    ic-target="#object_list" ic-get-from="{% url 'service_search' %}"  >
+                        <option value=""> {% trans "ALL" %}</option>
+                        {% for k,v in object_list.0.STATUS %}
+                            <option value="{{k}}">
+                                {{v}}
+                            </option>
+                        {% endfor %}    
+                    </select>
+                </div>
+            </div>
+            <div class="control">
+                <a href="{% url 'service_list'%}" class="button is-text is-small">
+                    {% trans "Clear" %}
+                </a>
+            </div>
         </div>
-    </div>
+
+
+    </div>        
+</div>
 
     <div class="level-right">
         <div class="buttons is-right">
@@ -43,12 +79,13 @@
 <table class="table is-fullwidth" >
     <thead>
     <tr>
-        <td></td>
-        <th>client</th>
+       
+        <th colspan="2">client</th>
+          <th>reception</th>
         <th>car</th>
         <th>status</th>
-        <th>reception</th>
-        <th></th>
+
+        <th colspan="2"> total </th>
     </tr>
     </thead>
     <tbody id="object_list">

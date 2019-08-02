@@ -6,7 +6,7 @@
 </div>
 
 
-
+<div class="table-container">
         <table class="table is-fullwidth">
             <thead>
                 <tr>
@@ -30,9 +30,9 @@
             {% for item in object.item_set.all  %}
                 <tr id="row-{{forloop.counter}}">
                     <td>{{item.quantity}}</td>
-                    <td>{{item.description}}</td>
-                    <td>{{item.price}}</td>
-                    <td>{{item.total}}</td>
+                    <td >{{item.description}}</td>
+                    <td> $ {{item.price}}</td>
+                    <td> $ {{item.total}}</td>
                     <td>
                        <button
                        ic-delete-from="{% url 'service_delete_item' item.id %}"
@@ -43,4 +43,16 @@
                 </tr>
                 {% endfor %}
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                    <td>
+                    <strong>
+                        $ {{object.total}}
+                        </strong>
+                    </td>
+                    <td></td>
+                </tr>
+            </tfoot>
         </table>
+        </div>

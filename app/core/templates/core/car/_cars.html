@@ -8,6 +8,7 @@
             <td>{{obj.brand}}</td>
             <td>{{obj.model|default:""}}</td>
             <td>{{obj.year|default:""}}</td>
+            <td>{{obj.diagnostic_set.count}}</td>
             <td>
                 <a class="button as-text" href="{% url 'car_edit' obj.id  %}" >
                 {% trans "Edit" %}
