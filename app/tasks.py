@@ -8,7 +8,7 @@ def gen_conf(c):
 @task_local
 def make(c):
     c.run("yarn run prod")
-    c.run("pipenv run python  manage.py collectstatic --noinput")
+    #c.run("pipenv run python  manage.py collectstatic --noinput")
     with c.cd("../"):
         cmd = [
             "shiv",
@@ -19,7 +19,7 @@ def make(c):
             "--no-deps", "."
         ]
         c.run(" ".join(cmd))
-    c.run("scp ../tmech.pyz waifu.ca:apps/")
+    c.run("scp ../tmech.pyz waifu.ca:apps/tmech/")
 
 @task_local
 def test(c):
