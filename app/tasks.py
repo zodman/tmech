@@ -7,6 +7,7 @@ def gen_conf(c):
 
 @task_local
 def make(c):
+    c.run("yarn run prod")
     c.run("pipenv run python  manage.py collectstatic --noinput")
     with c.cd("../"):
         cmd = [

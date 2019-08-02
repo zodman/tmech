@@ -1,4 +1,4 @@
-graft app/static/
-graft app/core/templates/
+
 prune app/node_modules/
-prune app/core/static/src/
+recursive-include app/static/ *js *css *json
+graft app/core/templates/
