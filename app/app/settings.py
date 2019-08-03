@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'djangomix',
     'autofixture',
     'active_link',
-    'django_webserver',
+#    'django_webserver',
 ]
 
 if "test" in sys.argv:

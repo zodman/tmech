@@ -19,10 +19,10 @@ django-active-link = "*"
 django-bsync = "*"
 djangomix = "*"
 django-test-without-migrations = "*"
-django-webserver = {extras = ["pyuwsgi"],version = "*"}
-install = "*"
+
 goodconf = {extras = ["yaml"],version = "*"}
 easyconf = "*"
+django-mix = {git = "https://github.com/zodman/django-mix.git"}
 
 [requires]
 python_version = "3.6"

@@ -3,7 +3,15 @@
 
 {% block container %}
 
-<h1 class="title"> {% trans "Add Client" %}</h1>
+<h1 class="title"> 
+    {% if object %}
+        {% trans "Edit Client" %}
+    {% else %}
+        {% trans "Add Client" %}
+    {% endif %}
+
+    
+</h1>
 
 <form>
     {% csrf_token %}
@@ -18,14 +26,44 @@
         <div class="control">
     
                 <button  type="button"
-                    ic-post-to="{% url 'client_add'  %}"
+                    {% if object %}
+                        ic-post-to="{% url 'edit_client' object.id %}"
+                    {% else %}
+                        ic-post-to="{% url 'client_add'  %}"
+                    {% endif %}
+                    
                     ic-include="[name='csrfmiddlewaretoken']"
                     ic-target="#form"
-                    class="button is-info"> {% trans "Add" %}</button>
+                    class="button is-info">
+                    
+                        {% trans "Send" %}
+                         
+                    </button>
 
         </div>
     </div>
 
 </form>
+
+<div class="mv-l">
+    <h3 class="title"> {% trans "Cars" %}</h3>
+</div>
+
+<div class="columns ">
+
+    <div class="column">
+    <ul>
+        
+    {% for car in object.car_set.all  %}
+    <li>
+        {{car}}
+    </li>
+    {% endfor%}
+    </ul>
+    </div>
+
+    
+</div>
+
 
 {% endblock %}

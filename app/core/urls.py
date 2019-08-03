@@ -9,6 +9,7 @@ urlpatterns = [
     path("client/add", client_add, name="client_add"),
     path("client/search/", search_client, name="search_client"),
     path("client/delete/", delete_clients, name="delete_clients"),
+    path("client/edit/<int:pk>", edit_client, name="edit_client"),
     path("cars/", car_list, name="car_list"),
     path("cars/add/", car_add, name="car_add"),
     path("cars/edit/<int:pk>", car_edit, name="car_edit"),

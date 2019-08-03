@@ -2,7 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from app.conf import config
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 
@@ -20,5 +20,5 @@ def main():
 
 
 if __name__ == '__main__':
-    #main()
-    config.django_manage()
+    main()
+    #config.django_manage()

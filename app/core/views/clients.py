@@ -1,15 +1,26 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy as reverse
 from django.contrib import messages
 from ..models import Client
-from .utils import CreateIntercoolerMix
+from .utils import CreateIntercoolerMix, IntercoolerMix
 from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
 
 
-__all__ = ["search_client", "client_list", "client_add", "delete_clients"]
+__all__ = ["search_client", "client_list",
+           "client_add", "delete_clients", "edit_client"]
 
+
+class EditClient(IntercoolerMix, UpdateView):
+    model = Client
+    fields = ("__all__")
+    template_name="core/client/client_form.html"
+    def get_success_url(self):
+        url = reverse("client_list")
+        return url
+
+edit_client = EditClient.as_view()
 
 def delete_clients(request):
     ids = request.POST.getlist("ids")
@@ -19,8 +30,6 @@ def delete_clients(request):
         messages.info(request, _("Clients deleted"))
         resp["X-IC-Redirect"] = reverse("client_list")
         return resp
-
-
 
 class ClientAdd(CreateIntercoolerMix):
     model = Client

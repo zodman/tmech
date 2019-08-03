@@ -15,6 +15,11 @@ class ClientTest(TestCase):
         self.get("search_client", data={'q':''})
         self.response_200()
 
+    def test_edit_client(self):
+        client = self.clients.pop()
+        self.get_check_200("edit_client", pk=client.id)
+        
+
     def test_add_client(self):
         data = {
             'name': 'Foo',

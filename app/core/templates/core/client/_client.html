@@ -1,4 +1,5 @@
-
+{% load i18n %}
+        
         {% for obj in object_list  %}
         <tr>
             <td>
@@ -8,6 +9,11 @@
             <td>{{obj.phone|default:""}}</td>
             <td>
                 {{obj.car_set.count}}
+            </td>
+            <td>
+                <a href="{% url 'edit_client' obj.id %}" class="button">
+                {% trans "Edit" %}
+                </a>
             </td>
         </tr>
         {% endfor %}
