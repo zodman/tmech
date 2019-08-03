@@ -5,39 +5,45 @@
 
 <h1 class="title">{% trans "Services" %}</h1>
 
-
-<div class="level">
+<nav class="level">
     <div class="level-left">
-        <div class="field is-grouped ">
-            <div class="control has-icons-left">
-            
-                <input class="input" type="text" name="search"
-                    ic-include="[name='status']"
-                    ic-get-from="{% url 'service_search' %}" ic-trigger-on="keyup changed" 
-                    ic-trigger-delay="500ms" ic-target="#object_list" 
-                    ic-indicator="#indicator" autocomplete="off"
-                    placeholder="{% trans "Search car or client" %}">
-                <span class="icon is-left">
-                <i id="indicator" class="fa fa-spinner fa-spin" style="display:none"></i>
-                </span>
+    
+        <div class="level-item">
 
-            </div>
-            <div class="control ">
+                    <input class="input" type="text" name="search"
+                        ic-include="[name='search'],[name='status'],[name='search']"
+                        ic-get-from="{% url 'service_search' %}" ic-trigger-on="keyup changed" 
+                        ic-trigger-delay="500ms" ic-target="#object_list" 
+                        ic-indicator="#indicator" autocomplete="off"
+                        placeholder="{% trans "Search car or client" %}">
+                    <span class="icon is-left">
+                    <i id="indicator" class="fa fa-spinner fa-spin" style="display:none"></i>
+                    </span>
+        </div>
+        <div class="level-item">
+        
+                
                 <div class="select">
-                    <select>
-                    <option>Today</option>
-                    <option>Yesterday</option>
-                    <option>This Week</option>
-                    <option selected="">This Month</option>
-                    <option>This Year</option>
-                    <option>All time</option>
+                    <select 
+                    ic-include="[name='search'],[name='status'],[name='search']"
+                     
+                    ic-target="#object_list" ic-get-from="{% url 'service_search' %}"
+                    name="search_time">
+                     <option val="">All time</option>
+                     <option value="m">This Month</option>
+                    <option value="t">Today</option>
+                    <option value="y">Yesterday</option>
+                    <option value="w">This Week</option>
                     </select>
                 </div>
-            </div>
-            <div class="control">
-                <div class="select">
+            
+        </div>
+        <div class="level-item">
+        
+                    <div class="select">
                     <select name="status"   
-                    ic-include="[name='search']"
+    
+                    ic-include="[name='search'],[name='status'],[name='search']"
                     ic-target="#object_list" ic-get-from="{% url 'service_search' %}"  >
                         <option value=""> {% trans "ALL" %}</option>
                         {% for k,v in object_list.0.STATUS %}
@@ -47,34 +53,43 @@
                         {% endfor %}    
                     </select>
                 </div>
-            </div>
+        
+        </div>
+
+        <div class="level-item">
             <div class="control">
                 <a href="{% url 'service_list'%}" class="button is-text is-small">
                     {% trans "Clear" %}
                 </a>
-            </div>
-        </div>
-
-
-    </div>        
-
-
-    <div class="level-right">
-        <div class="buttons is-right">
-            <a class="button is-info" href="{% url 'service_add' %}"> {% trans "Add" %}</a>
-            <button class="button is-warning" 
-                ic-confirm="are you sure?"
-                ic-include="#form"
-                ic-post-to="{% url 'delete_cars' %}">
-                {% trans "Delete checked" %}
-            </button>
+            </div>        
         </div>
     </div>
-</div>
+    <div class="level-right">
+
+            <div class="level-item">
+                    <div class="buttons is-right">
+                <a class="button is-info" href="{% url 'service_add' %}"> {% trans "Add" %}</a>
+                <button class="button is-warning" 
+                    ic-confirm="are you sure?"
+                    ic-include="#form"
+                    ic-post-to="{% url 'delete_cars' %}">
+                    {% trans "Delete checked" %}
+                </button>
+            </div>
+    </div>
+        
+    
+</div>        
+
+</nav>
+  
+
 
 
 <form id="form">
             {% csrf_token %}
+
+<div class="table-container">
 
 <table class="table is-fullwidth" >
     <thead>
@@ -93,6 +108,8 @@
     </tbody>
 
 </table>
+
+</div>
 </form>
 
 {% include "pagination.html" %}

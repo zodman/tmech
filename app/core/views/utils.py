@@ -16,6 +16,8 @@ class IntercoolerMix:
 
 
 
+
+
 class CreateIntercoolerMix(IntercoolerMix, CreateView):
     ic_template = "form.html"
 
