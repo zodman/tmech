@@ -23,6 +23,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    
+    'core',
     'registration',
     'django.contrib.admin',
     'django.contrib.sites',
@@ -31,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
+    
     'widget_tweaks',
     'bsync',
     'djangomix',
