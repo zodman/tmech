@@ -17,11 +17,10 @@ django-widget-tweaks = {git = "https://github.com/jazzband/django-widget-tweaks.
 django-autofixture = "*"
 django-active-link = "*"
 django-bsync = "*"
-djangomix = "*"
 django-test-without-migrations = "*"
-
 goodconf = {extras = ["yaml"],version = "*"}
 easyconf = "*"
+django-registration-redux = "*"
 django-mix = {git = "https://github.com/zodman/django-mix.git"}
 
 [requires]

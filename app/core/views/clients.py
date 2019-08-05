@@ -6,6 +6,7 @@ from ..models import Client
 from .utils import CreateIntercoolerMix, IntercoolerMix
 from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.decorators import login_required
 
 
 __all__ = ["search_client", "client_list",
@@ -20,8 +21,9 @@ class EditClient(IntercoolerMix, UpdateView):
         url = reverse("client_list")
         return url
 
-edit_client = EditClient.as_view()
+edit_client = login_required(EditClient.as_view())
 
+@login_required
 def delete_clients(request):
     ids = request.POST.getlist("ids")
     if ids:
@@ -38,9 +40,9 @@ class ClientAdd(CreateIntercoolerMix):
     template_name="core/client/client_form.html"
 
 
-client_add = ClientAdd.as_view()
+client_add = login_required(ClientAdd.as_view())
 
-
+@login_required
 def search_client(request):
     search = request.GET.get("search")
     if search:
@@ -57,7 +59,4 @@ class ClientList(ListView):
     template_name="core/client/client_list.html"
 
 
-client_list = ClientList.as_view()
-
-
-# TODO: edit client
+client_list = login_required(ClientList.as_view())

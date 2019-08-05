@@ -10,11 +10,13 @@ from django.utils.translation import gettext_lazy as _
 from django.forms import modelform_factory
 from django.utils import timezone
 from datetime import timedelta
+from django.contrib.auth.decorators import login_required
+
 
 __all__ = ["service_list","service_add","service_search_cars",
            "service_detail","service_edit","service_change_status", 
            "service_add_item","service_delete_item", "service_search"]
-
+@login_required
 def service_search(request):
     q = request.GET.get("search")
     status = request.GET.get("status")
@@ -43,7 +45,7 @@ def service_search(request):
     ctx = {'object_list': ds}
     return render(request, "core/service/_visit.html", ctx)
 
-
+@login_required
 def service_change_status(request, pk):
     service = Diagnostic.objects.get(id=pk)
     if request.POST:
@@ -55,7 +57,7 @@ def service_change_status(request, pk):
             r = HttpResponse()
             r["X-IC-Redirect"] = reverse("service_detail", kwargs={'pk': service.id})
             return r
-
+@login_required
 def service_search_cars(request):
     ServiceForm = modelform_factory(Diagnostic, fields=["car","reception_datetime", "initial", "final", "repairs", "notes"])
     f = ServiceForm(initial={'reception_datetime': timezone.now()})
@@ -82,13 +84,13 @@ class ServiceDetail(DetailView):
         return ctx
 
 
-service_detail = ServiceDetail.as_view()
+service_detail = login_required(ServiceDetail.as_view())
 
 class ListVisit(ListView):
     model = Diagnostic
     template_name = "core/service/service_list.html"
 
-service_list = ListVisit.as_view()
+service_list = login_required(ListVisit.as_view())
 
 
 class ServiceAdd(CreateIntercoolerMix):
@@ -98,7 +100,7 @@ class ServiceAdd(CreateIntercoolerMix):
     template_name = "core/service/service_form.html"
     initial={'reception_datetime': timezone.now()}
 
-service_add = ServiceAdd.as_view()
+service_add = login_required(ServiceAdd.as_view())
 
 
 class ServiceEdit(IntercoolerMix, UpdateView):
@@ -112,11 +114,11 @@ class ServiceEdit(IntercoolerMix, UpdateView):
     def get_success_url(self):
         return reverse("service_detail", kwargs={'pk': self.object.id})
 
-service_edit = ServiceEdit.as_view()
+service_edit = login_required(ServiceEdit.as_view())
 
 
 
-
+@login_required
 def service_add_item(request, pk):
     service = Diagnostic.objects.get(id=pk)
     ctx = {}
@@ -141,7 +143,7 @@ def service_add_item(request, pk):
     return render(request, "core/service/_quote.html", ctx)
 
 
-
+@login_required
 def service_delete_item(request, pk):
     item = Item.objects.get(id=pk)
     item.delete()

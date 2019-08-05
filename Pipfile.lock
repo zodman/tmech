@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f155f0f9ed0cc9cdeb625796da965fc7bf432e4fa3a55e1dba37e9f4031811ec"
+            "sha256": "6f5d4e2a144c3d701b88141d78488c3af283ef0542691d459e1c16cf238d340f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -53,6 +53,18 @@
             ],
             "version": "==0.4.5"
         },
+        "django-mix": {
+            "git": "https://github.com/zodman/django-mix.git",
+            "ref": "04fa89f342171ce040923adb0b99407b579bb8a6"
+        },
+        "django-registration-redux": {
+            "hashes": [
+                "sha256:48f60ec15c9a34aad3ab7993c53c20fc32ac4f777fc64e132b337343302fa0ec",
+                "sha256:54403d9f7bce5370f5e2b9895c9e03e635fd4281fcc96b7a2dcb9dc639f846f0"
+            ],
+            "index": "pypi",
+            "version": "==2.6"
+        },
         "django-test-without-migrations": {
             "hashes": [
                 "sha256:28fbe94d23f314f524acea7ff23ef6f72ddb232492d6d0b39c25a97fc20be0fa"
@@ -63,14 +75,6 @@
         "django-widget-tweaks": {
             "git": "https://github.com/jazzband/django-widget-tweaks.git",
             "ref": "4d163cb2289e8971283e6207badbd7f8c13dfbc1"
-        },
-        "djangomix": {
-            "hashes": [
-                "sha256:5d0cddd99a537f63bb314e61620561011ea1e546029bb63bae6b09a803428f77",
-                "sha256:e893e47e3f37953e6298cb6d41a7e3c84c15c890173a9e16117aa3d97140ffc4"
-            ],
-            "index": "pypi",
-            "version": "==1.1.0"
         },
         "easyconf": {
             "hashes": [

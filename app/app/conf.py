@@ -10,8 +10,8 @@ class Config(GoodConf):
     DEBUG = Value(default=True, help="Toggle debugging.")
 
     DATABASE_CONF = Value(default={
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         },
         cast_as=dict,
         help="Database connection.")

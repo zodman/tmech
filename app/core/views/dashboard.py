@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 from core.models import Diagnostic, Client
+from django.contrib.auth.decorators import login_required
 
 
 class Dashboard(TemplateView):
@@ -18,6 +19,6 @@ class Dashboard(TemplateView):
             'clients': Client.objects.all()
         })
         return context
-dashboard = Dashboard.as_view()
+dashboard = login_required(Dashboard.as_view())
 
 #TODO: mejorar el dashboard

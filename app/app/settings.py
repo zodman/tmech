@@ -23,7 +23,9 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'django.contrib.admin',
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -36,6 +38,8 @@ INSTALLED_APPS = [
     'autofixture',
     'active_link',
 #    'django_webserver',
+    
+    'paypal_registration',
 ]
 
 if "test" in sys.argv:
@@ -124,4 +128,7 @@ MEDIA_URL = "/media/"
 
 LARAVELMIX_MANIFEST_DIRECTORY =  os.path.join(BASE_DIR, "core","static")
 
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 
+SITE_ID=1
