@@ -31,6 +31,6 @@ class CreateIntercoolerMix(IntercoolerMix, CreateView):
 
 class ListMix(object):
     def get_queryset(self):
-        qs = self.get_queryset()
+        qs = super().get_queryset()
         return qs.filter(user=self.request.user)
 

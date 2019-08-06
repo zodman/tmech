@@ -33,6 +33,7 @@ class ClientTest(TestCase):
         with self.login(self.u):
             self.post("client_add", data=data)
             self.response_200()
+#            self.print_form_errors()
             self.assertTrue(Client.objects.filter(name='Foo').exists())
 
     def test_delete_client(self):

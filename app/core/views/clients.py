@@ -37,7 +37,7 @@ def delete_clients(request):
 
 class ClientAdd(CreateIntercoolerMix):
     model = Client
-    fields = ("__all__")
+    fields = ("name","phone", "email",)
     success_url = reverse("client_list")
     template_name = "core/client/client_form.html"
 
