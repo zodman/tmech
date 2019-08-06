@@ -10,14 +10,17 @@ class ClientTest(TestCase):
         carfixture = AutoFixture(Car, generate_fk=True)
         self.clients = client_fixture.create(100)
         self.cars = carfixture.create(1)
+        self.u = self.make_user()
 
     def test_search_client(self):
-        self.get("search_client", data={'q':''})
-        self.response_200()
+        with self.login(self.u):
+            self.get("search_client", data={'q':''})
+            self.response_200()
 
     def test_edit_client(self):
-        client = self.clients.pop()
-        self.get_check_200("edit_client", pk=client.id)
+        with self.login(self.u):
+            client = self.clients.pop()
+            self.get_check_200("edit_client", pk=client.id)
         
 
     def test_add_client(self):
@@ -26,15 +29,20 @@ class ClientTest(TestCase):
             'phone': '123123123',
             'email': 'bar@foo.com'
         }
-        self.post("client_add", data=data)
-        self.response_200()
-        self.assertTrue(Client.objects.filter(name='Foo').exists())
+        
+        with self.login(self.u):
+            self.post("client_add", data=data)
+            self.response_200()
+            self.assertTrue(Client.objects.filter(name='Foo').exists())
 
     def test_delete_client(self):
         ids = [i.id for i in self.clients]
-        self.post("delete_clients", data={'ids': ids})
-        self.response_200()
+        with self.login(self.u):
+            self.post("delete_clients", data={'ids': ids})
+            self.response_200()
 
     def test_list(self):
-        self.get_check_200("client_list")
-        self.get_check_200("car_list")
+
+        with self.login(self.u):
+            self.get_check_200("client_list")
+            self.get_check_200("car_list")

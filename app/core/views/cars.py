@@ -10,19 +10,19 @@ import json
 from django.utils.translation import gettext_lazy as _
 from django.db.utils import IntegrityError
 
+from django.contrib.auth.decorators import login_required
 
-__all__ = ["search_car_clients", "search_car", "car_edit",
-           "car_list", "car_add","delete_cars"]
-
-
+__all__ = [
+    "search_car_clients", "search_car", "car_edit", "car_list", "car_add",
+    "delete_cars"
+]
 
 
 class CarAdd(CreateIntercoolerMix):
     model = Car
-    fields = ("brand","model","year")
-#    fields = ("__all__")
+    fields = ("brand", "model", "year")
     success_url = reverse("car_list")
-    template_name="core/car/car_form.html"
+    template_name = "core/car/car_form.html"
 
     def form_valid(self, form):
         client_id = self.request.POST.get("client_id")
@@ -39,20 +39,21 @@ class CarAdd(CreateIntercoolerMix):
                 return super().form_invalid(form)
         return super().form_valid(form)
 
-car_add = CarAdd.as_view()
+
+car_add = login_required(CarAdd.as_view())
+
 
 class CarEdit(CarAdd, UpdateView):
     model = Car
-    fields = ("brand","model","year")
-#    fields = ("__all__")
+    fields = ("brand", "model", "year")
+    #    fields = ("__all__")
     success_url = reverse("car_list")
-    template_name="core/car/car_form.html"
-
-car_edit = CarEdit.as_view()
+    template_name = "core/car/car_form.html"
 
 
+car_edit = login_required(CarEdit.as_view())
 
-
+@login_required
 def search_car(request):
     search = request.GET.get("search")
     if search:
@@ -64,7 +65,7 @@ def search_car(request):
     context = dict(object_list=cars)
     return render(request, "core/car/_cars.html", context)
 
-
+@login_required
 def search_car_clients(request):
     search = request.GET.get("search")
     if search:
@@ -79,10 +80,12 @@ def search_car_clients(request):
 class CarList(ListView):
     model = Car
     paginate_by = 20
-    template_name="core/car/car_list.html"
+    template_name = "core/car/car_list.html"
 
-car_list = CarList.as_view()
 
+car_list = login_required(CarList.as_view())
+
+@login_required
 def delete_cars(request):
     ids = request.POST.getlist("ids")
     Car.objects.filter(id__in=ids).delete()
