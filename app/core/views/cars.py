@@ -11,6 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from django.db.utils import IntegrityError
 
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 
 __all__ = [
     "search_car_clients", "search_car", "car_edit", "car_list", "car_add",
@@ -32,6 +33,13 @@ class CarAdd(CreateIntercoolerMix):
         else:
             instance = form.save(commit=False)
             instance.client = Client.objects.get(id=client_id)
+
+            if (Car.objects.filter(
+                    brand=instance.brand, model=instance.model,
+                    year=instance.year).exists()):
+                form.add_error(None, _("client with brand,model,year exists"))
+                return super().form_invalid(form)
+
             try:
                 instance.save()
             except IntegrityError:
@@ -53,6 +61,7 @@ class CarEdit(CarAdd, UpdateView):
 
 car_edit = login_required(CarEdit.as_view())
 
+
 @login_required
 def search_car(request):
     search = request.GET.get("search")
@@ -64,6 +73,7 @@ def search_car(request):
         cars = Car.objects.none()
     context = dict(object_list=cars)
     return render(request, "core/car/_cars.html", context)
+
 
 @login_required
 def search_car_clients(request):
@@ -84,6 +94,7 @@ class CarList(ListView):
 
 
 car_list = login_required(CarList.as_view())
+
 
 @login_required
 def delete_cars(request):

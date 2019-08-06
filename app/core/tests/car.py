@@ -38,8 +38,8 @@ class CarTest(TestCase):
             self.post("car_add", data=data)
             self.response_200()
             # raise Error for duplicate car
-            #self.post("car_add", data=data)
-            #self.assertInContext("form")
-            #form = self.get_context("form")
-            #self.assertTrue(form.non_field_errors())
+            self.post("car_add", data=data)
+            self.assertInContext("form")
+            form = self.get_context("form")
+            self.assertTrue(form.non_field_errors())
 

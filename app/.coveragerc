@@ -1,6 +1,6 @@
 [run]
 branch = true
-omit = */settings.py, */tests/*, */migrations/*, */urls.py, */settings/*, */wsgi.py, manage.py, fabfile.py, app/local_settings.py, */autofixtures*, */baseconv.py*, */apps.py, core/context_processor.py
+omit = */settings.py, */tests/*, */migrations/*, */urls.py, */settings/*, */wsgi.py, manage.py, fabfile.py, app/local_settings.py, */autofixtures*, */baseconv.py*, */apps.py, core/context_processor.py, tasks.py
 source = .
 
 [report]
