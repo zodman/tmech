@@ -6,11 +6,11 @@ from autofixture import AutoFixture
 class CarTest(TestCase):
 
     def setUp(self):
-        client_fixture = AutoFixture(Client)
-        carfixture = AutoFixture(Car, generate_fk=True)
+        self.u = self.make_user()
+        client_fixture = AutoFixture(Client, follow_fk=True)
+        carfixture = AutoFixture(Car, follow_fk=True)
         self.clients = client_fixture.create(10)
         self.cars = carfixture.create(1)
-        self.u = self.make_user()
 
     def test_delete_cars(self):
         data = {'ids': [i.id for i in self.cars]}

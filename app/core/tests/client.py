@@ -6,11 +6,11 @@ from autofixture import AutoFixture
 class ClientTest(TestCase):
 
     def setUp(self):
-        client_fixture = AutoFixture(Client)
-        carfixture = AutoFixture(Car, generate_fk=True)
+        self.u = self.make_user()
+        client_fixture = AutoFixture(Client, follow_fk=True)
+        carfixture = AutoFixture(Car, follow_fk=True)
         self.clients = client_fixture.create(100)
         self.cars = carfixture.create(1)
-        self.u = self.make_user()
 
     def test_search_client(self):
         with self.login(self.u):
