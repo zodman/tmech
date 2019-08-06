@@ -24,6 +24,9 @@
             {{ field|add_error_class:"is-danger"|add_class:"input" }}
           {% elif widgett == "numberinput" %}  
             {{ field|add_error_class:"is-danger"|add_class:"input" }}
+           {% elif widgett == "passwordinput" %}  
+            {{ field|add_error_class:"is-danger"|add_class:"input" }}
+
          {% elif widgett == "datetimeinput" %}  
             {{ field|add_error_class:"is-danger"|add_class:"input" }}
           {% elif widgett == "emailinput" %}  
@@ -44,9 +47,9 @@
   <div class="help is-danger">
     {{field.errors}}
   </div>
-  <p class="help">
+  <div class="help is-family-secondary has-text-weight-light">
       {{field.help_text}}
-    </p>
+    </div>
 </div>
 
 {% endfor %} 

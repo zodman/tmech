@@ -1,12 +1,44 @@
 {% extends "base.html" %}
 
 {% block body %}
-body
-asdasdsada
+ <section class="hero is-primary is-fullheight">
+    <div class="hero-body">
 
-    {% block content %}
-        content
-    {% endblock content %}
+        <div class="container">
+        
+            <div id="messages" ic-get-from="{% url 'messages' %}" ic-deps="*">
+                {% include "messages.html" %}
+            </div>
 
+                <div class="columns is-centered">
+                    <div class="column is-5-tablet is-4-desktop is-3-widescreen ">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-header-title">
+                                {% block head_title %}
+                                {% endblock %}
+                                </div>
+                                <div class="card-header-icon">
+                                    <a href="{% url 'index' %}" class="image is-32x32"> 
+				
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                            
+                                {% block content %}
+
+                                {% endblock %}        
+                            </div>
+                        </div>
+                    
+                            
+                    </div>
+                </div>
+
+    </div>
+</div>
+</section>
 {% endblock  %}
 

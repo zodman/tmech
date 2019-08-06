@@ -39,13 +39,14 @@ INSTALLED_APPS = [
     'djangomix',
     'autofixture',
     'active_link',
-#    'django_webserver',
     
-    'paypal_registration',
 ]
 
 if "test" in sys.argv:
     INSTALLED_APPS +=['test_without_migrations',]
+
+if "uwsgi" in sys.argv:
+    INSTALLED_APPS +=["django_webserver"]
 
 
 MIDDLEWARE = [
