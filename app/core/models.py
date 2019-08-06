@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from .managers import ServiceManager
+from django.contrib.auth.models import User
 
 
 class Personal(models.Model):
@@ -14,8 +15,10 @@ class Client(models.Model):
     name = models.CharField(max_length=200, unique=True)
     phone = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
 
     class Meta:
         ordering = ("created_at",)
@@ -28,6 +31,7 @@ class Car(models.Model):
     brand = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
     year = models.PositiveIntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -51,6 +55,7 @@ class Diagnostic(models.Model):
     final = models.TextField(_("Final Diagnostic"))
     repairs = models.TextField(_("Repairs"))
     notes = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = ServiceManager()
@@ -72,6 +77,7 @@ class Item(models.Model):
     description = models.TextField()
     price = models.DecimalField(decimal_places=2, max_digits=15)
     diagnostic = models.ForeignKey("Diagnostic", on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
