@@ -7,16 +7,27 @@
       <h1 class="subtitle is-3">Hello ..</h1>
     </div>
     <div class="level-rigth">
-    <div class="select">
-                <select>
-                  <option>Today</option>
-                  <option>Yesterday</option>
-                  <option>This Week</option>
-                  <option selected="">This Month</option>
-                  <option>This Year</option>
-                  <option>All time</option>
+
+        <form action="{% url 'dashboard'%}" method="get">
+          <div class="field is-grouped">
+            <div class="control">
+              <div class="select">
+              
+                 <select name="search_time">
+                    <option value="m">This Month</option>
+                    <option value="t">Today</option>
+                    <option value="y">Yesterday</option>
+                    <option value="w">This Week</option> 
                 </select>
+
               </div>
+            
+            </div>
+            <div class="control">
+                  <button class="button" type="submit"> {% trans "Change" %}</button>
+            </div>
+          </div>
+        </form>
     </div>
 </div>
 
@@ -64,7 +75,7 @@
     
     </div>
 
-    <div class="column is-3">
+    <div class="column is-5">
         <div class="card">
             <div class="card-content">
                 <p class="title is-3">
@@ -73,13 +84,13 @@
             {% for s in services %}
                 <div class="level">
                     <div class="level-left">
-                        <div>
+                        <div class="level-item">
                             <p class="title is-5">
                                 {{s.car}}
                             </p>
-                            <small>{{s.reception_datetime}}</small>
                         </div>
                     </div>
+
                     <div class="level-right">
                         <div class="has-text-right">
                         <p class="title is-5 is-marginless">
@@ -90,6 +101,14 @@
                     
                     </div>
                 </div>
+
+                        <div class="">
+                            <div class="">
+                              {{s.car.client}}
+                            </div>
+                            <small>{{s.reception_datetime}}</small>
+                        </div>
+
             
             {% endfor %}
 

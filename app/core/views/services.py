@@ -4,7 +4,7 @@ from django.urls import reverse_lazy as reverse
 from django.contrib import messages
 from django.db import models
 from ..models import Client, Diagnostic, Car, Item
-from .utils import CreateIntercoolerMix, IntercoolerMix, ListMix
+from .utils import CreateIntercoolerMix, IntercoolerMix, ListMix, filter_by_date
 from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
 from django.forms import modelform_factory
@@ -32,16 +32,7 @@ def service_search(request):
     if status:
         ds = ds.filter(status=status)
     if q_time:
-        now = timezone.now()
-        if q_time == "m":
-            ds = ds.filter(reception_datetime__month=now.month,
-                        reception_datetime__year=now.year)
-        elif q_time == "t":
-            ds = ds.filter(reception_datetime__date=now.date())
-        elif q_time == "y":
-            ds = ds.filter(reception_datetime__date=now-timedelta(days=1))            
-        elif q_time == "w":
-            ds = ds.filter(reception_datetime__get=now-timedelta(days=7))            
+        ds = filter_by_date(ds, q_time)
     ctx = {'object_list': ds}
     return render(request, "core/service/_visit.html", ctx)
 

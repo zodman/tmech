@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView
 from django.contrib import messages
+from django.utils import timezone
+from datetime import timedelta
 
 class IntercoolerMix:
     def form_valid(self, form):
@@ -34,3 +36,17 @@ class ListMix(object):
         qs = super().get_queryset()
         return qs.filter(user=self.request.user)
 
+
+
+def filter_by_date(ds, q_time):
+    now = timezone.now()
+    if q_time == "m":
+        ds = ds.filter(reception_datetime__month=now.month,
+                    reception_datetime__year=now.year)
+    elif q_time == "t":
+        ds = ds.filter(reception_datetime__date=now.date())
+    elif q_time == "y":
+        ds = ds.filter(reception_datetime__date=now-timedelta(days=1))            
+    elif q_time == "w":
+        ds = ds.filter(reception_datetime__get=now-timedelta(days=7))            
+    return ds
