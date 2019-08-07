@@ -8,11 +8,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 class Config(GoodConf):
     "Configuration for My App"
     DEBUG = Value(default=True, help="Toggle debugging.")
-
     EMAIL_URL = Value(
         default='console://',
-        initial='smtp://user@domain.com:pass@smtp.example.com:465/?ssl=True',
-    ),
+        help='smtp://user@domain.com:pass@smtp.example.com:465/?ssl=True'
+    )
     DATABASE_CONF = Value(
         default={
             'ENGINE': 'django.db.backends.sqlite3',

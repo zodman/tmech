@@ -10,7 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("messages/", messages, name="messages"),
     path("app/", include("core.urls")),
-    path('accounts/', include('registration.backends.default.urls')),
+    path('accounts/', include('registration.backends.simple.urls')),
 
     path("", RedirectView.as_view(url="/app/dashboard/"), name="index" )
 ] + staticfiles_urlpatterns()
