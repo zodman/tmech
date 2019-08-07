@@ -6,12 +6,12 @@ from django.utils import timezone
 class ServiceTest(TestCase):
 
     def setUp(self):
+        self.u = self.make_user()
         client_fixture = AutoFixture(Client)
-        carfixture = AutoFixture(Car, generate_fk=True)
+        carfixture = AutoFixture(Car,follow_fk=True)
         self.clients = client_fixture.create(10)
         self.cars = carfixture.create(10)
-        self.services = AutoFixture(Diagnostic, generate_fk=True).create(1)
-        self.u = self.make_user()
+        self.services = AutoFixture(Diagnostic, follow_fk=True).create(1)
 
     def __test_manager(self):
         AutoFixture(Diagnostic, generate_fk=True).create(100)

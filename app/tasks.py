@@ -22,7 +22,7 @@ def make(c):
     c.run("scp ../tmech.pyz waifu.ca:apps/tmech/")
 
 @task_local
-def test(c, arg):
-    c.run("coverage run manage.py test -n ")
+def test(c):
+    c.run("coverage run manage.py test -n --failfast ")
     c.run("coverage report -m")
     c.run("coverage html")

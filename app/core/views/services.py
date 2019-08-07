@@ -4,7 +4,7 @@ from django.urls import reverse_lazy as reverse
 from django.contrib import messages
 from django.db import models
 from ..models import Client, Diagnostic, Car, Item
-from .utils import CreateIntercoolerMix, IntercoolerMix
+from .utils import CreateIntercoolerMix, IntercoolerMix, ListMix
 from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
 from django.forms import modelform_factory
@@ -21,7 +21,7 @@ def service_search(request):
     q = request.GET.get("search")
     status = request.GET.get("status")
     q_time = request.GET.get("search_time")
-    ds = Diagnostic.objects.all()
+    ds = Diagnostic.objects.filter(user=request.user)
     if q:
         ds = ds.filter(
             models.Q(car__brand__icontains=q)|
@@ -47,7 +47,7 @@ def service_search(request):
 
 @login_required
 def service_change_status(request, pk):
-    service = Diagnostic.objects.get(id=pk)
+    service = Diagnostic.objects.filter(user=request.user).get(id=pk)
     if request.POST:
         status = request.POST.get("status")
         if status:
@@ -57,12 +57,18 @@ def service_change_status(request, pk):
             r = HttpResponse()
             r["X-IC-Redirect"] = reverse("service_detail", kwargs={'pk': service.id})
             return r
+
+
+
 @login_required
 def service_search_cars(request):
     ServiceForm = modelform_factory(Diagnostic, fields=["car","reception_datetime", "initial", "final", "repairs", "notes"])
     f = ServiceForm(initial={'reception_datetime': timezone.now()})
     client_id = request.GET.get("client_id")
-    f.fields["car"].queryset=Car.objects.filter(client__id=client_id)
+    f.fields["car"].queryset=Car.objects.filter(
+            client__id=client_id,
+            user=request.user,
+            )
     context = {
         'form':f
     }
@@ -72,7 +78,7 @@ def service_search_cars(request):
 
 
 
-class ServiceDetail(DetailView):
+class ServiceDetail(ListMix, DetailView):
     model = Diagnostic
     template_name="core/service/detail.html"
 
@@ -86,14 +92,14 @@ class ServiceDetail(DetailView):
 
 service_detail = login_required(ServiceDetail.as_view())
 
-class ListVisit(ListView):
+class ListVisit(ListMix, ListView):
     model = Diagnostic
     template_name = "core/service/service_list.html"
 
 service_list = login_required(ListVisit.as_view())
 
 
-class ServiceAdd(CreateIntercoolerMix):
+class ServiceAdd(ListMix, CreateIntercoolerMix):
     model = Diagnostic
     fields = ["car","reception_datetime", "initial", "final", "repairs", "notes"]
     success_url = reverse("service_list")
@@ -103,7 +109,7 @@ class ServiceAdd(CreateIntercoolerMix):
 service_add = login_required(ServiceAdd.as_view())
 
 
-class ServiceEdit(IntercoolerMix, UpdateView):
+class ServiceEdit(ListMix, IntercoolerMix, UpdateView):
     model = Diagnostic
     template_name="core/service/_service_form.html"
     fields = ["reception_datetime","initial","final","repairs","notes"]
@@ -129,6 +135,7 @@ def service_add_item(request, pk):
         if form.is_valid():
             item = form.save(commit=False)
             item.diagnostic = service
+            item.user = request.user
             item.save()
             messages.info(request,_("Item added"))
             resp = HttpResponse()
@@ -145,7 +152,7 @@ def service_add_item(request, pk):
 
 @login_required
 def service_delete_item(request, pk):
-    item = Item.objects.get(id=pk)
+    item = Item.objects.filter(user=request.user).get(id=pk)
     item.delete()
     messages.info(request, _("Item deleted"))
     resp =HttpResponse()
