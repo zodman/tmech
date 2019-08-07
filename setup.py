@@ -10,6 +10,6 @@ setup(
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            "manage.py = app.conf.config.django_manage",
+            "manage.py = app.conf.config:config.django_manage",
         ]
     })

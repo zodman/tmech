@@ -22,6 +22,7 @@ goodconf = {extras = ["yaml"],version = "*"}
 easyconf = "*"
 django-registration-redux = "*"
 django-mix = {git = "https://github.com/zodman/django-mix.git"}
+dj-email-url = "*"
 
 [requires]
 python_version = "3.6"

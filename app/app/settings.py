@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'djangomix',
     'autofixture',
     'active_link',
-    
+    'django_webserver',    
 ]
 
 if "test" in sys.argv:
@@ -135,6 +135,15 @@ ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, us
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 
 SITE_ID=1
+import dj_email_url
+email_config = dj_email_url.parse(config.EMAIL_URL)
+EMAIL_HOST_USER = email_config['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = email_config['EMAIL_HOST_PASSWORD']
+EMAIL_HOST = email_config['EMAIL_HOST']
+EMAIL_PORT = email_config['EMAIL_PORT']
+EMAIL_BACKEND = email_config['EMAIL_BACKEND']
+EMAIL_USE_TLS = email_config['EMAIL_USE_TLS']
+EMAIL_USE_SSL = email_config['EMAIL_USE_SSL']
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 USE_THOUSAND_SEPARATOR = True

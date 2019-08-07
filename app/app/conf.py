@@ -9,7 +9,12 @@ class Config(GoodConf):
     "Configuration for My App"
     DEBUG = Value(default=True, help="Toggle debugging.")
 
-    DATABASE_CONF = Value(default={
+    EMAIL_URL = Value(
+        default='console://',
+        initial='smtp://user@domain.com:pass@smtp.example.com:465/?ssl=True',
+    ),
+    DATABASE_CONF = Value(
+        default={
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         },
@@ -21,11 +26,7 @@ class Config(GoodConf):
         help="Used for cryptographic signing. "
         "https://docs.djangoproject.com/en/2.0/ref/settings/#secret-key")
     STATIC_ROOT = Value(
-        default=os.path.join(BASE_DIR, "static"),
-        help="static directory"
-    )
+        default=os.path.join(BASE_DIR, "static"), help="static directory")
 
 
-config = Config(
-   default_files=["tmech_conf.yaml"]
-)
+config = Config(default_files=["tmech_conf.yaml"])
