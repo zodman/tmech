@@ -82,7 +82,8 @@ class ServiceTest(TestCase):
 
 
     def test_delete_item(self):
-        items = AutoFixture(Item, generate_fk=True).create(2)
+        items = AutoFixture(Item, field_values = {'user':self.u},
+            follow_fk=True).create(2)
         for i in items:
             with self.subTest(i=i) and self.login(self.u):
                 self.post("service_delete_item", pk=i.id)
