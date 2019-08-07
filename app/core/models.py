@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from .managers import ServiceManager
+from .managers import ServiceQuerySet 
 from django.contrib.auth.models import User
 
 
@@ -58,7 +58,8 @@ class Diagnostic(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    objects = ServiceManager()
+
+    objects = ServiceQuerySet.as_manager()
 
     class Meta:
         ordering = ("-reception_datetime", "status")

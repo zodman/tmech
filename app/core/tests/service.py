@@ -13,9 +13,9 @@ class ServiceTest(TestCase):
         self.cars = carfixture.create(10)
         self.services = AutoFixture(Diagnostic, follow_fk=True).create(1)
 
-    def __test_manager(self):
-        AutoFixture(Diagnostic, generate_fk=True).create(100)
-        s = Diagnostic.objects.all().profit()
+    def test_manager(self):
+        AutoFixture(Diagnostic, follow_fk=True).create(100)
+        s = Diagnostic.objects.all().open()
         
 
     def test_search_client(self):
