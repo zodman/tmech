@@ -35,7 +35,8 @@ mix.browserSync('localhost:8000');
  mix.browserSync({
      'proxy':'localhost:8000',
      'files':[
-         "core/static/src/*",
+         "core/static/src/*.js",
+         "core/static/src/*.scss",
          "core/templates/**/**/*.html"
      ],
      snippetOptions: {

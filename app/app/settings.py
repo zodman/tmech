@@ -135,3 +135,5 @@ ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, us
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 
 SITE_ID=1
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

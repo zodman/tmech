@@ -1,7 +1,7 @@
 {% load i18n  %}
 
 {% if is_paginated %}
-<nav class="pagination is-centered">
+<nav class="pagination is-centered mv-xxs">
   {% if page_obj.has_previous %}
     <a class="pagination-previous" href="?page={{ page_obj.previous_page_number|stringformat:"d" }}{{ getvars }}{{ hashtag }}">{% trans "Previous" %}</a>
   {% else %}

@@ -94,6 +94,7 @@ service_detail = login_required(ServiceDetail.as_view())
 
 class ListVisit(ListMix, ListView):
     model = Diagnostic
+    paginate_by = 20
     template_name = "core/service/service_list.html"
 
 service_list = login_required(ListVisit.as_view())
