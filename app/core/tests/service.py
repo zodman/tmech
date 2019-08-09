@@ -39,6 +39,24 @@ class ServiceTest(TestCase):
             self.get_check_200("service_list")
             self.get_check_200("service_detail", pk=self.services[0].id)
 
+    def test_add_service(self):
+        with self.login(self.u):
+            hh = timezone.now().strftime("%Y-%m-%d %H:%M")
+
+            data = {
+                "reception_datetime": hh,
+                "initial":"init",
+                "final":"final",
+                "repairs":"repairs",
+                "notes":"notes",
+                "car": self.cars[0].id
+            }
+            self.post("service_add", data=data)
+            self.response_200()
+            if self.last_response.context:
+                f =self.get_context("form")
+                #self.print_form_errors()
+                self.assertFalse(f.errors, f.errors)
 
     def test_change_status_service(self):
         service = self.services.pop()

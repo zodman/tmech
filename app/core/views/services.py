@@ -98,6 +98,18 @@ class ServiceAdd(ListMix, CreateIntercoolerMix):
     template_name = "core/service/service_form.html"
     initial={'reception_datetime': timezone.now()}
 
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        form = super().form_valid(form)
+        url = self.get_success_url()
+        resp = HttpResponse("")
+        #messages.info(self.request, _("{} Added").format(self.model.__name__))
+        resp["X-IC-Redirect"] = url
+        #resp["Turbolinks-Location"] = url
+        return resp
+
+
 service_add = login_required(ServiceAdd.as_view())
 
 
