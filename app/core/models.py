@@ -4,11 +4,13 @@ from .managers import ServiceQuerySet
 from django.contrib.auth.models import User
 
 
-class Personal(models.Model):
+class Conf(models.Model):
+    user = models.models.ForeignKey("User", verbose_name=_("user"), on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    position = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    logo = models.URLField()
+
+    def __str__(self):
+        return "{}".format(self.user)
 
 
 class Client(models.Model):
