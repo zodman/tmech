@@ -8,7 +8,9 @@ def setconf(request):
     if request.POST:
         form = ConfForm(request.POST)
         if form.is_valid():
-            pass
+            instance=form.save(commit=False)
+            instance.user = request.user
+            instance.save()
     else:
         form = ConfForm()
     context = {
