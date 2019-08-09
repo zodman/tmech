@@ -11,4 +11,17 @@ document.addEventListener("turbolinks:load", function() {
       Intercooler.processNodes($('body'));
     });
   $(document).data('ic-init', true);
+
+
+        var burger = document.querySelector('.burger');
+        var nav = document.querySelector('#'+burger.dataset.target);
+        burger.addEventListener('click', function(){
+          burger.classList.toggle('is-active');
+          nav.classList.toggle('is-active');
+        });
+
 });
+
+
+
+

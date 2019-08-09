@@ -3,15 +3,25 @@
 
 {% block container %}
 
+<div class="level">
+    <div class="level-left">
 
 <h1 class="title">
-
 
   {% trans "Service Detail" %} 
   
 </h1>
 
-<div class="field is-grouped">
+    </div>
+    <div class="level-right">
+
+    </div>
+</div>
+
+
+
+
+<div class="field is-grouped is-hidden-print">
     <div class="control">
         <div class="select">
             {% csrf_token %}
@@ -36,8 +46,8 @@
                     {% trans "Phone" %}:
                         {{object.car.client.phone}} <a href="https://wa.me/{{object.car.client.phone}}"> 
                          <span class="icon ">
-           <i class="fab fa-whatsapp"></i>
-            </span>
+							   <i class="fab fa-whatsapp"></i>
+							</span>
                          </a>
                         {% if object.car.client.email %}
                         {% trans "Email" %}    {{object.car.client.email|default:""}}
