@@ -1,5 +1,5 @@
 {% load i18n %}
-<div id="#item-quote">
+<div id="#item-quote" class="is-hidden-print">
 
     {% include "core/service/_add_item.html" %}
 
@@ -37,7 +37,7 @@
                        <button
                        ic-delete-from="{% url 'service_delete_item' item.id %}"
                        ic-include="[name='csrfmiddlewaretoken']"
-                        class="button">-</button>
+                        class="button is-hidden-print">-</button>
                         <i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i>
                     </td>
                 </tr>
