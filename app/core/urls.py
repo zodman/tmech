@@ -25,6 +25,7 @@ urlpatterns = [
     path("service/status/<int:pk>", service_change_status, name="service_change_status"),
     path("service/delete/item/<int:pk>", service_delete_item, name="service_delete_item"),    
     path("service/", service_list, name="service_list"),
+    path("conf/", setconf, name="conf"),
     
 
 ]

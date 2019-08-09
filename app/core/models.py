@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 
 
 class Conf(models.Model):
-    user = models.models.ForeignKey("User", verbose_name=_("user"), on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
-    logo = models.URLField()
+    user = models.OneToOneField(User, verbose_name=_("user"), on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, help_text=_("Company name"))
+    logo = models.URLField(help_text=_("Set url for a image"))
 
     def __str__(self):
         return "{}".format(self.user)
