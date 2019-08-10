@@ -20,13 +20,15 @@
                 <figure class="image is-96x96 ">
                 <img src="{{request.user.conf.logo}}" alt="logo">
                 </figure>
-                                {{request.user.conf.name}}
+                {{request.user.conf.name}}
 
             </div>
 
         </div>
-
-
+        <div class="level-item is-hidden-print">
+        <button  class="button is-warning" type="button" onclick="window.print();"> {% trans "Print" %}</button>
+        
+        </div>
     </div>
 </div>
 
@@ -61,6 +63,7 @@
 							   <i class="fab fa-whatsapp"></i>
 							</span>
                          </a>
+         <br>
                         {% if object.car.client.email %}
                         {% trans "Email" %}    {{object.car.client.email|default:""}}
             

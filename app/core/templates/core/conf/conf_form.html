@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block container %}
-
+<h1 class="title">
+    {% trans "Company configuration" %}
+</h1>
 <form method="post" action="{% url 'conf' %}">
 {% csrf_token %}
 {% include "form.html" %}
