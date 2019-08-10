@@ -88,44 +88,26 @@
 
     <div class="columns">
         <div class="column is-4">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-header-title">
-            <p class=" title">
-                    {% trans "Diagnostic" %}
-            </p>
-                    </div>
-                    <div class="card-header-icon is-hidden-print">
-                        <a ic-get-from="{% url 'service_edit' object.id %}" ic-target="#content">
-                            {% trans "Edit" %}
-                        </a>
-                    </div>
-                </div>
-                <div class="card-content">  
-                    <div class="content" id="content">
-                        {% include "core/service/diagnostic_detail.html" %}
-                    </div>
-                </div>
-            </div>
-    </div>
-    <div class="column">
+            {% include "core/service/diagnostic_detail.html" %}
+        </div>
+        <div class="column">
 
-        <div class="field is-grouped">
-            <div class="control">    
-                    <h1 class="subtitle is-3">
-                        {% trans "Quote" %}
-                    </h1>    
+            <div class="field is-grouped">
+                <div class="control">    
+                        <h1 class="subtitle is-3">
+                            {% trans "Quote" %}
+                        </h1>    
+                </div>
+            
             </div>
-          
-        </div>
-        
-        <div id="quote">
             
-            {% include "core/service/_quote.html" %}
+            <div id="quote">
+                
+                {% include "core/service/_quote.html" %}
+                
+            </div>
             
         </div>
-        
-    </div>
 </div>
 
 {% endblock %}
