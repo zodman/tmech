@@ -32,7 +32,7 @@
 </div>
 
 <div class="columns is-multiline">
-            <div class="column is-12-tablet is-6-desktop is-2-widescreen">
+            <div class="column is-12-tablet is-6-desktop is-3-widescreen">
               <div class="notification is-link has-text">
                 <p class="title is-1">{{raw_services.count}}</p>
                 <p class="subtitle is-4">Services</p>
@@ -40,7 +40,7 @@
             </div>
 
 
-            <div class="column is-12-tablet is-6-desktop is-2-widescreen">
+            <div class="column is-12-tablet is-6-desktop is-3-widescreen">
               <div class="notification is-info has-text">
                 <p class="title is-1">{{clients.count}}</p>
                 <p class="subtitle is-4">Clients</p>
@@ -48,7 +48,7 @@
             </div>
 
 
-         <div class="column is-12-tablet is-6-desktop is-5-widescreen">
+         <div class="column is-12-tablet is-6-desktop is-6-widescreen">
               <div class="notification is-warning has-text">
                 <p class="title is-1">$ {{profit}}</p>
                 <p class="subtitle is-4"> {% trans "Incomes" %} {% now "M Y" %}</p>
@@ -57,7 +57,7 @@
 </div>
 
 <div class="columns">
-    <div class="column is-3">
+    <div class="column ">
         <h3 class="subtitle is-2">
       {% trans "Services" %}
         </h3>
@@ -119,12 +119,13 @@
 
     </div>
 
-    <div class="column is-5">
-        <div class="card">
-            <div class="card-content">
-                <p class="title is-3">
+    <div class="column ">
+                 <p class="subtitle is-2">
                     {% trans "Last Services" %}
                 </p>
+        <div class="card">
+            <div class="card-content">
+   
             {% for s in services %}
                 <div class="level">
                     <div class="level-left">

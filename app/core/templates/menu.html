@@ -1,5 +1,8 @@
 {% load i18n active_link_tags %}
 <nav class="menu">
+    <p class="menu-label">
+        {% trans "General" %}
+    </p>
     <ul class="menu-list">
      <li>
             <a href="{% url 'dashboard' %}" 
@@ -7,6 +10,20 @@
                 <span> {% trans "Dashboard" %}</span>
             </a>
         </li>
+         <li>
+            <a href="{% url 'service_list' %}" class=" {% active_link 'service_list' 'is-active' %}">
+            <span class="icon">
+                <i class="fa fa-tools"></i>
+            </span>
+                <span> {% trans "Services" %}</span>
+            </a>
+        
+        </li>
+    </ul>
+    <p class="menu-label">
+        {% trans "Administration" %}
+    </p>
+    <ul class="menu-list">
         <li>
             <a href="{% url 'client_list' %}" 
                 class=" {% active_link 'client_list' 'is-active' %}">
@@ -24,22 +41,14 @@
                 <span> {% trans "Cars" %}</span>
             </a>
         </li>
-        <li>
-            <a href="{% url 'service_list' %}" class=" {% active_link 'service_list' 'is-active' %}">
-            <span class="icon">
-                <i class="fa fa-tools"></i>
-            </span>
-                <span> {% trans "Services" %}</span>
-            </a>
-        
-        </li>
+
         <li>
         
         <a href="{% url 'conf' %}" class=" {% active_link 'conf' 'is-active' %}">
             <span class="icon">
-                <i class="fa fa-tools"></i>
+                <i class="fa fa-building"></i>
             </span>
-                <span> {% trans "Conf" %}</span>
+                <span> {% trans "Settings" %}</span>
             </a>
         </li>
     </ul>
