@@ -9,7 +9,6 @@ class Dashboard(TemplateView):
 
     def profit(self, ds):
         return sum([d.total() for d in ds])
-            
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -24,6 +23,5 @@ class Dashboard(TemplateView):
             'clients': Client.objects.filter(user=self.request.user)[0:10]
         })
         return context
-dashboard = login_required(Dashboard.as_view())
 
-#TODO: mejorar el dashboard
+dashboard = login_required(Dashboard.as_view())

@@ -36,6 +36,7 @@ class ServiceTest(TestCase):
 
     def test_list(self):
         with self.login(self.u):
+            self.get_check_200("dashboard")
             self.get_check_200("service_list")
             self.get_check_200("service_detail", pk=self.services[0].id)
 
