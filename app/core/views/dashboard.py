@@ -2,8 +2,15 @@ from django.views.generic import TemplateView
 from core.models import Diagnostic, Client
 from django.contrib.auth.decorators import login_required
 from .utils import filter_by_date
+from paypal_restrictor.views import paypal_required
+from django.utils.decorators import method_decorator
 
+decors = [
+    login_required,
+    paypal_required,
+]
 
+@method_decorator(decors, name="dispatch")
 class Dashboard(TemplateView):
     template_name="core/dashboard.html"
 
@@ -24,4 +31,4 @@ class Dashboard(TemplateView):
         })
         return context
 
-dashboard = login_required(Dashboard.as_view())
+dashboard = Dashboard.as_view()

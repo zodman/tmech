@@ -13,14 +13,18 @@
 
 {% for field in form %}
 
-<div class="field">
-  {{field|add_label_class:"label "}} 
-  <div class="control">
       {% with field|widget_type as  widgett  %}
+<div class="field">
+    {% if not "hidden" in  widgett %}  
+  {{field|add_label_class:"label "}} 
+    {% endif %}
+  <div class="control">
       <!--
           {{widgett|pprint}} 
       -->
-          {% if widgett == "textinput" %}  
+          {% if "hidden" in widgett %}  
+            {{ field}}
+          {% elif widgett == "textinput" %}  
             {{ field|add_error_class:"is-danger"|add_class:"input" }}
           {% elif widgett == "numberinput" %}  
             {{ field|add_error_class:"is-danger"|add_class:"input" }}
@@ -44,8 +48,8 @@
           {% else %}
             {{ field|add_error_class:"is-danger"|add_class:widgett  }}
           {% endif %}
-      {% endwith %}
   </div>
+    {% endwith %}
   <div class="help is-danger">
     {{field.errors}}
   </div>

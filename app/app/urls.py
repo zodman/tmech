@@ -11,6 +11,8 @@ urlpatterns = [
     path("messages/", messages, name="messages"),
     path("app/", include("core.urls")),
     path('accounts/', include('registration.backends.simple.urls')),
+   path('', include('paypal_restrictor.urls')), # /paypal/
+
 
     path("", RedirectView.as_view(url="/app/dashboard/"), name="index" )
 ] + staticfiles_urlpatterns()

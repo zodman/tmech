@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'active_link',
     'django_webserver',    
     'paypal.standard.ipn',
+    'paypal_restrictor',
 ]
 
 if "test" in sys.argv:
