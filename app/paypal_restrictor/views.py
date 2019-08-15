@@ -6,7 +6,7 @@ from paypal.standard.forms import PayPalPaymentsForm
 from django.urls import reverse_lazy, reverse
 from functools import wraps
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.utils import timezone
 
 
 # decorator
@@ -24,15 +24,16 @@ def paypal_required(func):
     return wrap
 
 
-def paypal_view(request, *args,**kwargs):
-  # What you want the button to do.
+def paypal_view(request, *args, **kwargs):
+    d_format = timezone.now().strftime("Ymd")
+    invoice_id = "{}-{}".format(request.user.id, d_format)
     paypal_dict = {
-        "business": "receiver_email@example.com",
-        "amount": "10000000.00",
-        "item_name": "name of the item",
-        "invoice": "unique-invoice-id",
+        "business": getattr(settings, "PAYPAL_BUSSINES", "zodman-facilitator@gmail.com"),
+        "amount": getattr(settings, "PAYPAL_COST", "20"),
+        "item_name": getattr(settings, "PAYPAL_ITEM_NAME","paypal item"),
+        "invoice": invoice_id,
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-    #    "return": request.build_absolute_uri(reverse_lazy('your-return-view')),
+   #    "return": request.build_absolute_uri(reverse_lazy('your-return-view')),
     #    "cancel_return": request.build_absolute_uri(reverse_lazy('your-cancel-view')),
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
     }

@@ -26,6 +26,7 @@ class Config(GoodConf):
         "https://docs.djangoproject.com/en/2.0/ref/settings/#secret-key")
     STATIC_ROOT = Value(
         default=os.path.join(BASE_DIR, "static"), help="static directory")
+    PAYPAL_TEST = Value(default=True, help="paypal sandbox")
 
 
 config = Config(default_files=["tmech_conf.yaml"])

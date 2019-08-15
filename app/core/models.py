@@ -3,11 +3,12 @@ from django.utils.translation import gettext_lazy as _
 from .managers import ServiceQuerySet 
 from django.contrib.auth.models import User
 from paypal_restrictor.models import PaypalAccountBase
-
+from django.conf import settings
+from django.utils import timezone
+from datetime import timedelta
 
 class PaypalAccount(PaypalAccountBase):
-    ...
-    
+    expire = models.DateField(null=True, blank=True, default=None)
 
 
 class Conf(models.Model):
@@ -26,7 +27,6 @@ class Client(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
 
     class Meta:
         ordering = ("created_at",)
@@ -93,4 +93,55 @@ class Item(models.Model):
     @property
     def total(self):
         return self.quantity*self.price
+
+
+# PAYPAL
+
+from paypal.standard.models import ST_PP_COMPLETED
+from paypal.standard.ipn.signals import valid_ipn_received
+
+def show_me_the_money(sender, **kwargs):
+    ipn_obj = sender
+    bussines_email = getattr(settings, "PAYPAL_BUSSINES", "zodman-facilitator@gmail.com"),
+
+
+    if ipn_obj.payment_status == ST_PP_COMPLETED:
+        # WARNING !
+        # Check that the receiver email is the same we previously
+        # set on the `business` field. (The user could tamper with
+        # that fields on the payment form before it goes to PayPal)
+        if ipn_obj.receiver_email != bussines_email:
+            # Not a valid payment
+            return
+
+        # ALSO: for the same reason, you need to check the amount
+        # received, `custom` etc. are all what you expect or what
+        # is allowed.
+
+        if ipn_obj.custom == "premium_plan":
+            price = getattr(settings, "PAYPAL_COST", "20")
+        else:
+            price = "20"
+
+        if ipn_obj.mc_gross == price:
+            invoice = ipn_obj.invoice
+            user_id  = invoice.split("-")[0]
+            now = timezone.now() + timedelta(days=30)
+            PaypalAccount.objects.get_or_create(user=user_id, expired=now)
+    else:
+        ...
+
+valid_ipn_received.connect(show_me_the_money)
+
+
+
+
+
+
+
+
+
+
+
+
 
