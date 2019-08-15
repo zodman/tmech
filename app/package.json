@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "bulma": "^0.7.5",
+    "bulma-pricingtable": "^0.2.0",
     "bulmahead": "git+https://github.com/mattmezza/bulmahead.git",
     "cross-env": "^5.2.0",
     "css-spaces": "git+https://github.com/zodman/css-spaces.git",

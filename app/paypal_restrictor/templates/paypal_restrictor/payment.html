@@ -1,5 +1,28 @@
 {% extends "base.html" %}
 
 {% block container %}
-    {% include "form.html" %}
+
+   
+<div class="columns">
+	<div class="column is-half is-offset-one-third ">
+
+
+<div class="pricing-table">
+  <div class="pricing-plan">
+    <div class="plan-header">Starter</div>
+    <div class="plan-price"><span class="plan-price-amount"><span class="plan-price-currency">$</span>20</span>/month</div>
+    <div class="plan-footer">
+    {{form.render}}
+    </div>
+  </div>
+</div>
+
+	</div>
+</div>
+
+
+    
+
+
+
 {% endblock container %}
