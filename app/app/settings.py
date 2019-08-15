@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'autofixture',
     'active_link',
     'django_webserver',    
+    'paypal.standard.ipn',
 ]
 
 if "test" in sys.argv:

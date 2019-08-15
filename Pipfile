@@ -23,6 +23,7 @@ easyconf = "*"
 django-registration-redux = "*"
 django-mix = {git = "https://github.com/zodman/django-mix.git"}
 dj-email-url = "*"
+django-paypal = "*"
 
 [requires]
 python_version = "3.6"

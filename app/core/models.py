@@ -2,6 +2,12 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from .managers import ServiceQuerySet 
 from django.contrib.auth.models import User
+from paypal_restrictor.models import PaypalAccountBase
+
+
+class PaypalAccount(PaypalAccountBase):
+    ...
+    
 
 
 class Conf(models.Model):
