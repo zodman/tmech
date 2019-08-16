@@ -1,11 +1,25 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block container %}
 
    
 <div class="columns">
 	<div class="column is-half is-offset-one-third ">
 
+{% if request.user.paypalaccount.expire < now.date %}
+<h1 class="title">
+  {% trans "Account expire " %}
+</h1>
+{% else %}
+
+<h1 class="title">
+{% trans "Account active" %}
+</h1>
+{% endif %}
+
+
+
+{% if not request.user.paypalaccount or  request.user.paypalaccount.expire < now.date  %}
 
 <div class="pricing-table">
   <div class="pricing-plan">
@@ -16,6 +30,9 @@
     </div>
   </div>
 </div>
+{% endif %}
+
+
 
 	</div>
 </div>

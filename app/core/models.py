@@ -8,8 +8,8 @@ from django.utils import timezone
 from datetime import timedelta
 
 class PaypalAccount(PaypalAccountBase):
-    expire = models.DateField(null=True, blank=True, default=None)
-
+    def __str__(self):
+        return f"{self.user.username}"
 
 class Conf(models.Model):
     user = models.OneToOneField(User, verbose_name=_("user"), on_delete=models.CASCADE)
@@ -102,9 +102,7 @@ from paypal.standard.ipn.signals import valid_ipn_received
 
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
-    bussines_email = getattr(settings, "PAYPAL_BUSSINES", "zodman-facilitator@gmail.com"),
-
-
+    bussines_email = getattr(settings, "PAYPAL_BUSSINES", "zodman-facilitator@gmail.com")
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         # WARNING !
         # Check that the receiver email is the same we previously
@@ -118,16 +116,17 @@ def show_me_the_money(sender, **kwargs):
         # received, `custom` etc. are all what you expect or what
         # is allowed.
 
-        if ipn_obj.custom == "premium_plan":
-            price = getattr(settings, "PAYPAL_COST", "20")
-        else:
-            price = "20"
+        price = getattr(settings, "PAYPAL_COST", 20)
 
-        if ipn_obj.mc_gross == price:
+        if float(ipn_obj.mc_gross) == float(price):
             invoice = ipn_obj.invoice
             user_id  = invoice.split("-")[0]
-            now = timezone.now() + timedelta(days=30)
-            PaypalAccount.objects.get_or_create(user=user_id, expired=now)
+            days = getattr(settings,"PAYPAL_DAYS_EXPIRED",30)
+            now = timezone.now() + timedelta(days=days)
+            user = User.objects.get(id=user_id)
+            account, _  =PaypalAccount.objects.get_or_create(user=user)
+            account.expire = now
+            account.save()
     else:
         ...
 

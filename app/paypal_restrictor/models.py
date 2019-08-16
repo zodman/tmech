@@ -5,6 +5,7 @@ User = get_user_model()
 
 class PaypalAccountBase(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="paypalaccount")    
+    expire = models.DateField(null=True, blank=True, default=None)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
