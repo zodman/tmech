@@ -7,7 +7,6 @@ config.load()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -22,7 +21,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    
     'core',
     'registration',
     'django.contrib.admin',
@@ -32,21 +30,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     'widget_tweaks',
     'bsync',
     'djangomix',
     'autofixture',
     'active_link',
-    'django_webserver',    
+    'django_webserver',
     'paypal.standard.ipn',
     'paypal_restrictor',
 ]
 
 if "test" in sys.argv:
-    INSTALLED_APPS +=['test_without_migrations',"django_populate"]
-
-
+    INSTALLED_APPS += ['test_without_migrations', "django_populate"]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,33 +73,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': config.DATABASE_CONF
-}
-
+DATABASES = {'default': config.DATABASE_CONF}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -119,7 +113,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -128,12 +121,12 @@ STATIC_ROOT = config.STATIC_ROOT
 
 MEDIA_URL = "/media/"
 
-LARAVELMIX_MANIFEST_DIRECTORY =  os.path.join(BASE_DIR, "core","static")
+LARAVELMIX_MANIFEST_DIRECTORY = os.path.join(BASE_DIR, "core", "static")
 
-ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
-REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True  # Automatically log the user in.
 
-SITE_ID=1
+SITE_ID = 1
 import dj_email_url
 email_config = dj_email_url.parse(config.EMAIL_URL)
 EMAIL_HOST_USER = email_config['EMAIL_HOST_USER']
@@ -144,7 +137,23 @@ EMAIL_BACKEND = email_config['EMAIL_BACKEND']
 EMAIL_USE_TLS = email_config['EMAIL_USE_TLS']
 EMAIL_USE_SSL = email_config['EMAIL_USE_SSL']
 
-
 USE_THOUSAND_SEPARATOR = True
-PAYPAL_TEST =  config.PAYPAL_TEST
+PAYPAL_TEST = config.PAYPAL_TEST
 
+import os
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'paypal': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}

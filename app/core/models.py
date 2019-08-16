@@ -124,12 +124,11 @@ def show_me_the_money(sender, **kwargs):
             days = getattr(settings,"PAYPAL_DAYS_EXPIRED",30)
             now = timezone.now() + timedelta(days=days)
             user = User.objects.get(id=user_id)
-            account, _  =PaypalAccount.objects.get_or_create(user=user)
+            account, _  = PaypalAccount.objects.get_or_create(user=user)
             account.expire = now
             account.save()
     else:
         ...
-
 valid_ipn_received.connect(show_me_the_money)
 
 
