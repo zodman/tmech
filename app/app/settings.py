@@ -44,10 +44,8 @@ INSTALLED_APPS = [
 ]
 
 if "test" in sys.argv:
-    INSTALLED_APPS +=['test_without_migrations',]
+    INSTALLED_APPS +=['test_without_migrations',"django_populate"]
 
-if "uwsgi" in sys.argv:
-    INSTALLED_APPS +=["django_webserver"]
 
 
 MIDDLEWARE = [
