@@ -1,17 +1,20 @@
 from test_plus.test import TestCase
-from core.models import Client, Car, Diagnostic, Item
+from core.models import Client, Car, Diagnostic, Item, PaypalAccount
 from autofixture import AutoFixture
 from django.utils import timezone
+from datetime import timedelta
 
 class ServiceTest(TestCase):
 
     def setUp(self):
         self.u = self.make_user()
         client_fixture = AutoFixture(Client)
-        carfixture = AutoFixture(Car,follow_fk=True)
+        carfixture = AutoFixture(Car, follow_fk=True)
         self.clients = client_fixture.create(10)
         self.cars = carfixture.create(10)
         self.services = AutoFixture(Diagnostic, follow_fk=True).create(1)
+        now = timezone.now() + timedelta(days=3)
+        PaypalAccount.objects.create(user=self.u, expire=now)
 
     def test_manager(self):
         AutoFixture(Diagnostic, follow_fk=True).create(100)
