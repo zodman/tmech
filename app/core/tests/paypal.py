@@ -46,7 +46,12 @@ class PaypalTest(TestCase):
             c = PayPalIPN.objects
             self.assertTrue(c.all().count() > 0)
             ipn = c.all()[0]
+            ipn._postback = lambda : b"VERIFIED"
+            ipn.verify()
             ipn.payment_status = ST_PP_COMPLETED
+            ipn.receiver_email = bussines_email
+            ipn.invoice = invoice_id
+            ipn.mc_gross = gross
             show_me_the_money(sender=ipn)
             self.u.refresh_from_db()
-#            self.u.paypalaccount
+            self.u.paypalaccount
