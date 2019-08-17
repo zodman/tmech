@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3c5ee122846a5929579280c1a7cb9760a70cd1c2bfa6c4d9d07996598ccc8f18"
+            "sha256": "8786a8b6a1ec33eb9a359165859fd32d94b8c601068e1edaf45279a95285d774"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -81,6 +81,14 @@
                 "sha256:c57b3c11ec1f319d9474e3e5a79134f40174b17c7cc024bbb2fad84646b120c4"
             ],
             "version": "==0.4.5"
+        },
+        "django-loginas": {
+            "hashes": [
+                "sha256:bd72331883954836e0e78df63e4e49e928c284d0f889f40cd227f892b1d26eff",
+                "sha256:d45ef6d67414526aae3020948ad9ac2f5e5f806a3f2d197dbdc148ce685b147a"
+            ],
+            "index": "pypi",
+            "version": "==0.3.6"
         },
         "django-mix": {
             "git": "https://github.com/zodman/django-mix.git",
@@ -317,6 +325,14 @@
             ],
             "version": "==6.7"
         },
+        "colorama": {
+            "hashes": [
+                "sha256:05eed71e2e327246ad6b38c540c4a3117230b19679b875190486ddd2d721422d",
+                "sha256:f8ac84de7840f5b9c4e3347b3c1eaa50f7e49c2b07596221daec5edaabbd7c48"
+            ],
+            "markers": "sys_platform == 'win32'",
+            "version": "==0.4.1"
+        },
         "coverage": {
             "hashes": [
                 "sha256:08907593569fe59baca0bf152c43f3863201efb6113ecb38ce7e97ce339805a6",
@@ -391,14 +407,6 @@
             ],
             "index": "pypi",
             "version": "==2.5.0"
-        },
-        "importlib-resources": {
-            "hashes": [
-                "sha256:6e2783b2538bd5a14678284a3962b0660c715e5a0f10243fd5e00a4b5974f50b",
-                "sha256:d3279fd0f6f847cced9f7acc19bd3e5df54d34f93a2e7bb5f238f81545787078"
-            ],
-            "markers": "python_version < '3.7'",
-            "version": "==1.0.2"
         },
         "invoke": {
             "hashes": [

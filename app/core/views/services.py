@@ -16,6 +16,7 @@ from django.contrib.auth.decorators import login_required
 __all__ = ["service_list","service_add","service_search_cars",
            "service_detail","service_edit","service_change_status", 
            "service_add_item","service_delete_item", "service_search"]
+
 @login_required
 def service_search(request):
     q = request.GET.get("search")

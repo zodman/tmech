@@ -4,6 +4,8 @@
 <h1 class="title">
     {% trans "Company configuration" %}
 </h1>
+
+
 <form method="post" action="{% url 'conf' %}">
 {% csrf_token %}
 {% include "form.html" %}
@@ -17,5 +19,19 @@
     </div>
 </div>
 </form>
+
+
+<div class="ph-xl pt-s ">
+<h1 class="subtitle">
+    {% trans "Account info" %}
+</h1>
+
+
+    <div class="box">    
+            {% trans "Your account will expire at" %}: {{ request.user.paypalaccount.expire }}
+    </div>
+</div>
+
+
 
 {% endblock container %}

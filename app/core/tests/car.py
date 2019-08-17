@@ -1,6 +1,8 @@
 from test_plus.test import TestCase
-from core.models import Client, Car
+from core.models import Client, Car, PaypalAccount
 from autofixture import AutoFixture
+from django.utils import timezone
+from datetime import timedelta
 
 
 class CarTest(TestCase):
@@ -11,6 +13,9 @@ class CarTest(TestCase):
         carfixture = AutoFixture(Car, follow_fk=True)
         self.clients = client_fixture.create(10)
         self.cars = carfixture.create(1)
+        now = timezone.now() + timedelta(days=3)
+        PaypalAccount.objects.create(user=self.u, expire=now)
+
 
     def test_delete_cars(self):
         data = {'ids': [i.id for i in self.cars]}

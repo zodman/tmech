@@ -14,6 +14,11 @@
         <div id="navMenu" class="navbar-menu">
           <div class="navbar-end">
             <span class="navbar-item"> {{request.user.username}} {% now "" %} </span>
+            {% if request.user.is_superuser %}
+              <a href="/admin/" class="navbar-item">
+                admin
+              </a>
+            {% endif %}
             <a href="{% url 'auth_logout' %}" class="navbar-item "> {% trans "Log Out" %}</a>
             <a href="{% url 'auth_password_change' %}" class="navbar-item">{% trans "Change Password" %}</a>
             

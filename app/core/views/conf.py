@@ -3,8 +3,17 @@ from core.models import Conf
 from django.shortcuts import render
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
+from paypal_restrictor.views import paypal_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
+decors = [
+    login_required,
+    paypal_required,
+]
 
 
+@method_decorator(decors, name="dispatch")
 def setconf(request):
     ConfForm = modelform_factory(Conf, fields=("name","logo"))
     try:

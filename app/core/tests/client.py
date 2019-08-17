@@ -1,12 +1,15 @@
 from test_plus.test import TestCase
-from core.models import Client, Car
+from core.models import Client, Car, PaypalAccount
 from autofixture import AutoFixture
-
+from django.utils import timezone
+from datetime import timedelta
 
 class ClientTest(TestCase):
 
     def setUp(self):
         self.u = self.make_user()
+        now = timezone.now() + timedelta(days=3)
+        PaypalAccount.objects.create(user=self.u, expire=now)
         client_fixture = AutoFixture(Client, follow_fk=True)
         carfixture = AutoFixture(Car, follow_fk=True)
         self.clients = client_fixture.create(100)

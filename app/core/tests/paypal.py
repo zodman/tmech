@@ -13,8 +13,6 @@ class PaypalTest(TestCase):
     def setUp(self):
         pop = Faker.getPopulator()
         self.u = self.make_user()
-        now = timezone.now() + timedelta(days=3)
-        #PaypalAccount.objects.create(user=self.u, expire=now)
         pop.addEntity(Client, 5, {'user': self.u})
         pop.execute()
 

@@ -25,6 +25,7 @@ django-mix = {git = "https://github.com/zodman/django-mix.git"}
 dj-email-url = "*"
 django-paypal = "*"
 django-populate = "*"
+django-loginas = "*"
 
 [requires]
 python_version = "3.6"
