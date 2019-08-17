@@ -11,6 +11,14 @@ from django.forms import modelform_factory
 from django.utils import timezone
 from datetime import timedelta
 from django.contrib.auth.decorators import login_required
+from paypal_restrictor.views import paypal_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
+decors = [
+    login_required,
+    paypal_required,
+]
 
 
 __all__ = ["service_list","service_add","service_search_cars",
@@ -18,6 +26,7 @@ __all__ = ["service_list","service_add","service_search_cars",
            "service_add_item","service_delete_item", "service_search"]
 
 @login_required
+@paypal_required
 def service_search(request):
     q = request.GET.get("search")
     status = request.GET.get("status")
@@ -38,6 +47,7 @@ def service_search(request):
     return render(request, "core/service/_visit.html", ctx)
 
 @login_required
+@paypal_required
 def service_change_status(request, pk):
     service = Diagnostic.objects.filter(user=request.user).get(id=pk)
     if request.POST:
@@ -53,6 +63,7 @@ def service_change_status(request, pk):
 
 
 @login_required
+@paypal_required
 def service_search_cars(request):
     ServiceForm = modelform_factory(Diagnostic, fields=["car","reception_datetime", "initial", "final", "repairs", "notes"])
     f = ServiceForm(initial={'reception_datetime': timezone.now()})
@@ -70,6 +81,7 @@ def service_search_cars(request):
 
 
 
+@method_decorator(decors, name="dispatch")
 class ServiceDetail(ListMix, DetailView):
     model = Diagnostic
     template_name="core/service/detail.html"
@@ -84,6 +96,7 @@ class ServiceDetail(ListMix, DetailView):
 
 service_detail = login_required(ServiceDetail.as_view())
 
+@method_decorator(decors, name="dispatch")
 class ListVisit(ListMix, ListView):
     model = Diagnostic
     paginate_by = 20
@@ -92,6 +105,7 @@ class ListVisit(ListMix, ListView):
 service_list = login_required(ListVisit.as_view())
 
 
+@method_decorator(decors, name="dispatch")
 class ServiceAdd(ListMix, CreateIntercoolerMix):
     model = Diagnostic
     fields = ["car","reception_datetime", "initial", "final", "repairs", "notes"]
@@ -114,6 +128,7 @@ class ServiceAdd(ListMix, CreateIntercoolerMix):
 service_add = login_required(ServiceAdd.as_view())
 
 
+@method_decorator(decors, name="dispatch")
 class ServiceEdit(ListMix, IntercoolerMix, UpdateView):
     model = Diagnostic
     template_name="core/service/_service_form.html"
@@ -130,6 +145,7 @@ service_edit = login_required(ServiceEdit.as_view())
 
 
 @login_required
+@paypal_required
 def service_add_item(request, pk):
     service = Diagnostic.objects.get(id=pk)
     ctx = {}
@@ -156,6 +172,7 @@ def service_add_item(request, pk):
 
 
 @login_required
+@paypal_required
 def service_delete_item(request, pk):
     item = Item.objects.filter(user=request.user).get(id=pk)
     item.delete()

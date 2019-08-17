@@ -10,10 +10,14 @@
 <h1 class="title">
   {% trans "Account expire " %}
 </h1>
-{% else %}
-
+{% elif request.user.paypalaccount.expire > now.date %}
 <h1 class="title">
 {% trans "Account active" %}
+</h1>
+{% elif not request.user.paypalaccount %} 
+<h1 class="title">
+
+  {% trans "Buy it NOW!" %}
 </h1>
 {% endif %}
 

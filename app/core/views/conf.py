@@ -9,11 +9,11 @@ from django.contrib.auth.decorators import login_required
 
 decors = [
     login_required,
-    paypal_required,
+    # paypal_required,
 ]
 
-
-@method_decorator(decors, name="dispatch")
+@login_required
+@paypal_required
 def setconf(request):
     ConfForm = modelform_factory(Conf, fields=("name","logo"))
     try:
