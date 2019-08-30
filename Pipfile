@@ -9,11 +9,11 @@ coverage = "*"
 django-test-plus = "*"
 fabric = "*"
 shiv = "*"
-v = {editable = true,version = "*"}
+v = {version = "*",editable = true}
 
 [packages]
 django = "*"
-django-widget-tweaks = {git = "https://github.com/jazzband/django-widget-tweaks.git"}
+django-widget-tweaks = "*" 
 django-autofixture = "*"
 django-active-link = "*"
 django-bsync = "*"
@@ -21,10 +21,11 @@ django-test-without-migrations = "*"
 goodconf = {extras = ["yaml"],version = "*"}
 easyconf = "*"
 django-registration-redux = "*"
-django-mix = {git = "https://github.com/zodman/django-mix.git"}
 dj-email-url = "*"
 django-paypal = "*"
 django-populate = "*"
+django-webserver = {extras = ["pyuwsgi"],version = "*"}
+djangomix = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"

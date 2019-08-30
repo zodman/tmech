@@ -1,3 +1,4 @@
 prune app/node_modules/
 graft app/core/static/
 graft app/core/templates/
+graft app/paypal_restrictor/templates/

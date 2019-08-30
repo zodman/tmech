@@ -14,12 +14,12 @@ def make(c):
             "shiv",
             "-o", "tmech.pyz",
             "-e", "django.core.management:execute_from_command_line",
-            "--site-packages=$(pipenv --venv)/lib/python3.6/site-packages/",
-            "--python='/usr/bin/env python3.6'",
+            "--site-packages=$(pipenv --venv)/lib/python3.7/site-packages/",
+            "--python='/usr/bin/env python3.7'",
             "--no-deps", "."
         ]
         c.run(" ".join(cmd))
-    c.run("scp ../tmech.pyz waifu.ca:apps/tmech/")
+    #c.run("scp ../tmech.pyz waifu.ca:apps/tmech/")
 
 @task_local
 def test(c):
