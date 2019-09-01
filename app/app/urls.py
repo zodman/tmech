@@ -8,6 +8,7 @@ messages = TemplateView.as_view(template_name="messages.html")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("admin/", include('loginas.urls')),
     path("messages/", messages, name="messages"),
     path("app/", include("core.urls")),
     path('accounts/', include('registration.backends.simple.urls')),

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django_webserver',
     'paypal.standard.ipn',
     'paypal_restrictor',
+    "loginas",
 ]
 
 if "test" in sys.argv:
@@ -139,6 +140,8 @@ EMAIL_USE_SSL = email_config['EMAIL_USE_SSL']
 
 USE_THOUSAND_SEPARATOR = True
 PAYPAL_TEST = config.PAYPAL_TEST
+
+LOGINAS_REDIRECT_URL = '/'
 
 import os
 

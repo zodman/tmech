@@ -12,13 +12,21 @@ from django.db.utils import IntegrityError
 
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from paypal_restrictor.views import paypal_required
+from django.utils.decorators import method_decorator
+
 
 __all__ = [
     "search_car_clients", "search_car", "car_edit", "car_list", "car_add",
     "delete_cars"
 ]
 
+decors = [
+    login_required,
+    paypal_required,
+]
 
+@method_decorator(decors, name="dispatch")
 class CarAdd(CreateIntercoolerMix):
     model = Car
     fields = ("brand", "model", "year")
@@ -49,9 +57,10 @@ class CarAdd(CreateIntercoolerMix):
         return super().form_valid(form)
 
 
-car_add = login_required(CarAdd.as_view())
+car_add =CarAdd.as_view()
 
 
+@method_decorator(decors, name="dispatch")
 class CarEdit(CarAdd, UpdateView):
     model = Car
     fields = ("brand", "model", "year")
@@ -60,10 +69,11 @@ class CarEdit(CarAdd, UpdateView):
     template_name = "core/car/car_form.html"
 
 
-car_edit = login_required(CarEdit.as_view())
+car_edit = CarEdit.as_view()
 
 
 @login_required
+@paypal_required
 def search_car(request):
     search = request.GET.get("search")
     if search:
@@ -77,6 +87,7 @@ def search_car(request):
 
 
 @login_required
+@paypal_required
 def search_car_clients(request):
     search = request.GET.get("search")
     if search:
@@ -88,16 +99,18 @@ def search_car_clients(request):
     return HttpResponse(json.dumps(resp))
 
 
+@method_decorator(decors, name="dispatch")
 class CarList(ListView):
     model = Car
     paginate_by = 20
     template_name = "core/car/car_list.html"
 
 
-car_list = login_required(CarList.as_view())
+car_list = CarList.as_view()
 
 
 @login_required
+@paypal_required
 def delete_cars(request):
     ids = request.POST.getlist("ids")
     Car.objects.filter(id__in=ids).delete()

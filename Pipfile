@@ -26,6 +26,7 @@ django-paypal = "*"
 django-populate = "*"
 django-webserver = {extras = ["pyuwsgi"],version = "*"}
 djangomix = "*"
+django-loginas = "*"
 
 [requires]
 python_version = "3.7"
