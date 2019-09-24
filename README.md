@@ -2,7 +2,7 @@ tMech
 =====
 
 
-Small django app for mechanical workshop
+Small django app for mechanical workshop with paypal account payment integration!
 
 
 ## Dashboard
