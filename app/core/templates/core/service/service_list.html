@@ -45,7 +45,7 @@
     
                     ic-include="[name='search'],[name='status'],[name='search']"
                     ic-target="#object_list" ic-get-from="{% url 'service_search' %}"  >
-                        <option value=""> {% trans "ALL" %}</option>
+                        <option value=""> {% trans "Status" %}</option>
                         {% for k,v in object_list.0.STATUS %}
                             <option value="{{k}}">
                                 {{v}}
@@ -95,8 +95,8 @@
 <table class="table is-fullwidth" >
     <thead>
     <tr>
-       
-        <th colspan="2">client</th>
+        <th></th>   
+        <th colspan="1">client</th>
           <th>reception</th>
         <th>car</th>
         <th>status</th>
