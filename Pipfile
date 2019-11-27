@@ -5,11 +5,11 @@ verify_ssl = true
 
 [dev-packages]
 pylint = "*"
-coverage = "*"
 django-test-plus = "*"
 fabric = "*"
 shiv = "*"
 v = {version = "*",editable = true}
+coverage = "*"
 
 [packages]
 django = "*"
@@ -24,7 +24,7 @@ django-registration-redux = "*"
 dj-email-url = "*"
 django-paypal = "*"
 django-populate = "*"
-django-webserver = {extras = ["pyuwsgi"],version = "*"}
+django-webserver = "*"
 djangomix = "*"
 django-loginas = "*"
 

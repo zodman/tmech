@@ -7,71 +7,64 @@
 
 {% block container %}
 
-<h1 class="title">
-    {% if object %}
-        
-        {% trans "Update Service" %}
-    {% else %}
-        {% trans "Add Service" %}
-    {% endif %}
-</h1>
-
-
-
-    <form ic-post-to="{% url 'service_add' %}" ic-target="#form">
-    {% csrf_token %}
-            <div class="field">
-                <div class="control has-icons-left has-icons-right">
-                        <input id="prova" type="text is-static" class="input"
-                            ic-src="{% url 'car_client_search' %}" 
-                            ic-trigger-delay="500ms"
-                            autocomplete="off"
-                            ic-indicator="#indicator"
-                            name="search"  placeholder='{% trans "Search client ..." %}' />
-                            <span id="check" class="icon is-small is-right"  style="display:none">
-                                <i class="fas fa-check has-text-primary	"></i>
-                            </span>
-
-                            <span id="indicator" class="icon is-small is-left" style="display:none" >
-                                   <i class="fas fa-spinner fa-spin	"></i>
-                            </span>
-                            
-                </div>
-               
-            </div>
-
-
-    <div class="field">
-        <div class="control">
-           <div class="dropdown-menu" id="prova-menu" role="menu" >
-           </div>
+<nav class="level">
+    <div class="level-left">
+            <h1 class="title">
+                    {% if object %}        
+                        {% trans "Update Service" %}
+                    {% else %}
+                        {% trans "Add Service" %}
+                    {% endif %}
+                </h1>                
+    </div>
+    <div class="level-right">
+        <div class="level-item">
+        <a href=" {% url 'client_add' %}  ">
+            {% trans "Add Client" %}
+        </a>
         </div>
     </div>
+</nav>
+
+<form ic-post-to="{% url 'service_add' %}" ic-target="#form">
+    {% csrf_token %}
+        <div class="field">
+            <div class="control has-icons-left has-icons-right">
+                    <input id="prova" type="text is-static" class="input"
+                        ic-src="{% url 'car_client_search' %}" 
+                        ic-trigger-delay="500ms" autocomplete="off"
+                        ic-indicator="#indicator" name="search"  
+                        placeholder='{% trans "Search client ..." %}' />
+                        <span id="check" class="icon is-small is-right"  style="display:none">
+                            <i class="fas fa-check has-text-primary	"></i>
+                        </span>
+                        <span id="indicator" class="icon is-small is-left" style="display:none" >
+                                <i class="fas fa-spinner fa-spin	"></i>
+                        </span> 
+            </div>               
+        </div>
 
     <div class="field">
-    <label id="prova-label"> {{object.client.name|default:"Client not set"}} </label>
         <div class="control">
-            
+            <div class="dropdown-menu" id="prova-menu" role="menu" >
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label id="prova-label"> {{object.client.name|default:"Client not set"}} </label>
+        <div class="control">
             <input type="hidden"  ic-target="#form"
                 ic-get-from="{% url 'get_cars' %}" 
                 name="client_id" value="{{object.client.id}}">
-                
         </div>
     </div>
-
-
-    <div id="form">
-       
+    <div id="form"></div>
+    <div class="field">
+        <div class="buttons">
+            <button  type="submit" style="display:none"
+                class="button is-info"> {% trans "Send" %}</button>
+        </div>
     </div>
-
-
-<div class="field">
-    <div class="buttons">
-        <button  type="submit" style="display:none"
-            class="button is-info"> {% trans "Send" %}</button>
-    </div>
-
-</div>
 
 </form>
 

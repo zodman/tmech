@@ -33,6 +33,13 @@ class CarAdd(CreateIntercoolerMix):
     success_url = reverse("car_list")
     template_name = "core/car/car_form.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        client_id = self.request.GET.get("client_id")
+        if client_id:
+            context.update({'client': Client.objects.get(id=client_id)})
+        return context
+
     def form_valid(self, form):
         client_id = self.request.POST.get("client_id")
         if not client_id:
@@ -48,7 +55,6 @@ class CarAdd(CreateIntercoolerMix):
                     year=instance.year).exists()):
                 form.add_error(None, _("client with brand,model,year exists"))
                 return super().form_invalid(form)
-
             try:
                 instance.save()
             except IntegrityError:

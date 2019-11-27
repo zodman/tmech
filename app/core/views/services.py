@@ -73,8 +73,9 @@ def service_search_cars(request):
             user=request.user,
             )
     context = {
-        'form':f
+        'form':f,
     }
+    context.update(dict(WIDGET_REQUIRED_CLASS="is-primary",WIDGET_ERROR_CLASS="is-danger"))
     r = render(request, "core/service/_search_cars.html",context)
     r["X-IC-Script"]="$('button').show()"
     return r

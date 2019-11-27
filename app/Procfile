@@ -1,2 +1,2 @@
-bsync: yarn run watch 
+bsync: npm run watch 
 web:  cross-env PYTHONUNBUFFERED=true  python manage.py runserver
