@@ -46,7 +46,7 @@
 </div>
 
 <div class="columns">
-    <div class="column">
+    <div class="column is-3">
         <p class="title is-4">
                         {{object.car.client.name}}
                     </p>
@@ -54,7 +54,7 @@
                             {% if object.car.client.phone %}
                                 
                                 {{object.car.client.phone|phone_number|default:""}} <a href="https://wa.me/{{object.car.client.phone}}"> 
-                                <span class="icon ">
+                                <span class="icon is-hidden-print">
                                     <i class="fab fa-whatsapp"></i>
                                     </span>
                                 </a>
@@ -75,7 +75,7 @@
         {{object.car}} 
     </div>
 
-    <div class="column is-1">
+    <div class="column is-1 is-hidden-print">
         <a href="#quote"> 
           <i class="fas fa-chevron-down"></i>
         {% trans "Quote" %}</a>

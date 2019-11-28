@@ -16,10 +16,6 @@ class IntercoolerMix:
         #resp["Turbolinks-Location"] = url
         return resp
 
-
-
-
-
 class CreateIntercoolerMix(IntercoolerMix, CreateView):
     ic_template = "form.html"
 

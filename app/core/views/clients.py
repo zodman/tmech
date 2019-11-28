@@ -57,12 +57,13 @@ class ClientAdd(CreateIntercoolerMix):
         instance.user = self.request.user
         instance.save()
         messages.info(self.request, _("Client added"))
+        if instance.car_set.count() == 0:
+            messages.info(self.request,_(" Client don't have cars add a new one."))
         return super().form_valid(form)
         
     def get_success_url(self):
         url = super().get_success_url()
         if self.object.car_set.count() == 0:
-            messages.info(self.request,_(" Client don't have cars add a new one."))
             return "{}?client_id={}".format(reverse("car_add"), self.object.id)  
         return url
 
