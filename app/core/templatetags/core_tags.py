@@ -30,3 +30,13 @@ def param_replace(context, **kwargs):
     for k in [k for k, v in d.items() if not v]:
         del d[k]
     return d.urlencode()
+
+
+@register.filter
+def phone_number(number):
+    """Convert a 10 character string into (xxx) xxx-xxxx."""
+    if number:
+        first = number[0:3]
+        second = number[3:6]
+        third = number[6:10]
+        return '(' + first + ')' + ' ' + second + '-' + third

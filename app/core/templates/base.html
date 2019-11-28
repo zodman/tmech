@@ -10,9 +10,14 @@
             {% endblock title %}
     
     </title>
+    <script>
+      FontAwesomeConfig = {
+        mutateApproach: 'sync'
+      }
+    </script>
     <link rel="stylesheet" href="{% mix 'dist/app.css' %}" type="text/css" media="all"  charset="utf-8">
     <script charset="utf-8" src="{% mix 'dist/main.js' %}"></script>
-    <meta name="turbolinks-cache-control" content="no-preview">
+    <meta name="turbolinks-cache-control" content="no-cache">
     
   </head>
 <body class=" has-background-light is-bold">

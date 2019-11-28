@@ -13,10 +13,13 @@
 
 {% for field in form %}
     {% with field|widget_type as widgett %}
-    
+
 <div class="field">
     {% if not "hidden" in  widgett %}  
-        {{field|add_label_class:"label "}} 
+
+        {{field|add_label_class:"label is-success"}} 
+        
+              
     {% endif %}
   <div class="control">
       <!--
@@ -25,27 +28,27 @@
           {% if "hidden" in widgett %}  
             {{ field}}
           {% elif widgett == "textinput" %}  
-            {{ field|add_error_class:"is-danger"|add_class:"input" }}
+            {{ field|add_error_class:"is-danger"|add_class:"input"|add_required_class:"is-success" }}
           {% elif widgett == "numberinput" %}  
-            {{ field|add_error_class:"is-danger"|add_class:"input" }}
+            {{ field|add_error_class:"is-danger"|add_class:"input"|add_required_class:"is-success" }}
             {% elif widgett == "urlinput" %}  
-            {{ field|add_error_class:"is-danger"|add_class:"input" }}
+            {{ field|add_error_class:"is-danger"|add_class:"input"|add_required_class:"is-success" }}
            {% elif widgett == "passwordinput" %}  
-            {{ field|add_error_class:"is-danger"|add_class:"input" }}
+            {{ field|add_error_class:"is-danger"|add_class:"input"|add_required_class:"is-success" }}
          {% elif widgett == "datetimeinput" %}  
-            {{ field|add_error_class:"is-danger"|add_class:"input" }}
+            {{ field|add_error_class:"is-danger"|add_class:"input"|add_required_class:"is-success" }}
           {% elif widgett == "emailinput" %}  
-            {{ field|add_error_class:"is-danger"|add_class:"input" }}
+            {{ field|add_error_class:"is-danger"|add_class:"input"|add_required_class:"is-success" }}
           {% elif widgett == "textarea" %}  
             {% with cols_=cols|default:"cols:40" rows_=rows|default:"rows:10"%}
-              {{ field|add_error_class:"is-danger"|add_class:"textarea"|attr:rows_|attr:cols_ }}
+              {{ field|add_error_class:"is-danger"|add_class:"textarea"|attr:rows_|attr:cols_|add_required_class:"is-success" }}
             {% endwith %}
          {% elif widgett == "select" %}  
              <div class="select">
-                {{ field|add_error_class:"is-danger"}}
+                {{ field|add_error_class:"is-danger"|add_required_class:"is-success"}}
              </div>  
           {% else %}
-            {{ field|add_error_class:"is-danger"|add_class:widgett  }}
+            {{ field|add_error_class:"is-danger"|add_class:widgett|add_required_class:"is-success"  }}
           {% endif %}
   </div>
     {% endwith %}

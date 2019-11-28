@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load core_tags %}
         
         {% for obj in object_list  %}
         <tr>
@@ -6,9 +7,12 @@
             <input type="checkbox" name="ids" value="{{obj.id}}">
             </td>
             <td>{{obj.name}}</td>
-            <td>{{obj.phone|default:""}}</td>
+            <td>{{obj.phone|default:""|phone2numeric|phone_number}}</td>
             <td>
                 {{obj.car_set.count}}
+            </td>
+            <td>
+              {{obj.last_service|default:""}}
             </td>
             <td>
               <a class="button is-info " href="{% url 'service_add' %}"> {% trans "Add Service" %}</a>

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a3951c856e7597a95da4cae57972775a4b1d7dd35c64c945ad5f34d968744864"
+            "sha256": "95c20e046f095efa7910d1fdfc0b25db66c65779942970152770763962d77d6c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -123,12 +123,7 @@
             "version": "==1.1.0"
         },
         "django-widget-tweaks": {
-            "hashes": [
-                "sha256:65c960f3d75008a285e4b10f4d21f9eae4160fd77a0f6097ad545185f8648bd6",
-                "sha256:f2e2c9c9be1ccc59061e248dcc2144f4906d594abe1a563902f4bdf6aa14e432"
-            ],
-            "index": "pypi",
-            "version": "==1.4.5"
+            "file": "https://github.com/zodman/django-widget-tweaks/archive/issue_87_add_required_class.zip"
         },
         "djangomix": {
             "hashes": [

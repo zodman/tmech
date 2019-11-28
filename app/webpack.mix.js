@@ -39,14 +39,17 @@ mix.browserSync('localhost:8000');
          "core/static/src/*.scss",
          "core/templates/**/**/*.html"
      ],
+     logLevel: "debug",
+     logConnections: true,
+     logFileChanges: true,
      snippetOptions: {
-        rule: {
-          match: /<\/head>/i,
-          fn: function (snippet, match) {
-            return snippet + match;
-          }
+      rule: {
+        match: /<\/head>/i,
+        fn: function (snippet, match) {
+          return snippet + match;
         }
       }
+    }
  });
 // mix.combine(files, destination);
 // mix.babel(files, destination); <-- Identical to mix.combine(), but also includes Babel compilation.

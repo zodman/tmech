@@ -13,7 +13,7 @@ coverage = "*"
 
 [packages]
 django = "*"
-django-widget-tweaks = "*" 
+django-widget-tweaks = {file = "https://github.com/zodman/django-widget-tweaks/archive/issue_87_add_required_class.zip"} 
 django-autofixture = "*"
 django-active-link = "*"
 django-bsync = "*"
