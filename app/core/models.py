@@ -64,6 +64,11 @@ class Diagnostic(models.Model):
         ("c",_("Completed")),
         ("p",_("Paid")),
     )
+    STATUS_COLOR =  (
+        ("o","info"),
+        ("c",'success'),
+        ("p","danger"),
+    )
     status = models.CharField(max_length=10, choices=STATUS, default="o")
     car = models.ForeignKey(Car, on_delete=models.SET_NULL, null=True)
     reception_datetime = models.DateTimeField(help_text="YYYY-mm-dd HH:MM:SS")
@@ -82,7 +87,8 @@ class Diagnostic(models.Model):
 
     def get_status(self):
         return dict(self.STATUS).get(self.status)
-
+    def get_color(self):
+        return dict(self.STATUS_COLOR).get(self.status)
     def total(self):
         r = self.item_set.values("quantity","price")
         all = [i["quantity"]*i["price"] for i in r]

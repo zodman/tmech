@@ -90,18 +90,18 @@
 <form id="form">
             {% csrf_token %}
 
-<div class="table-container">
+<div class="table-container box is-marginless is-paddingless">
 
-<table class="table is-fullwidth" >
-    <thead>
+<table class="table  is-striped is-fullwidth" >
+    <thead class="has-background-grey-lighter has-text-white-bis">
     <tr>
         <th></th>   
-        <th colspan="1">client</th>
-          <th>reception</th>
-        <th>car</th>
-        <th>status</th>
+        <th colspan="1">{% trans "Client" %}</th>
+          <th>{% trans "Reception" %}</th>
+   
+        <th>{% trans "Status" %}</th>
 
-        <th colspan="2"> total </th>
+        <th colspan="2"> {% trans "Total" %} </th>
     </tr>
     </thead>
     <tbody id="object_list">

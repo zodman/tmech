@@ -66,13 +66,14 @@
            <div class="card-content">
               <div class="level">
                 <div class="level-right ">
-                  <h2 class="title is-4">
+                  <h2 class="title is-4 tag is-danger is-light">
                     {% trans "Paid" %}
                   </h2>
                 </div>
                 <div class="level-left">
-                  <h2 class="subtitle is-4">
-                    {{raw_services.paid.count}}
+                  <h2 class="subtitle is-4  ">
+                    $ {{raw_services.paid.sum}}
+                    ({{raw_services.paid.count}})
                   </h2>
                 </div>
               </div>
@@ -83,14 +84,14 @@
             <div class="card-content">
               <div class="level">
                 <div class="level-right ">
-                  <h2 class="title is-4">
+                  <h2 class="title is-4 tag is-success is-light">
                    {% trans "Completed" %}
                   </h2>
                 </div>
                 <div class="level-left">
-                  <h2 class="subtitle is-4">
-                    {{raw_services.completed.sum}}
-                  {{raw_services.completed.count}}
+                  <h2 class="subtitle is-4 ">
+                    $ {{raw_services.completed.sum}}
+                  ({{raw_services.completed.count}})
                   </h2>
                 </div>
               </div>
@@ -101,15 +102,18 @@
             <div class="card-content">
               <div class="level">
                 <div class="level-right ">
-                  <h2 class="title is-4">
+                  <h2 class="title is-4 tag is-info is-light">
                     {% trans "Open" %}
                   </h2>
                 </div>
                 <div class="level-left">
-                  <h2 class="subtitle is-4">
-                    {{raw_services.open.suma}}
-                  {{raw_services.open.count}}
-                  </h2>
+                  <div class="level-item">
+                    <h2 class="subtitle is-4">
+                      $ {{raw_services.open.suma}}
+                      ( {{raw_services.open.count}} ) 
+                    </h2>
+                  </div>
+                
                 </div>
               </div>
 
@@ -119,46 +123,53 @@
 
     </div>
 
-    <div class="column ">
+    <div class="column  is-5">
                  <p class="subtitle is-2">
                     {% trans "Last Services" %}
                 </p>
-        <div class="card">
-            <div class="card-content">
-   
+    
             {% for s in services %}
-                <div class="level">
+    <div class="card mb-s">
+            <div class="card-content">
+                  <div class="level mb-0">
                     <div class="level-left">
-                        <div class="level-item">
-                            <p class="title is-5">
-                                {{s.car}}
-                            </p>
+                            <h1 class="title is-4">
+                              {{s.car.client}}
+                            </h1>
+                    </div>
+                    <div class="level-right">
+                        <div class="tag is-large is-{{s.get_color}} is-light">
+                            {{s.get_status}}
                         </div>
                     </div>
+                  </div>
 
-                    <div class="level-right">
-                        <div class="has-text-right">
-                        <p class="title is-5 is-marginless">
+                  <div class="card-content is-paddingless mt-xxs pb-s">
+                        <p class="title is-3 m-0">
                           ${{s.total}}
                         </p>
-                        <span class="tag is-warning">{{s.get_status}}</span>
-                      </div>
-                    
-                    </div>
-                </div>
-
-                        <div class="">
-                            <div class="">
-                              {{s.car.client}}
-                            </div>
-                            <small>{{s.reception_datetime}}</small>
-                        </div>
-
+                        <h2 class="subtitle mt-xxs">
+                              {{s.car}}
+                            </h2>
+                             <small> 
+                              {% trans "Reception was" %} {{s.reception_datetime|timesince}} {% trans "ago" %}
+                             </small>
+                  </div>
+                        
+      
+  
+            </div>             
+            <footer class="card-footer has-background-light">
+                    <a class="card-footer-item" href="{% url 'service_detail' s.id %}">
+                      {% trans "View service" %}
+                    </a>
+            </footer>
+        </div>        
+         
             
             {% endfor %}
 
-            </div>
-        </div>
+
     
     </div>
 </div>

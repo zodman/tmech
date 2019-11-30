@@ -1,27 +1,33 @@
 {% load i18n %}
         {% for obj in object_list  %}
-        <tr>
+        <tr class="m-m p-m">
             <td>
             <input type="checkbox" name="ids" value="{{obj.id}}">
             </td>
             <td>
                <a class="as-text" href="{% url 'service_detail' obj.id  %}" >
-                {{obj.car.client.name}}
-                </a>
+                {{obj.car.client.name}}<br>
+                     </a>
+               <span class="is-size-6 has-text-weight-medium">
+               {{obj.car.brand}} {{obj.car.model}} {{obj.car.year|floatformat:'0'|default:""}}  
+               </span>      
+              
+           
             </td>
-           <td>{{obj.reception_datetime}}</td>
+           <td>{{obj.reception_datetime|timesince}}</td>
 
+          
             <td>
-              {{obj.car.brand}} {{obj.car.model}} {{obj.car.year|default:""}}
-            </td>
-            <td>
-            {{obj.get_status}}
+                <span class="tag is-{{obj.get_color}} is-small">
+                 {{obj.get_status}}
+                </span>
+                
             </td>
             <td>
                $ {{obj.total}}
             </td>
             <td>
-                <a class="button as-text" href="{% url 'service_detail' obj.id  %}" >
+                <a class=" " href="{% url 'service_detail' obj.id  %}" >
                     {% trans "Details" %}
                 </a>
             </td>
