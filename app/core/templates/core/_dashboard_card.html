@@ -1,0 +1,35 @@
+{% load i18n %} 
+ 
+ <div class="card mb-s">
+            <div class="card-content mb-0 pb-0">
+                  <div class="level mb-0">
+                    <div class="level-left">
+                            <h1 class="title is-4">
+                              {{s.car.client|truncatewords:2}}
+                            </h1>
+                    </div>
+                    <div class="level-right">
+                        <div class="tag  is-{{s.get_color}} is-light">
+                            {{s.get_status}}
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="card-content is-paddingless mt-xxs pb-s">
+                        <p class="title is-3 m-0">
+                          ${{s.total}}
+                        </p>
+                        <h2 class="subtitle mt-xxs">
+                              {{s.car}}
+                            </h2>
+                             <small> 
+                              {% trans "Reception was" %} {{s.reception_datetime|timesince}} {% trans "ago" %}
+                             </small>
+                  </div>
+            </div>             
+            <footer class="card-footer has-background-light">
+                    <a class="card-footer-item" href="{% url 'service_detail' s.id %}">
+                      {% trans "View service" %}
+                    </a>
+            </footer>
+        </div> 

@@ -36,9 +36,16 @@ class ListMix(object):
 
 def filter_by_date(ds, q_time):
     now = timezone.now()
+    
     if q_time == "m":
         ds = ds.filter(reception_datetime__month=now.month,
                     reception_datetime__year=now.year)
+    if q_time =="mm":
+        ds = ds.filter(
+
+                    reception_datetime__month=now.month-2,
+                    reception_datetime__year=now.year
+        )
     elif q_time == "t":
         ds = ds.filter(reception_datetime__date=now.date())
     elif q_time == "y":

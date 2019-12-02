@@ -19,13 +19,16 @@ class Dashboard(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        ds = Diagnostic.objects.filter(user=self.request.user)
+        ds =( Diagnostic.objects
+            .filter(user=self.request.user)
+        )
+    
         q_time = self.request.GET.get("search_time","m")
         if q_time:
             ds = filter_by_date(ds, q_time)
         context.update({
             'raw_services':ds,
-            'services': ds[0:10],
+            'services': ds[0:3],
             'profit': self.profit(ds),
             'clients': Client.objects.filter(user=self.request.user)[0:10]
         })

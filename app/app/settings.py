@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'paypal_restrictor',
     "loginas",
+    'django_seed',
 ]
 
 if "test" in sys.argv:

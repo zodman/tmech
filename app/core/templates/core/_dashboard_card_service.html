@@ -1,0 +1,49 @@
+{% load i18n %}   
+   
+<div class="hero is-light is-bold">
+    <div class="hero-body">
+        <div class="columns">
+            <div class="column">
+              
+                        <h2 class="title is-4">
+                            {% trans "Paid" %}
+                        </h2>
+                 
+                        <h2 class="subtitle is-4  ">
+                            $ {{raw_services.paid.suma}}
+                            ({{raw_services.paid.count}})
+                        </h2>
+                   
+            </div>
+            <div class="column">
+              
+                            <h2 class="title is-4">
+                            {% trans "Completed" %}
+                            </h2>
+                   
+                            <h2 class="subtitle is-4 ">
+                                $ {{raw_services.completed.suma}}
+                            ({{raw_services.completed.count}})
+                            </h2>
+           
+            </div>
+
+            <div class="column">
+         
+                        <h2 class="title is-4">
+                            {% trans "Open" %}
+                        </h2>
+
+             
+                            <h2 class="subtitle is-4">
+                            $ {{raw_services.open.suma}}
+                            ( {{raw_services.open.count}} ) 
+                            </h2>
+          
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -9,7 +9,8 @@ class ServiceQuerySet(models.QuerySet):
         l = []
         for i in ds:
             l.append(i.total())
-        return sum(l)
+        result = sum(l)
+        return result
 
     def completed(self):
         return self.filter(status='c')

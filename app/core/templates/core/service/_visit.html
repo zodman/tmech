@@ -8,7 +8,7 @@
                <a class="as-text" href="{% url 'service_detail' obj.id  %}" >
                 {{obj.car.client.name}}<br>
                      </a>
-               <span class="is-size-6 has-text-weight-medium">
+               <span class="is-size-7 has-text-weight-medium">
                {{obj.car.brand}} {{obj.car.model}} {{obj.car.year|floatformat:'0'|default:""}}  
                </span>      
               
@@ -24,7 +24,7 @@
                 
             </td>
             <td>
-               $ {{obj.total}}
+               ${{obj.total}}
             </td>
             <td>
                 <a class=" " href="{% url 'service_detail' obj.id  %}" >

@@ -31,6 +31,7 @@
                     name="search_time">
                      <option val="">All time</option>
                      <option value="m">This Month</option>
+                         <option value="mm">Last Month</option>
                     <option value="t">Today</option>
                     <option value="y">Yesterday</option>
                     <option value="w">This Week</option>
@@ -69,12 +70,15 @@
             <div class="level-item">
                     <div class="buttons is-right">
                 <a class="button is-info" href="{% url 'service_add' %}"> {% trans "Add" %}</a>
-                <button class="button is-warning" 
+                {% comment '' %}
+                
+                <!-- button class="button is-warning" 
                     ic-confirm="are you sure?"
                     ic-include="#form"
-                    ic-post-to="{% url 'delete_cars' %}">
+                    ic-post-to="{% url 'delete_services' %}">
                     {% trans "Delete checked" %}
-                </button>
+                </button-->
+                {% endcomment %}
             </div>
     </div>
         
