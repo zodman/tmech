@@ -40,20 +40,20 @@ Item.objects.all().delete()
 Diagnostic.objects.all().delete()
 
 fake = Seed.seeder()
-fake.add_entity(Client, 30, {
+fake.add_entity(Client, 200, {
     'user':user,
     'name': lambda x: fake.faker.name()
 })
-fake.add_entity(Car, 10,{
+fake.add_entity(Car, 800,{
     'user':user,
     'brand': lambda x: fake.faker.random_element(cars.split())
     })
 
-fake.add_entity(Diagnostic, 40, {
+fake.add_entity(Diagnostic, 800, {
     'user':user,
     'reception_datetime': lambda x: timezone.make_aware(
             fake.faker.date_time_between(
-                start_date="-120d", end_date="now")),
+                start_date="-1y", end_date="now")),
     'status': lambda x: fake.faker.random_element(Diagnostic.STATUS)[0],
 
 })

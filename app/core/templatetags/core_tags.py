@@ -35,6 +35,8 @@ def param_replace(context, **kwargs):
         pre_dict[k] = list(dict.fromkeys(v)).pop()
     for k, v in kwargs.items():
         pre_dict[k] = v    
+    import pprint
+    pprint.pprint(pre_dict)
     urlparams = urllib.parse.urlencode(pre_dict)
     return mark_safe(QueryDict(urlparams).urlencode())
 

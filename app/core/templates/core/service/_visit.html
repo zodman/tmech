@@ -2,6 +2,11 @@
         {% for obj in object_list  %}
         <tr class="m-m p-m">
             <td>
+            <!--
+                {{page_obj.number|pprint}}
+                {{page_obj.has_next|pprint}}
+                {{page_obj.next_page_number|pprint}}
+            -->
                 <input type="checkbox" name="ids" value="{{obj.id}}">
                 {% if  forloop.last and page_obj.has_next %}
                     <span
@@ -20,7 +25,7 @@
               
            
             </td>
-           <td>{{obj.reception_datetime|timesince}}</td>
+           <td>{{obj.reception_datetime|timesince}} ago</td>
 
           
             <td>

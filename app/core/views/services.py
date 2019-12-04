@@ -45,7 +45,10 @@ def service_search(request):
     if q_time:
         ds = filter_by_date(ds, q_time)
     p = Paginator(ds, 5)
-    object_list = p.get_page(request.GET.get("page"))
+    try:
+        object_list = p.get_page(request.GET.get("page",1))
+    except:
+        object_list = p.get_page(1)
     ctx = {'object_list': object_list,'page_obj':object_list }
     return render(request, "core/service/_visit.html", ctx)
 

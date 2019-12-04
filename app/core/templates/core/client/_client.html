@@ -15,7 +15,6 @@
               {{obj.last_service|default:""}}
             </td>
             <td>
-              <a class="button is-info " href="{% url 'service_add' %}"> {% trans "Add Service" %}</a>
                 <a href="{% url 'edit_client' obj.id %}" class="button is-small is-light">
                 {% trans "Edit" %}
                 </a>

@@ -25,7 +25,7 @@
                 
                 <div class="select">
                     <select 
-                        ic-include="[name='search'],[name='status']"
+                        ic-include="[name='search'],[name='status'],[name='search_time']"
                         ic-target="#object_list" ic-get-from="{% url 'service_search' %}?{% param_replace%}"
                         name="search_time">
                      <option val="">All time</option>
@@ -42,8 +42,8 @@
         
                     <div class="select">
                     <select name="status"   
-                 
-                    ic-include="[name='search'],[name='status']"
+    
+                    ic-include="[name='search'],[name='status'],[name='search_time']"
                     ic-target="#object_list" ic-get-from="{% url 'service_search' %}?{% param_replace %}"  >
                         <option value=""> {% trans "Status" %}</option>
                         {% for k,v in object_list.0.STATUS %}
