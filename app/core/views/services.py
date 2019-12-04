@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 from paypal_restrictor.views import paypal_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 decors = [
     login_required,
@@ -43,7 +44,9 @@ def service_search(request):
         ds = ds.filter(status=status)
     if q_time:
         ds = filter_by_date(ds, q_time)
-    ctx = {'object_list': ds}
+    p = Paginator(ds, 5)
+    object_list = p.get_page(request.GET.get("page"))
+    ctx = {'object_list': object_list,'page_obj':object_list }
     return render(request, "core/service/_visit.html", ctx)
 
 @login_required
@@ -59,6 +62,7 @@ def service_change_status(request, pk):
             r = HttpResponse()
             r["X-IC-Redirect"] = reverse("service_detail", kwargs={'pk': service.id})
             return r
+
 
 
 
@@ -97,10 +101,18 @@ class ServiceDetail(ListMix, DetailView):
 
 service_detail = login_required(ServiceDetail.as_view())
 
+import django_filters
+
+class ServiceFilter(django_filters.FilterSet):
+    class Meta:
+        model = Diagnostic
+        fields = ["reception_datetime",]
+
+
 @method_decorator(decors, name="dispatch")
 class ListVisit(ListMix, ListView):
     model = Diagnostic
-    paginate_by = 20
+    paginate_by = 5
     template_name = "core/service/service_list.html"
 
 service_list = login_required(ListVisit.as_view())

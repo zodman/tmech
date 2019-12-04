@@ -1,8 +1,14 @@
-{% load i18n %}
+{% load i18n core_tags %}
         {% for obj in object_list  %}
         <tr class="m-m p-m">
             <td>
-            <input type="checkbox" name="ids" value="{{obj.id}}">
+                <input type="checkbox" name="ids" value="{{obj.id}}">
+                {% if  forloop.last and page_obj.has_next %}
+                    <span
+                    ic-target="#object_list" ic-trigger-on="scrolled-into-view" 
+                    ic-append-from="{% url 'service_search' %}?{% param_replace page=page_obj.next_page_number  %}">
+                    </span>
+                {% endif %}
             </td>
             <td>
                <a class="as-text" href="{% url 'service_detail' obj.id  %}" >

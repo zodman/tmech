@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n core_tags %}
 
 {% block container %}
 
@@ -25,13 +25,12 @@
                 
                 <div class="select">
                     <select 
-                    ic-include="[name='search'],[name='status'],[name='search']"
-                     
-                    ic-target="#object_list" ic-get-from="{% url 'service_search' %}"
-                    name="search_time">
+                        ic-include="[name='search'],[name='status']"
+                        ic-target="#object_list" ic-get-from="{% url 'service_search' %}?{% param_replace%}"
+                        name="search_time">
                      <option val="">All time</option>
                      <option value="m">This Month</option>
-                         <option value="mm">Last Month</option>
+                    <option value="mm">Last Month</option>
                     <option value="t">Today</option>
                     <option value="y">Yesterday</option>
                     <option value="w">This Week</option>
@@ -43,9 +42,9 @@
         
                     <div class="select">
                     <select name="status"   
-    
-                    ic-include="[name='search'],[name='status'],[name='search']"
-                    ic-target="#object_list" ic-get-from="{% url 'service_search' %}"  >
+                 
+                    ic-include="[name='search'],[name='status']"
+                    ic-target="#object_list" ic-get-from="{% url 'service_search' %}?{% param_replace %}"  >
                         <option value=""> {% trans "Status" %}</option>
                         {% for k,v in object_list.0.STATUS %}
                             <option value="{{k}}">
@@ -86,13 +85,11 @@
 </div>        
 
 </nav>
-  
 
 
-
-{% include "pagination.html" %}
 <form id="form">
             {% csrf_token %}
+
 
 <div class="table-container box is-marginless is-paddingless">
 
@@ -115,8 +112,8 @@
 </table>
 
 </div>
-</form>
 
-{% include "pagination.html" %}
+
+</form>
 
 {% endblock  %}

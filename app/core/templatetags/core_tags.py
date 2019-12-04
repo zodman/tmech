@@ -1,4 +1,7 @@
 from django import template
+from django.http import QueryDict
+from django.utils.safestring import mark_safe
+import urllib.parse
 
 register = template.Library()
 
@@ -24,12 +27,16 @@ def param_replace(context, **kwargs):
     Based on
     https://stackoverflow.com/questions/22734695/next-and-before-links-for-a-django-paginated-query/22735278#22735278
     """
-    d = context['request'].GET.copy()
+    request = context["request"].GET 
+    d = request.copy()
+    list_all = d.lists()
+    pre_dict = {}
+    for k, v in list_all:
+        pre_dict[k] = list(dict.fromkeys(v)).pop()
     for k, v in kwargs.items():
-        d[k] = v
-    for k in [k for k, v in d.items() if not v]:
-        del d[k]
-    return d.urlencode()
+        pre_dict[k] = v    
+    urlparams = urllib.parse.urlencode(pre_dict)
+    return mark_safe(QueryDict(urlparams).urlencode())
 
 
 @register.filter

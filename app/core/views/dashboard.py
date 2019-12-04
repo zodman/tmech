@@ -22,7 +22,6 @@ class Dashboard(TemplateView):
         ds =( Diagnostic.objects
             .filter(user=self.request.user)
         )
-    
         q_time = self.request.GET.get("search_time","m")
         if q_time:
             ds = filter_by_date(ds, q_time)
@@ -30,6 +29,7 @@ class Dashboard(TemplateView):
             'raw_services':ds,
             'services': ds[0:3],
             'profit': self.profit(ds),
+            'search_time': q_time,
             'clients': Client.objects.filter(user=self.request.user)[0:10]
         })
         return context

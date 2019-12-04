@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'paypal_restrictor',
     "loginas",
     'django_seed',
+    'django_filters',
 ]
 
 if "test" in sys.argv:

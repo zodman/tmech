@@ -13,12 +13,16 @@
             <div class="control">
               <div class="select">
               
-                 <select name="search_time">
-                    <option value="m">This Month</option>
-                    <option value="mm">Last Month</option>
-                    <option value="t">Today</option>
-                    <option value="y">Yesterday</option>
-                    <option value="w">This Week</option> 
+                 <select name="search_time"
+                 
+                 ic-trigger-on="change"
+                  ic-push-url="true" ic-push-params="search_time"
+                 >
+                    <option value="m" {% if search_time == 'm' %} selected{% endif %}>This Month</option>
+                    <option value="mm" {% if search_time == 'mm' %} selected{% endif %}>Last Month</option>
+                    <option value="t" {% if search_time == 't' %} selected{% endif %}>Today</option>
+                    <option value="y" {% if search_time == 'y' %} selected{% endif %}>Yesterday</option>
+                    <option value="w" {% if search_time == 'w' %} selected{% endif %}>This Week</option> 
                 </select>
 
               </div>
@@ -44,7 +48,7 @@
             <div class="column is-12-tablet is-6-desktop is-3-widescreen">
               <div class="notification is-info has-text">
                 <p class="title is-1">{{clients.count}}</p>
-                <p class="subtitle is-4">Clients</p>
+                <p class="subtitle is-4">{% trans "Total clients" %}</p>
               </div>
             </div>
 
@@ -57,22 +61,13 @@
             </div>
 </div>
 
-     {% include "core/_dashboard_card_service.html" %}
 
+{% include "core/_dashboard_card_service.html" %}
 <div class="columns pt-s">
-
-              {% for s in services %}
-                <div class="column is-4">          
-                          {% include "core/_dashboard_card.html" %}
-              </div>          
-            {% endfor %}
+  {% for s in services %}
+    <div class="column is-4">          
+      {% include "core/_dashboard_card.html" %}
+    </div>          
+  {% endfor %}
 </div>
-
-
-
-  
-
-
-
-
 {% endblock %}

@@ -13,7 +13,7 @@ coverage = "*"
 
 [packages]
 django = "*"
-django-widget-tweaks = {file = "https://github.com/zodman/django-widget-tweaks/archive/issue_87_add_required_class.zip"} 
+django-widget-tweaks = "*"
 django-autofixture = "*"
 django-active-link = "*"
 django-bsync = "*"
@@ -27,6 +27,7 @@ django-populate = "*"
 django-webserver = "*"
 djangomix = "*"
 django-loginas = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3.7"
