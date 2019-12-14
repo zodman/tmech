@@ -34,11 +34,12 @@ Mini
 
 user = User.objects.get(username="zodman")
 
+print("delete objects")
 Client.objects.all().delete()
 Car.objects.all().delete()
 Item.objects.all().delete()
 Diagnostic.objects.all().delete()
-
+print("create entities")
 fake = Seed.seeder()
 fake.add_entity(Client, 200, {
     'user':user,
@@ -62,6 +63,7 @@ fake.add_entity(Item, 300, {
      'user':user,
 })
 
+print("execute")
 fake.execute()
 
 

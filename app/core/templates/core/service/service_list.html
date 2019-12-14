@@ -4,14 +4,13 @@
 {% block container %}
 
 <h1 class="title">{% trans "Services" %}</h1>
-
-<nav class="level">
+<form method="get" action="">
+<nav class="level pb-s">
     <div class="level-left">
     
         <div class="level-item">
 
                     <input class="input" type="text" name="search"
-                        ic-include="[name='search'],[name='status'],[name='search']"
                         ic-get-from="{% url 'service_search' %}" ic-trigger-on="keyup changed" 
                         ic-trigger-delay="500ms" ic-target="#object_list" 
                         ic-indicator="#indicator" autocomplete="off"
@@ -24,16 +23,15 @@
         
                 
                 <div class="select">
-                    <select 
-                        ic-include="[name='search'],[name='status'],[name='search_time']"
-                        ic-target="#object_list" ic-get-from="{% url 'service_search' %}?{% param_replace%}"
+                    <select
+                        ic-include="[name='status'],[name='search_time']"
+-                       ic-target="#object_list" ic-get-from="{% url 'service_search' %}"
                         name="search_time">
-                     <option val="">All time</option>
-                     <option value="m">This Month</option>
-                    <option value="mm">Last Month</option>
-                    <option value="t">Today</option>
-                    <option value="y">Yesterday</option>
-                    <option value="w">This Week</option>
+                        {% for k,v in  FILTERS %}
+                                <option value="{{k}}" {% if search_time == k %} selected {% endif %} >
+                                    {{v}}
+                                </option>
+                        {% endfor %}
                     </select>
                 </div>
             
@@ -42,12 +40,11 @@
         
                     <div class="select">
                     <select name="status"   
-    
-                    ic-include="[name='search'],[name='status'],[name='search_time']"
-                    ic-target="#object_list" ic-get-from="{% url 'service_search' %}?{% param_replace %}"  >
+                     ic-include="[name='status'],[name='search_time']"
+-                    ic-target="#object_list" ic-get-from="{% url 'service_search' %}" >
                         <option value=""> {% trans "Status" %}</option>
                         {% for k,v in object_list.0.STATUS %}
-                            <option value="{{k}}">
+                            <option value="{{k}}" {% if status == k %} selected {% endif %}>
                                 {{v}}
                             </option>
                         {% endfor %}    
@@ -81,11 +78,11 @@
             </div>
     </div>
         
-    
+ 
 </div>        
 
 </nav>
-
+</form>
 
 <form id="form">
             {% csrf_token %}

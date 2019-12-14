@@ -2,30 +2,34 @@
         {% for obj in object_list  %}
         <tr class="m-m p-m">
             <td>
-            <!--
-                {{page_obj.number|pprint}}
-                {{page_obj.has_next|pprint}}
-                {{page_obj.next_page_number|pprint}}
-            -->
+
                 <input type="checkbox" name="ids" value="{{obj.id}}">
+             
+                
                 {% if  forloop.last and page_obj.has_next %}
                     <span
                     ic-target="#object_list" ic-trigger-on="scrolled-into-view" 
-                    ic-append-from="{% url 'service_search' %}?{% param_replace page=page_obj.next_page_number  %}">
+                    ic-append-from="{% url 'service_list' %}?page={{page_obj.next_page_number}}&status={{status}}&search_time={{search_time}}">
                     </span>
                 {% endif %}
+
             </td>
             <td>
                <a class="as-text" href="{% url 'service_detail' obj.id  %}" >
                 {{obj.car.client.name}}<br>
                      </a>
                <span class="is-size-7 has-text-weight-medium">
-               {{obj.car.brand}} {{obj.car.model}} {{obj.car.year|floatformat:'0'|default:""}}  
+                     {{obj.car.brand}} {{obj.car.model}} {{obj.car.year|floatformat:'0'|default:""}}  
                </span>      
               
            
             </td>
-           <td>{{obj.reception_datetime|timesince}} ago</td>
+           <td>
+           <div class="is-size-7">
+           {{obj.reception_datetime}} ago 
+           </div>
+           
+           </td>
 
           
             <td>

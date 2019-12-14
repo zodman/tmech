@@ -85,6 +85,9 @@ class Diagnostic(models.Model):
     class Meta:
         ordering = ("-reception_datetime", "status")
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # Call the "real" save() method.
+
     def get_status(self):
         return dict(self.STATUS).get(self.status)
     def get_color(self):

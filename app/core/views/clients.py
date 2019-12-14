@@ -24,7 +24,7 @@ __all__ = ["search_client", "client_list",
 @method_decorator(decors, name="dispatch")
 class EditClient(IntercoolerMix, ListMix, UpdateView):
     model = Client
-    fields = ("__all__")
+    fields = ("name","phone","email",)
     template_name="core/client/client_form.html"
 
     def get_success_url(self):

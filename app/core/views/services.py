@@ -4,7 +4,7 @@ from django.urls import reverse_lazy as reverse
 from django.contrib import messages
 from django.db import models
 from ..models import Client, Diagnostic, Car, Item
-from .utils import CreateIntercoolerMix, IntercoolerMix, ListMix, filter_by_date
+from .utils import CreateIntercoolerMix, IntercoolerMix, ListMix, filter_by_date, FILTERS
 from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
 from django.forms import modelform_factory
@@ -26,12 +26,54 @@ __all__ = ["service_list","service_add","service_search_cars",
            "service_detail","service_edit","service_change_status", 
            "service_add_item","service_delete_item", "service_search"]
 
+
+
+@method_decorator(decors, name="dispatch")
+class ListVisit(ListMix, ListView):
+    model = Diagnostic
+    paginate_by = 5
+    template_name = "core/service/service_list.html"
+
+    def get_template_names(self):
+        print(self.request.META)
+        if self.request.META.get("HTTP_X_IC_Request".upper()):
+            self.template_name = "core/service/_visit.html"
+        return super().get_template_names()
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        status = self.request.GET.get("status")
+        t = self.request.GET.get("search_time")
+        if status:
+            qs = qs.filter(status=status)
+        if t:
+          qs= filter_by_date(qs, t)
+        return qs
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        status = self.request.GET.get("status")
+        t = self.request.GET.get("search_time")
+        if status or t:
+            context["status"] = status 
+            context["search_time"] = t
+        context["FILTERS"] = FILTERS
+        return context
+    
+
+service_list = login_required(ListVisit.as_view())
+
 @login_required
 @paypal_required
 def service_search(request):
     q = request.GET.get("search")
     status = request.GET.get("status")
-    q_time = request.GET.get("search_time")
+    t = request.GET.get("search_time")
+    if status or t:
+        resp = HttpResponse()
+        url = reverse("service_list")
+        resp["X-IC-Redirect"] = f"{url}?status={status}&search_time={t}"
+        return resp
     ds = Diagnostic.objects.filter(user=request.user)
     if q:
         ds = ds.filter(
@@ -39,17 +81,8 @@ def service_search(request):
             models.Q(car__model__icontains=q)|
             models.Q(car__client__name__icontains=q)
         ).distinct()
-    
-    if status:
-        ds = ds.filter(status=status)
-    if q_time:
-        ds = filter_by_date(ds, q_time)
-    p = Paginator(ds, 5)
-    try:
-        object_list = p.get_page(request.GET.get("page",1))
-    except:
-        object_list = p.get_page(1)
-    ctx = {'object_list': object_list,'page_obj':object_list }
+    object_list = ds
+    ctx = {'object_list': object_list}
     return render(request, "core/service/_visit.html", ctx)
 
 @login_required
@@ -58,6 +91,13 @@ def service_change_status(request, pk):
     service = Diagnostic.objects.filter(user=request.user).get(id=pk)
     if request.POST:
         status = request.POST.get("status")
+        if service.total() == 0:
+            messages.error(request, "Status not change, total empty")
+            r = HttpResponse()
+            r["X-IC-Redirect"] = reverse("service_detail", kwargs={'pk': service.id})
+            service.status = Diagnostic.STATUS[0][0]
+            service.save()
+            return r
         if status:
             service.status = status
             service.save()
@@ -112,13 +152,6 @@ class ServiceFilter(django_filters.FilterSet):
         fields = ["reception_datetime",]
 
 
-@method_decorator(decors, name="dispatch")
-class ListVisit(ListMix, ListView):
-    model = Diagnostic
-    paginate_by = 5
-    template_name = "core/service/service_list.html"
-
-service_list = login_required(ListVisit.as_view())
 
 
 @method_decorator(decors, name="dispatch")

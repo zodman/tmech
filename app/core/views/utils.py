@@ -32,14 +32,21 @@ class ListMix(object):
         qs = super().get_queryset()
         return qs.filter(user=self.request.user)
 
-
+FILTERS = (
+    ("all", _("All time")),
+    ("m",_("This Month")),
+    ("mm",_("Last Month")),
+    ("t",_("Today")),
+    ("y",_("Yesterday")),
+    ("w",_("This Week"))
+)
 
 def filter_by_date(ds, q_time):
     now = timezone.now()
     if q_time == "m":
-        ds = ds.filter(reception_datetime__month=now.month,
-                    reception_datetime__year=now.year)
-    if q_time =="mm":
+        ds = (ds.filter(reception_datetime__month=now.month)
+                    .filter(reception_datetime__year=now.year))
+    elif q_time =="mm":
         ds = ds.filter(
             reception_datetime__month=now.month-1,
             reception_datetime__year=now.year
