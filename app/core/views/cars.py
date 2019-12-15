@@ -47,9 +47,8 @@ class CarAdd(CreateIntercoolerMix):
             return super().form_invalid(form)
         else:
             instance = form.save(commit=False)
-            instance.client = Client.objects.get(id=client_id)
+            instance.client = Client.objects.get(id=int(client_id))
             instance.user = self.request.user
-
             if (Car.objects.filter(
                     brand=instance.brand, model=instance.model,
                     year=instance.year).exists()):

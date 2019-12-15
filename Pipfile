@@ -12,7 +12,7 @@ v = {version = "*",editable = true}
 coverage = "*"
 
 [packages]
-django = "*"
+django = "==2.2.8"
 django-widget-tweaks = "*"
 django-autofixture = "*"
 django-active-link = "*"

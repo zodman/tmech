@@ -18,11 +18,11 @@
                  ic-trigger-on="change"
                   ic-push-url="true" ic-push-params="search_time"
                  >
-                    <option value="m" {% if search_time == 'm' %} selected{% endif %}>This Month</option>
-                    <option value="mm" {% if search_time == 'mm' %} selected{% endif %}>Last Month</option>
-                    <option value="t" {% if search_time == 't' %} selected{% endif %}>Today</option>
-                    <option value="y" {% if search_time == 'y' %} selected{% endif %}>Yesterday</option>
-                    <option value="w" {% if search_time == 'w' %} selected{% endif %}>This Week</option> 
+                            {% for k,v in  FILTERS %}
+                                <option value="{{k}}" {% if search_time == k %} selected {% endif %} >
+                                    {{v}}
+                                </option>
+                        {% endfor %} 
                 </select>
 
               </div>

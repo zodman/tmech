@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from core.models import Diagnostic, Client
 from django.contrib.auth.decorators import login_required
-from .utils import filter_by_date
+from .utils import filter_by_date, FILTERS
 from paypal_restrictor.views import paypal_required
 from django.utils.decorators import method_decorator
 
@@ -30,7 +30,8 @@ class Dashboard(TemplateView):
             'services': ds[0:3],
             'profit': self.profit(ds),
             'search_time': q_time,
-            'clients': Client.objects.filter(user=self.request.user)[0:10]
+            'clients': Client.objects.filter(user=self.request.user)[0:10],
+            'FILTERS': FILTERS
         })
         return context
 

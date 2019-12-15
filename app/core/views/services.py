@@ -35,7 +35,6 @@ class ListVisit(ListMix, ListView):
     template_name = "core/service/service_list.html"
 
     def get_template_names(self):
-        print(self.request.META)
         if self.request.META.get("HTTP_X_IC_Request".upper()):
             self.template_name = "core/service/_visit.html"
         return super().get_template_names()

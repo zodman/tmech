@@ -46,7 +46,7 @@
 </div>
 
 <div class="columns">
-    <div class="column is-3">
+    <div class="column is-4">
         <p class="title is-4">
                         {{object.car.client.name}}
                     </p>
@@ -75,25 +75,10 @@
         {{object.car}} 
     </div>
 
-    <div class="column is-1 is-hidden-print">
-        <a href="#quote"> 
-          <i class="fas fa-chevron-down"></i>
-        {% trans "Quote" %}</a>
-    </div>
-    
 </div>
 
 
-
-
-        <div class="columns">
-            <div class="column is-full">
-                  {% include "core/service/diagnostic_detail.html" %} 
-            </div>
-        
-        </div>
-
-        <div class="columns" style="page-break-before:always">
+<div class="columns" style="page-break-before:always">
             <div class="column is-full">
             
             <div class="card">
@@ -113,6 +98,15 @@
             </div>
             </div>
         </div>
+
+        <div class="columns">
+            <div class="column is-full">
+                  {% include "core/service/diagnostic_detail.html" %} 
+            </div>
+        
+        </div>
+
+        
 
 
 {% endblock %}
