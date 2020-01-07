@@ -32,7 +32,7 @@ Mini
 """
 
 
-user = User.objects.get(username="zodman")
+user = User.objects.get(username="taller")
 
 print("delete objects")
 Client.objects.all().delete()

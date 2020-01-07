@@ -8,12 +8,12 @@ pylint = "*"
 django-test-plus = "*"
 fabric = "*"
 shiv = "*"
-v = {version = "*",editable = true}
+v = {editable = true,version = "*"}
 coverage = "*"
 
 [packages]
-django = "==2.2.8"
-django-widget-tweaks = "*"
+django = "*"
+django-widget-tweaks = {git = "https://github.com/jazzband/django-widget-tweaks.git"}
 django-autofixture = "*"
 django-active-link = "*"
 django-bsync = "*"
@@ -28,6 +28,10 @@ django-webserver = "*"
 djangomix = "*"
 django-loginas = "*"
 django-filter = "*"
+mysqlclient = "*"
+django-seed = "*"
+django-flatblocks = {git = "https://github.com/jazzband/django-flatblocks.git"}
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
