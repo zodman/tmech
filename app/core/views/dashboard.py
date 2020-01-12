@@ -1,9 +1,9 @@
 from django.views.generic import TemplateView
 from core.models import Diagnostic, Client
-from django.contrib.auth.decorators import login_required
 from .utils import filter_by_date
 from paypal_restrictor.views import paypal_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 decors = [
     login_required,
