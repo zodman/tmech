@@ -1,16 +1,16 @@
-{% load i18n  %}
+{% load i18n core_tags %}
 
 {% if is_paginated %}
 <nav class="pagination is-centered mv-xxs">
   {% if page_obj.has_previous %}
-    <a class="pagination-previous" href="?page={{ page_obj.previous_page_number|stringformat:"d" }}{{ getvars }}{{ hashtag }}">{% trans "Previous" %}</a>
+    <a class="pagination-previous" href="?{% param_replace page=page_obj.previous_page_number|stringformat:"d"  %}">{% trans "Previous" %}</a>
   {% else %}
     <a class="pagination-previous" disabled>{% trans "Previous" %}</a>
   {% endif %}
 
   {% if page_obj.has_next %}
     <a class="pagination-next"
-       href="?page={{ page_obj.next_page_number|stringformat:"d" }}{{ getvars }}{{ hashtag }}">{% trans "Next" %}</a>
+       href="?{% param_replace page=page_obj.next_page_number|stringformat:"d" %}">{% trans "Next" %}</a>
   {% else %}
     <a class="pagination-next" disabled>{% trans "Next" %}</a>
   {% endif %}
@@ -18,7 +18,7 @@
   <ul class="pagination-list">
     {% for page in paginator.page_range %}
       <li><a class="pagination-link{% ifequal page page_obj.number %} is-current{% endifequal %}"
-             href="?page={{ page|stringformat:"d" }}{{ getvars }}{{ hashtag }}">{{ page|stringformat:"d" }}</a></li>
+             href="?{% param_replace page=page|stringformat:"d" %}">{{ page|stringformat:"d" }}</a></li>
     {% endfor %}
   </ul>
 </nav>

@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "yarn run development",
+    "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "npm run development -- --watch",
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -12,24 +12,24 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "dependencies": {
-    "bulma": "^0.7.5",
+    "bulma": "^0.8.0",
     "bulma-pricingtable": "^0.2.0",
     "bulmahead": "git+https://github.com/mattmezza/bulmahead.git",
-    "cross-env": "^5.2.0",
+    "cross-env": "^6.0.3",
     "css-spaces": "git+https://github.com/zodman/css-spaces.git",
     "font-awesome": "^4.7.0",
-    "intercooler": "^1.2.2",
+    "intercooler": "^1.2.3",
     "jquery": "^3.4.1",
-    "laravel-mix": "^4.1.2",
+    "laravel-mix": "^5.0.0",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.9.0",
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "browser-sync": "^2.26.7",
-    "browser-sync-webpack-plugin": "2.0.1",
-    "resolve-url-loader": "3.1.0",
-    "sass": "^1.22.5",
-    "sass-loader": "7.*",
+    "browser-sync-webpack-plugin": "^2.0.1",
+    "resolve-url-loader": "^3.1.0",
+    "sass": "^1.23.7",
+    "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
   }
 }

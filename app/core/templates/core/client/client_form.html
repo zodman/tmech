@@ -44,26 +44,25 @@
     </div>
 
 </form>
+{% if object.car_set.all %}
 
-<div class="mv-l">
-    <h3 class="title"> {% trans "Cars" %}</h3>
-</div>
-
-<div class="columns ">
-
-    <div class="column">
-    <ul>
-        
-    {% for car in object.car_set.all  %}
-    <li>
-        {{car}}
-    </li>
-    {% endfor%}
-    </ul>
+    <div class="mv-l">
+        <h3 class="title"> {% trans "Cars" %}</h3>
     </div>
 
-    
-</div>
+    <div class="columns ">
+        <div class="column">
+            <ul>
+                
+                {% for car in object.car_set.all  %}
+                    <li>
+                        {{car}}
+                    </li>
+                {% endfor%}
+            </ul>
+        </div>
+    </div>
 
+{% endif %}
 
 {% endblock %}

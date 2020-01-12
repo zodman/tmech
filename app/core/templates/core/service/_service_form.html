@@ -4,44 +4,41 @@
 {% load i18n %}  
 
 <div id="content">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-header-title">
+                <p class=" title">
+                        {% trans "Diagnostic" %}
+                </p>
+            </div>
+            <div class="card-header-icon is-hidden-print">
 
- <div class="card">
-                <div class="card-header">
-                    <div class="card-header-title">
-                        <p class=" title">
-                                {% trans "Diagnostic" %}
-                        </p>
-                    </div>
-                    <div class="card-header-icon is-hidden-print">
-        
-                    </div>
-                </div>
-                <div class="card-content">  
-                    <div class="content">                    
+            </div>
+        </div>
+        <div class="card-content">  
+            <div class="content">                    
 
-                        <form ic-post-to="{% url 'service_edit' object.id %}">
+                <form ic-post-to="{% url 'service_edit' object.id %}">
                         {% csrf_token %}
 
                         {% include "form.html" with rows="rows:5" cols="cols:20"%}
 
                         <div class="field is-grouped">
-                        <div class="control">
-                            <button class="button is-info">
-                                {% trans "Send" %}
-                            </button>
+                            <div class="control">
+                                <button class="button is-info">
+                                    {% trans "Send" %}
+                                </button>
+                            </div>
+                            <div class="control">
+                                <a href="{% url 'service_detail' object.id %}" class="button is-text" type="button" >
+                                    Cancel
+                                </a>
+                            </div>
                         </div>
-                        <div class="control">
-                            <a href="{% url 'service_detail' object.id %}" class="button is-text" type="button" >
-                                Cancel
-                            </>
-                        </div>
-                        </div>
-                        </form>
-                    </div>
-                </div>
+                </form>
             </div>
-
-
+        </div>
+    </div>
 </div>
 
 

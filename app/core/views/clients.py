@@ -24,7 +24,7 @@ __all__ = ["search_client", "client_list",
 @method_decorator(decors, name="dispatch")
 class EditClient(IntercoolerMix, ListMix, UpdateView):
     model = Client
-    fields = ("__all__")
+    fields = ("name","phone","email",)
     template_name="core/client/client_form.html"
 
     def get_success_url(self):
@@ -57,8 +57,15 @@ class ClientAdd(CreateIntercoolerMix):
         instance.user = self.request.user
         instance.save()
         messages.info(self.request, _("Client added"))
+        if instance.car_set.count() == 0:
+            messages.info(self.request,_(" Client don't have cars add a new one."))
         return super().form_valid(form)
-
+        
+    def get_success_url(self):
+        url = super().get_success_url()
+        if self.object.car_set.count() == 0:
+            return "{}?client_id={}".format(reverse("car_add"), self.object.id)  
+        return url
 
 client_add =ClientAdd.as_view()
 

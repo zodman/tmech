@@ -31,8 +31,8 @@
                 <tr id="row-{{forloop.counter}}">
                     <td>{{item.quantity}}</td>
                     <td >{{item.description}}</td>
-                    <td> $ {{item.price}}</td>
-                    <td> $ {{item.total}}</td>
+                    <td> ${{item.price}}</td>
+                    <td> ${{item.total}}</td>
                     <td>
                        <button
                        ic-delete-from="{% url 'service_delete_item' item.id %}"
@@ -48,7 +48,7 @@
                     <td colspan="3"></td>
                     <td>
                     <strong>
-                        $ {{object.total}}
+                        ${{object.total}}
                         </strong>
                     </td>
                     <td></td>

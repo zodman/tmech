@@ -1,24 +1,20 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n core_tags %}
 
 {% block container %}
 
 <div class="level">
     <div class="level-left">
-
-<h1 class="title">
-
-  {% trans "Service Detail" %} 
-  
-</h1>
-
+        <h1 class="title">
+           {% trans "Service Detail" %} 
+        </h1>
     </div>
     <div class="level-right">
         {% if request.user.conf %} 
         <div class="card mr-xxl">
             <div class="card-image has-text-centered	">
                 <figure class="image is-96x96 ">
-                <img src="{{request.user.conf.logo}}" alt="logo">
+                     <img src="{{request.user.conf.logo}}" alt="logo">
                 </figure>
                 {{request.user.conf.name}}
 
@@ -27,8 +23,8 @@
         </div>
         {% endif %}
         <div class="level-item is-hidden-print">
-        <button  class="button is-warning" type="button" onclick="window.print();"> {% trans "Print" %}</button>
-        
+            <button  class="button is-warning" type="button" onclick="window.print();">
+                 {% trans "Print" %}</button>
         </div>
     </div>
 </div>
@@ -41,74 +37,76 @@
         <div class="select">
             {% csrf_token %}
             <select name="status" id="" ic-post-to="{% url 'service_change_status' object.id %}" ic-include="[name='csrfmiddlewaretoken']">
-            {% for k,st in object.STATUS  %}
-                <option value="{{k}}" {% if k == object.status %} selected {% endif %}  >{{st}}</option>
-            {% endfor %}
-                
+                {% for k,st in object.STATUS  %}
+                    <option value="{{k}}" {% if k == object.status %} selected {% endif %}  >{{st}}</option>
+                {% endfor %}
             </select>
         </div>
     </div>
 </div>
 
 <div class="columns">
-
-    <div class="column">
-    
-     <p class="title is-4">
-                    {{object.car.client.name}}
-                </p>
-                <p class="subtitle is-5">
-                    {% trans "Phone" %}:
-                        {{object.car.client.phone}} <a href="https://wa.me/{{object.car.client.phone}}"> 
-                         <span class="icon ">
-							   <i class="fab fa-whatsapp"></i>
-							</span>
-                         </a>
-         <br>
-                        {% if object.car.client.email %}
-                        {% trans "Email" %}    {{object.car.client.email|default:""}}
-            
-                        {% endif %}
-                </p>
+    <div class="column is-4">
+        <p class="title is-4">
+                        {{object.car.client.name}}
+                    </p>
+                    <p class="subtitle is-5">
+                            {% if object.car.client.phone %}
+                                
+                                {{object.car.client.phone|phone_number|default:""}} <a href="https://wa.me/{{object.car.client.phone}}"> 
+                                <span class="icon is-hidden-print">
+                                    <i class="fab fa-whatsapp"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+            <br>
+                            {% if object.car.client.email %}
+                            {{object.car.client.email|default:""}}
+                
+                            {% endif %}
+        </p>
     </div>
     <div class="column">
-            <p class="subtitle">
+            <p class="">
                 {% trans "Reception at" %} {{object.reception_datetime}}    
-               
             </p>
-
-    
     </div>
     <div class="column">
         {{object.car}} 
     </div>
-    
+
 </div>
 
 
-
-    <div class="columns">
-        <div class="column is-4">
-            {% include "core/service/diagnostic_detail.html" %}
-        </div>
-        <div class="column">
-
-            <div class="field is-grouped">
-                <div class="control">    
-                        <h1 class="subtitle is-3">
-                            {% trans "Quote" %}
-                        </h1>    
+<div class="columns" style="page-break-before:always">
+            <div class="column is-full">
+            
+            <div class="card">
+                <div class="card-header">
+                        <div class="card-header-title">          
+                            <p class="title is-4">
+                                {% trans "Quote" %}
+                            </p>    
+                        </div>
                 </div>
-            
-            </div>
-            
-            <div id="quote">
+                <div class="card-content">
+                    <div id="quote">
+                        {% include "core/service/_quote.html" %}
+                    </div>
                 
-                {% include "core/service/_quote.html" %}
-                
+                </div>
             </div>
-            
+            </div>
         </div>
-</div>
+
+        <div class="columns">
+            <div class="column is-full">
+                  {% include "core/service/diagnostic_detail.html" %} 
+            </div>
+        
+        </div>
+
+        
+
 
 {% endblock %}

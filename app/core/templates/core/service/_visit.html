@@ -1,27 +1,48 @@
-{% load i18n %}
+{% load i18n core_tags %}
         {% for obj in object_list  %}
-        <tr>
+        <tr class="m-m p-m">
             <td>
-            <input type="checkbox" name="ids" value="{{obj.id}}">
+
+                <input type="checkbox" name="ids" value="{{obj.id}}">
+             
+                
+                {% if  forloop.last and page_obj.has_next %}
+                    <span
+                    ic-target="#object_list" ic-trigger-on="scrolled-into-view" 
+                    ic-append-from="{% url 'service_list' %}?page={{page_obj.next_page_number}}&status={{status}}&search_time={{search_time}}">
+                    </span>
+                {% endif %}
+
             </td>
             <td>
                <a class="as-text" href="{% url 'service_detail' obj.id  %}" >
-                {{obj.car.client.name}}
-                </a>
+                {{obj.car.client.name}}<br>
+                     </a>
+               <span class="is-size-7 has-text-weight-medium">
+                     {{obj.car.brand}} {{obj.car.model}} {{obj.car.year|floatformat:'0'|default:""}}  
+               </span>      
+              
+           
             </td>
-           <td>{{obj.reception_datetime}}</td>
+           <td>
+           <div class="is-size-7">
+           {{obj.reception_datetime}} ago 
+           </div>
+           
+           </td>
 
+          
             <td>
-              {{obj.car.brand}} {{obj.car.model}} {{obj.car.year|default:""}}
+                <span class="tag is-{{obj.get_color}} is-small">
+                 {{obj.get_status}}
+                </span>
+                
             </td>
             <td>
-            {{obj.get_status}}
+               ${{obj.total}}
             </td>
             <td>
-               $ {{obj.total}}
-            </td>
-            <td>
-                <a class="button as-text" href="{% url 'service_detail' obj.id  %}" >
+                <a class=" " href="{% url 'service_detail' obj.id  %}" >
                     {% trans "Details" %}
                 </a>
             </td>

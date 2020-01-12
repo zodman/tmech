@@ -16,10 +16,6 @@ class IntercoolerMix:
         #resp["Turbolinks-Location"] = url
         return resp
 
-
-
-
-
 class CreateIntercoolerMix(IntercoolerMix, CreateView):
     ic_template = "form.html"
 
@@ -36,17 +32,29 @@ class ListMix(object):
         qs = super().get_queryset()
         return qs.filter(user=self.request.user)
 
-
+FILTERS = (
+    ("all", _("All time")),
+    ("m",_("This Month")),
+    ("mm",_("Last Month")),
+    ("t",_("Today")),
+    ("y",_("Yesterday")),
+    ("w",_("This Week"))
+)
 
 def filter_by_date(ds, q_time):
     now = timezone.now()
     if q_time == "m":
-        ds = ds.filter(reception_datetime__month=now.month,
-                    reception_datetime__year=now.year)
+        ds = (ds.filter(reception_datetime__month=now.month)
+                    .filter(reception_datetime__year=now.year))
+    elif q_time =="mm":
+        ds = ds.filter(
+            reception_datetime__month=now.month-1,
+            reception_datetime__year=now.year
+        )
     elif q_time == "t":
         ds = ds.filter(reception_datetime__date=now.date())
     elif q_time == "y":
         ds = ds.filter(reception_datetime__date=now-timedelta(days=1))            
     elif q_time == "w":
-        ds = ds.filter(reception_datetime__get=now-timedelta(days=7))            
+        ds = ds.filter(reception_datetime__date=now-timedelta(days=7))            
     return ds

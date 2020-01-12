@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'paypal_restrictor',
     "loginas",
+    'django_seed',
+    'django_filters',
+    'flatblocks',
+
 ]
 
 if "test" in sys.argv:
@@ -52,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -159,4 +164,14 @@ LOGGING = {
             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
         },
     },
+}
+
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.INFO: 'info'
 }

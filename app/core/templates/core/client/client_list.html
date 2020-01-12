@@ -24,13 +24,14 @@
     <div class="level-right">
         <div class="buttons is-right">
         
-        
-        <a class="button is-info" href="{% url 'client_add' %}"> {% trans "Add" %}</a>
+                          <a class="button is-success " href="{% url 'service_add' %}"> {% trans "Add Service" %}</a>
+
+            <a class="button is-info" href="{% url 'client_add' %}"> {% trans "Add" %}</a>
 
             <button class="button is-warning" 
-            ic-confirm="are you sure?"
-            ic-include="#form"
-            ic-post-to="{% url 'delete_clients' %}">
+                ic-confirm="are you sure?"
+                ic-include="#form"
+                ic-post-to="{% url 'delete_clients' %}">
             {% trans "Delete checked" %}
             </button>
         </div>
@@ -45,9 +46,10 @@
     <thead>
     <tr>
         <td></td>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>cars</th>
+        <th> {% trans "Name" %}</th>
+        <th> {% trans "Phone" %}</th>
+        <th>{% trans "Cars" %}</th>
+        <th> {% trans "Last visit" %}</th>
         <th></th>
     </tr>
     </thead>

@@ -5,14 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-    
+    tMech - 
             {% block title %}
             {% endblock title %}
     
     </title>
+    <script>
+      FontAwesomeConfig = {
+        mutateApproach: 'sync'
+      }
+    </script>
     <link rel="stylesheet" href="{% mix 'dist/app.css' %}" type="text/css" media="all"  charset="utf-8">
     <script charset="utf-8" src="{% mix 'dist/main.js' %}"></script>
-    <meta name="turbolinks-cache-control" content="no-preview">
+    <meta name="turbolinks-cache-control" content="no-cache">
     
   </head>
 <body class=" has-background-light is-bold">
@@ -29,9 +34,6 @@
 
         <div class="columns">
             <div class="column is-2 has-background-white-ter is-hidden-print">
-            <!-- div class="mt-xs ml-xxs">
-              <span class="is-family-code has-text-weight-light	is-size-2	">tMech</span>
-            </div-->
             
               <div class="m-xxs">
                 {% include "menu.html" %}

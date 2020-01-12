@@ -1,12 +1,10 @@
 {% load i18n %}  
 <div id="content">
 
-
-
  <div class="card">
                 <div class="card-header">
                     <div class="card-header-title">
-                        <p class=" title">
+                        <p class=" title is-4">
                                 {% trans "Diagnostic" %}
                         </p>
                     </div>
@@ -18,30 +16,29 @@
                 </div>
                 <div class="card-content">  
                     <div class="content">
-
-                          <strong> {% trans "Initial" %}</strong>
+                        <strong> {% trans "Initial" %}</strong>
                         <p>{{object.initial|linebreaksbr}}</p> 
+                        {% if object.final %}
                         <strong> {% trans "Final" %}</strong>
                         <p>
                             {{object.final}}
                         </p>
+                        {% endif %}
+                        {% if object.repairs %}
                         <strong> {% trans "Repairs" %}</strong>
                         <p>
                             {{object.repairs|linebreaksbr}}
                         </p>
+                        {% endif %}
+                        {% if object.notes %}
                         <strong> {% trans "Notes" %}</strong>
                         <p>
                             {{object.notes|linebreaksbr}}
                         </p>  
+                        {% endif %}
+                        
 
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-  
-                    </div>
+</div>

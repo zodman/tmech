@@ -34,6 +34,14 @@ class Client(models.Model):
     def __str__(self):
         return self.name
 
+
+    def last_service(self):
+        cars_ids = self.car_set.all().values_list("id", flat=True)
+        result = Diagnostic.objects.filter(car__id__in=cars_ids).aggregate(max_date=models.Max("reception_datetime"))
+        if result:
+            return result.get("max_date")
+
+
 class Car(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     brand = models.CharField(max_length=100)
@@ -56,13 +64,18 @@ class Diagnostic(models.Model):
         ("c",_("Completed")),
         ("p",_("Paid")),
     )
+    STATUS_COLOR =  (
+        ("o","info"),
+        ("c",'success'),
+        ("p","danger"),
+    )
     status = models.CharField(max_length=10, choices=STATUS, default="o")
     car = models.ForeignKey(Car, on_delete=models.SET_NULL, null=True)
     reception_datetime = models.DateTimeField(help_text="YYYY-mm-dd HH:MM:SS")
     initial = models.TextField(_("Initial Diagnostic"))
-    final = models.TextField(_("Final Diagnostic"))
-    repairs = models.TextField(_("Repairs"))
-    notes = models.TextField()
+    final = models.TextField(_("Final Diagnostic"),null=True, blank=True)
+    repairs = models.TextField(_("Repairs"),null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -72,9 +85,13 @@ class Diagnostic(models.Model):
     class Meta:
         ordering = ("-reception_datetime", "status")
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # Call the "real" save() method.
+
     def get_status(self):
         return dict(self.STATUS).get(self.status)
-
+    def get_color(self):
+        return dict(self.STATUS_COLOR).get(self.status)
     def total(self):
         r = self.item_set.values("quantity","price")
         all = [i["quantity"]*i["price"] for i in r]
