@@ -24,7 +24,7 @@ class Dashboard(TemplateView):
         ds =( Diagnostic.objects
             .filter(user=self.request.user)
         )
-        q_time = self.request.GET.get("search_time","m")
+        q_time = self.request.GET.get("search_time","t")
         if q_time:
             ds = filter_by_date(ds, q_time)
         context.update({

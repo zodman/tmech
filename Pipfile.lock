@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "34506e0549da9ee3017bbf68e95f480d45c5526b8eb6998cb6864dfd5775676e"
+            "sha256": "57edc52eb0af28388b3d2d0d18f1d21797ee093feb4f60f4bdfec4ba24230dfa"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -174,6 +174,10 @@
                 "sha256:d871ea315b2dcba9138b8344f2c131a76ac62d6227ca39f69b0c889fec97376c"
             ],
             "version": "==1.0.2"
+        },
+        "faker-car": {
+            "git": "https://github.com/zodman/faker-car.git",
+            "ref": "393d3a6c10bf9e190616308eab99e94e5694da30"
         },
         "gitdb2": {
             "hashes": [

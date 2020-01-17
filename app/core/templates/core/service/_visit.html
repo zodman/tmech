@@ -1,4 +1,4 @@
-{% load i18n core_tags %}
+{% load i18n core_tags l10n  %}
         {% for obj in object_list  %}
         <tr class="m-m p-m">
             <td>
@@ -19,7 +19,7 @@
                 {{obj.car.client.name}}<br>
                      </a>
                <span class="is-size-7 has-text-weight-medium">
-                     {{obj.car.brand}} {{obj.car.model}} {{obj.car.year|floatformat:'0'|default:""}}  
+                     {{obj.car.brand}} - {{obj.car.model}} {{obj.car.year|unlocalize }}  
                </span>      
               
            

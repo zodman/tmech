@@ -39,8 +39,6 @@ mix.browserSync('localhost:8000');
          "core/static/src/*.scss",
          "core/templates/**/**/*.html"
      ],
-     logLevel: "debug",
-     logConnections: true,
      logFileChanges: true,
      snippetOptions: {
       rule: {

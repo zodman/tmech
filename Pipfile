@@ -33,6 +33,7 @@ django-seed = "*"
 django-flatblocks = {git = "https://github.com/jazzband/django-flatblocks.git"}
 gunicorn = "*"
 django-filters = "*"
+faker-car = {git = "https://github.com/zodman/faker-car.git"}
 
 [requires]
 python_version = "3.7"

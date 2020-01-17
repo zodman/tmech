@@ -19,8 +19,13 @@
                                most simple as possible!
                             </h2>
                             <div class="buttons centered">
+                            {% if not request.user.is_authenticated %}
                                     <a href="{% url 'registration_register' %}" class="button is-success is-light is-large">Signup</a>
                                     <a href="{% url 'auth_login' %}" class="button is-outlined is-info is-light is-large">Login</a>
+                            {% else %}
+                            <a href="{% url 'dashboard' %}" class="button is-outlined is-info is-light is-large">Go to dashboard</a>
+
+                            {% endif %}
                             </div>
 
                     </div>
