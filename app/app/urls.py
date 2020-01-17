@@ -13,9 +13,8 @@ urlpatterns = [
     path("admin/", include('loginas.urls')),
     path("messages/", messages, name="messages"),
     path("app/", include("core.urls")),
-     path("accounts/profile/", RedirectView.as_view(url="/app/dashboard/"), name="index" ),
+    path("accounts/profile/", RedirectView.as_view(url="/app/dashboard/"), name="index" ),
     path('accounts/', include('registration.backends.simple.urls')),
-    path("", landing, name="landing"),
     path('', include('paypal_restrictor.urls')), # /paypal/
     path("", landing, name="landing"),
     #path("", RedirectView.as_view(url="/app/dashboard/"), name="index" ),
