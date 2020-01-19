@@ -3,7 +3,7 @@
 {{messages|pprint}}-->
 
 {% if messages %}
-<div class="pb-xxs">
+<div class="pb-xxs is-hidden-print">
     {% for message in messages %}
     <div id="not{{forloop.counter}}" class="message is-small  {% if message.tags %} is-{{ message.tags }}{% endif %}">
 
