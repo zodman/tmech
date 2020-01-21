@@ -38,7 +38,7 @@ fake.add_entity(Diagnostic, 800, {
     'user':user,
     'reception_datetime': lambda x: timezone.make_aware(
             fake.faker.date_time_between(
-                start_date="-1y", end_date="now")),
+                start_date="-5m", end_date="now")),
     'status': lambda x: fake.faker.random_element(Diagnostic.STATUS)[0],
 
 })

@@ -1,0 +1,465 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-21 17:27-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: core/models.py:15
+msgid "user"
+msgstr "usuario"
+
+#: core/models.py:16
+msgid "Company name"
+msgstr "Nombre de la compañia"
+
+#: core/models.py:17
+msgid "Set url for a image"
+msgstr "Url para la imagen"
+
+#: core/models.py:18
+msgid "Address"
+msgstr "Direccion"
+
+#: core/models.py:64 core/templates/core/_dashboard_card_service.html:34
+msgid "Open"
+msgstr "Abierto"
+
+#: core/models.py:65 core/templates/core/_dashboard_card_service.html:21
+msgid "Completed"
+msgstr "Completo"
+
+#: core/models.py:66 core/templates/core/_dashboard_card_service.html:9
+msgid "Paid"
+msgstr "Pagado"
+
+#: core/models.py:76
+msgid "Initial Diagnostic"
+msgstr "Diagnostico inicial"
+
+#: core/models.py:77
+msgid "Final Diagnostic"
+msgstr "Diagnostico final"
+
+#: core/models.py:78 core/templates/core/service/diagnostic_detail.html:28
+msgid "Repairs"
+msgstr "Repaciones"
+
+#: core/templates/core/_dashboard_card.html:26
+msgid "Reception was"
+msgstr "Recibido el"
+
+#: core/templates/core/_dashboard_card.html:26
+msgid "ago"
+msgstr " atras"
+
+#: core/templates/core/_dashboard_card.html:32
+msgid "View service"
+msgstr "Ver servicio"
+
+#: core/templates/core/car/_cars.html:14
+#: core/templates/core/client/_client.html:19
+#: core/templates/core/service/diagnostic_detail.html:13
+msgid "Edit"
+msgstr "Editar"
+
+#: core/templates/core/car/car_form.html:13
+msgid "Update Car"
+msgstr "Actualizar carro"
+
+#: core/templates/core/car/car_form.html:15
+msgid "Add Car"
+msgstr "Agregar carro"
+
+#: core/templates/core/car/car_form.html:27
+#: core/templates/core/service/service_form.html:37
+msgid "Search client ..."
+msgstr "Buscar cliente ..."
+
+#: core/templates/core/car/car_form.html:75
+#: core/templates/core/client/client_form.html:39
+#: core/templates/core/service/_service_form.html:29
+msgid "Send"
+msgstr "Enviar"
+
+#: core/templates/core/car/car_form.html:78
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: core/templates/core/car/car_list.html:6
+#: core/templates/core/client/client_form.html:50
+#: core/templates/core/client/client_list.html:51 core/templates/menu.html:45
+msgid "Cars"
+msgstr "Carros"
+
+#: core/templates/core/car/car_list.html:18
+#: core/templates/core/client/client_list.html:17
+msgid "Search..."
+msgstr "Buscar ..."
+
+#: core/templates/core/car/car_list.html:30
+#: core/templates/core/client/client_list.html:29
+#: core/templates/core/service/service_form.html:68
+#: core/templates/core/service/service_list.html:68
+msgid "Add"
+msgstr "Agregar"
+
+#: core/templates/core/car/car_list.html:36
+#: core/templates/core/client/client_list.html:35
+#: core/templates/core/service/service_list.html:75
+msgid "Delete checked"
+msgstr "Borrar seleccionados"
+
+#: core/templates/core/client/client_form.html:8
+msgid "Edit Client"
+msgstr "Editar Cliente"
+
+#: core/templates/core/client/client_form.html:10
+#: core/templates/core/service/service_form.html:23
+msgid "Add Client"
+msgstr "Agregar Cliente"
+
+#: core/templates/core/client/client_list.html:6 core/templates/menu.html:37
+msgid "Clients"
+msgstr "Clientes"
+
+#: core/templates/core/client/client_list.html:27
+#: core/templates/core/service/service_form.html:16
+msgid "Add Service"
+msgstr "Agregar Servicio"
+
+#: core/templates/core/client/client_list.html:49
+msgid "Name"
+msgstr "Nombre"
+
+#: core/templates/core/client/client_list.html:50
+msgid "Phone"
+msgstr "Telefono"
+
+#: core/templates/core/client/client_list.html:52
+msgid "Last visit"
+msgstr "Ultima visita"
+
+#: core/templates/core/conf/conf_form.html:5
+msgid "Company configuration"
+msgstr "Configuración de la compañia"
+
+#: core/templates/core/conf/conf_form.html:16
+msgid "Set"
+msgstr "Establercer"
+
+#: core/templates/core/conf/conf_form.html:26
+msgid "Account info"
+msgstr "Información de la cuenta."
+
+#: core/templates/core/conf/conf_form.html:31
+msgid "Your account will expire at"
+msgstr "Tu  cuenta expira en"
+
+#: core/templates/core/dashboard.html:31
+msgid "Change"
+msgstr "Cambiar"
+
+#: core/templates/core/dashboard.html:42
+msgid "Service"
+msgstr "Servicio"
+
+#: core/templates/core/dashboard.html:50
+msgid "Total clients"
+msgstr "Total de clientes"
+
+#: core/templates/core/dashboard.html:58
+msgid "Incomes"
+msgstr "Ingresos"
+
+#: core/templates/core/service/_add_item.html:7 core/templates/form.html:7
+msgid "Errors on form."
+msgstr "Errores en la forma"
+
+#: core/templates/core/service/_quote.html:14
+msgid "Quant."
+msgstr "Cant."
+
+#: core/templates/core/service/_quote.html:17
+msgid "Description"
+msgstr "Descripción"
+
+#: core/templates/core/service/_quote.html:20
+msgid "Unit Price"
+msgstr "Precio Unit."
+
+#: core/templates/core/service/_quote.html:23
+msgid "Total Price"
+msgstr "Precio total"
+
+#: core/templates/core/service/_quote.html:29
+msgid "Are you sure?"
+msgstr "¿Estas seguro?"
+
+#: core/templates/core/service/_service_form.html:11
+#: core/templates/core/service/diagnostic_detail.html:8
+msgid "Diagnostic"
+msgstr "Diagnostico"
+
+#: core/templates/core/service/_visit.html:46
+msgid "Details"
+msgstr "Detalles"
+
+#: core/templates/core/service/detail.html:9
+msgid "Service Detail"
+msgstr "Detalles del servicio"
+
+#: core/templates/core/service/detail.html:32
+msgid "Print"
+msgstr "Imprimir"
+
+#: core/templates/core/service/detail.html:76
+msgid "Reception at"
+msgstr "Recibido en"
+
+#: core/templates/core/service/detail.html:109
+msgid "Quote"
+msgstr "Nota"
+
+#: core/templates/core/service/diagnostic_detail.html:19
+msgid "Initial"
+msgstr "Inicial"
+
+#: core/templates/core/service/diagnostic_detail.html:22
+msgid "Final"
+msgstr "Final"
+
+#: core/templates/core/service/diagnostic_detail.html:34
+msgid "Notes"
+msgstr "Notas"
+
+#: core/templates/core/service/service_form.html:14
+msgid "Update Service"
+msgstr "Actualizar Servicio"
+
+#: core/templates/core/service/service_list.html:6 core/templates/menu.html:22
+msgid "Services"
+msgstr "Servicios"
+
+#: core/templates/core/service/service_list.html:17
+msgid "Search car or client"
+msgstr "Buscar carro o cliente"
+
+#: core/templates/core/service/service_list.html:45
+#: core/templates/core/service/service_list.html:100
+msgid "Status"
+msgstr ""
+
+#: core/templates/core/service/service_list.html:59
+msgid "Clear"
+msgstr "Limpiar"
+
+#: core/templates/core/service/service_list.html:97
+msgid "Client"
+msgstr "Cliente"
+
+#: core/templates/core/service/service_list.html:98
+msgid "Reception"
+msgstr "Recepción"
+
+#: core/templates/core/service/service_list.html:102
+msgid "Total"
+msgstr ""
+
+#: core/templates/header.html:24
+msgid "Change Password"
+msgstr "Cambiar Contraseña"
+
+#: core/templates/header.html:25
+msgid "Log Out"
+msgstr "Salir"
+
+#: core/templates/landing.html:15
+msgid "The smarter, faster and easier way to manage you mechanical workshop"
+msgstr "El mejor y mas rápida forma de manejar to taller mecanico"
+
+#: core/templates/landing.html:18
+msgid "We are simple, that means time saver, not complex interfaces."
+msgstr "Somos simples, lo que quiere decir que te ahorramos tiempos ademas de no ser complejos"
+
+#: core/templates/landing.html:23
+msgid "Signup"
+msgstr "Registro"
+
+#: core/templates/landing.html:42
+msgid "Features"
+msgstr "Funcionalidades"
+
+#: core/templates/landing.html:45
+msgid "We follow the concept: KISS concept (Keep It Stupid Simple)"
+msgstr "Seguimos el concepto de KISS (Keep It Simple)"
+
+#: core/templates/landing.html:63
+msgid "Client and Car catalogs"
+msgstr "Catalogo de clientes y carros"
+
+#: core/templates/landing.html:75
+msgid "Service catalog"
+msgstr "Catalogo de servicio"
+
+#: core/templates/landing.html:77
+msgid "Client, Reception datetime, status and total."
+msgstr "Cliente, fecha de recipción, status y total"
+
+#: core/templates/landing.html:101
+msgid "Add a Service"
+msgstr "Agregar Servicio"
+
+#: core/templates/landing.html:103
+msgid "Diagnostic, final repairs and notes. No more!"
+msgstr "Dianostico, reparación final, notas. Nada mas!"
+
+#: core/templates/landing.html:111
+msgid "Printing support"
+msgstr "Soporte para impresión"
+
+#: core/templates/menu.html:4
+msgid "General"
+msgstr ""
+
+#: core/templates/menu.html:14
+msgid "Dashboard"
+msgstr ""
+
+#: core/templates/menu.html:28
+msgid "Administration"
+msgstr "Administración"
+
+#: core/templates/menu.html:55
+msgid "Settings"
+msgstr "Configuración"
+
+#: core/templates/pagination.html:6 core/templates/pagination.html:8
+msgid "Previous"
+msgstr "Antes"
+
+#: core/templates/pagination.html:13 core/templates/pagination.html:15
+msgid "Next"
+msgstr "Despues"
+
+#: core/templates/registration/login.html:4
+#: core/templates/registration/login.html:13
+msgid "Log in"
+msgstr "Ingresar"
+
+#: core/templates/registration/login.html:23
+msgid "Forgot your password?"
+msgstr "Recordar contraseña"
+
+#: core/templates/registration/login.html:23
+msgid "Reset it"
+msgstr "Reiniciar"
+
+#: core/templates/registration/login.html:31
+msgid "Not a member?"
+msgstr "No eres miembro?"
+
+#: core/templates/registration/login.html:31
+msgid "Register"
+msgstr "Registro"
+
+#: core/templates/registration/registration_form.html:4
+msgid "Register for an account"
+msgstr "Regitrar una cuenta"
+
+#: core/templates/registration/registration_form.html:14
+msgid "Submit"
+msgstr "Enviar"
+
+#: core/views/cars.py:46
+msgid "Missing client"
+msgstr "Falta cliente"
+
+#: core/views/cars.py:55 core/views/cars.py:60
+msgid "client with brand,model,year exists"
+msgstr "clientes con marca, model, año existen"
+
+#: core/views/cars.py:123
+msgid "cars deleted"
+msgstr "carros borrados"
+
+#: core/views/clients.py:44
+msgid "Clients deleted"
+msgstr "Clientes borrados"
+
+#: core/views/clients.py:59
+msgid "Client added"
+msgstr "Clientes agregados"
+
+#: core/views/clients.py:61
+msgid " Client don't have cars add a new one."
+msgstr "client no tiene carros, agrega uno nuevo."
+
+#: core/views/conf.py:32
+msgid "Conf set"
+msgstr "configuraciones"
+
+#: core/views/services.py:103
+msgid "status change to {}"
+msgstr "el status fue cambiado a {}"
+
+#: core/views/services.py:186
+msgid "Service edited"
+msgstr "Editar Servicio"
+
+#: core/views/services.py:209
+msgid "Item added"
+msgstr "Item agregado"
+
+#: core/views/services.py:232
+msgid "Item deleted"
+msgstr "Item borrado"
+
+#: core/views/utils.py:36
+msgid "All time"
+msgstr "Todo el tiempo"
+
+#: core/views/utils.py:37
+msgid "This Month"
+msgstr "Este mes"
+
+#: core/views/utils.py:38
+msgid "Last Month"
+msgstr "El último mes"
+
+#: core/views/utils.py:39
+msgid "Today"
+msgstr "Hoy"
+
+#: core/views/utils.py:40
+msgid "Yesterday"
+msgstr "Ayer"
+
+#: core/views/utils.py:41
+msgid "This Week"
+msgstr "Esta semana"
+
+#: paypal_restrictor/templates/paypal_restrictor/payment.html:11
+msgid "Account expire "
+msgstr "Cuenta expirada"
+
+#: paypal_restrictor/templates/paypal_restrictor/payment.html:15
+msgid "Account active"
+msgstr "Cuenta activa"
+
+#: paypal_restrictor/templates/paypal_restrictor/payment.html:20
+msgid "Buy it NOW!"
+msgstr "Compra ahora!"
