@@ -207,9 +207,13 @@ def service_add_item(request, pk):
             item.user = request.user
             item.save()
             messages.info(request,_("Item added"))
-            resp = HttpResponse()
-            resp["X-IC-Redirect"] = reverse("service_detail", kwargs={'pk': service.id})
-            return resp
+            # resp = HttpResponse()
+            # resp["X-IC-Redirect"] = reverse("service_detail", kwargs={'pk': service.id})
+            # return resp
+        ctx = {
+        'object':service,
+        'form':form}
+        return render(request, "core/service/_quote.html", ctx)
     else:
         form = ItemForm()
     ctx.update({
@@ -223,8 +227,13 @@ def service_add_item(request, pk):
 @paypal_required
 def service_delete_item(request, pk):
     item = Item.objects.filter(user=request.user).get(id=pk)
+    service = item.diagnostic
     item.delete()
     messages.info(request, _("Item deleted"))
-    resp =HttpResponse()
-    resp["X-IC-Remove"] ="1s"
-    return resp
+    ItemForm = modelform_factory(Item, fields=["quantity","description","price"])
+    form = ItemForm()
+    ctx={
+        'form':form,
+        'object':service,
+    }
+    return render(request, "core/service/_quote.html", ctx)

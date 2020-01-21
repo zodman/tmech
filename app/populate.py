@@ -7,32 +7,15 @@ from django_seed import Seed
 from core.models import *
 from django.contrib.auth.models import User
 from django.utils import timezone
-
-cars = """
-Ford
-Cadillac
-Maserati
-Skoda
-Rolls-Royce
-Maybach
-Toyota
-Abarth
-Infiniti
-Audi
-Mini
-Dacia
-Renault
-Peugeot
-BMW
-Honda
-BMW
-Caterham
-Holden
-Mini
-"""
+from faker import Faker
+from faker_car import CarProvider
+import sys
 
 
-user = User.objects.get(username="zodman")
+user = User.objects.get(username=sys.argv[1])
+
+f = Faker()
+f.add_provider(CarProvider)
 
 print("delete objects")
 Client.objects.all().delete()
@@ -46,8 +29,9 @@ fake.add_entity(Client, 200, {
     'name': lambda x: fake.faker.name()
 })
 fake.add_entity(Car, 800,{
-    'user':user,
-    'brand': lambda x: fake.faker.random_element(cars.split())
+    'user': user,
+    'brand': lambda x: f.car(),
+    'model': lambda x: f.car_model()[1]
     })
 
 fake.add_entity(Diagnostic, 800, {

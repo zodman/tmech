@@ -15,7 +15,7 @@ decors = [
 @login_required
 @paypal_required
 def setconf(request):
-    ConfForm = modelform_factory(Conf, fields=("name","logo"))
+    ConfForm = modelform_factory(Conf, fields=("name","logo","address"))
     try:
         instance = getattr(request.user,"conf")
     except Conf.DoesNotExist:

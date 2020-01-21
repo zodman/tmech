@@ -17,10 +17,7 @@ mix.js('core/static/src/app.js', 'core/static/dist/');
 mix.js('core/static/src/main.js', 'core/static/dist/');
 mix.sass('core/static/src/app.scss', 'core/static/dist/');
 mix.version();
-mix.browserSync('localhost:8000');
-
 //mix.options({ processCssUrls: false });
-
 // Full API
 // mix.js(src, output);
 // mix.react(src, output); <-- Identical to mix.js(), but registers React Babel compilation.
@@ -39,8 +36,6 @@ mix.browserSync('localhost:8000');
          "core/static/src/*.scss",
          "core/templates/**/**/*.html"
      ],
-     logLevel: "debug",
-     logConnections: true,
      logFileChanges: true,
      snippetOptions: {
       rule: {
