@@ -8,12 +8,26 @@
           <span class="navbar-burger burger" data-target="navMenu">
             <span></span>
             <span></span>
-            <span></span>
+            <span></s pan>
           </span>
         </div>
         <div id="navMenu" class="navbar-menu">
           <div class="navbar-end">
+
             <span class="navbar-item"> {{request.user.username}} {% now "" %} </span>
+            <span class="navbar-item">
+              <form action="/i18n/setlang/" method="post" style="display: inline;">
+                {% csrf_token %}
+                <div style="display: inline;">
+                  <select name="language" onchange="javascript:form.submit()">
+                    {% for lang in LANGUAGES %}
+                      <option value="{{ lang.0 }}"{% ifequal LANGUAGE_CODE lang.0 %} selected="selected"{% endifequal %}>{{ lang.1 }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </form>
+            </span>
+
             {% if request.user.is_superuser %}
               <a href="/admin/" class="navbar-item">
                 admin
