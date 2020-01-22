@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-21 17:27-0600\n"
+"POT-Creation-Date: 2020-01-21 18:42-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/settings.py:129
+msgid "Spanish"
+msgstr ""
+
+#: app/settings.py:130
+msgid "English"
+msgstr ""
 
 #: core/models.py:15
 msgid "user"
@@ -279,11 +287,11 @@ msgstr "Recepción"
 msgid "Total"
 msgstr ""
 
-#: core/templates/header.html:24
+#: core/templates/header.html:38
 msgid "Change Password"
 msgstr "Cambiar Contraseña"
 
-#: core/templates/header.html:25
+#: core/templates/header.html:39
 msgid "Log Out"
 msgstr "Salir"
 
@@ -293,7 +301,9 @@ msgstr "El mejor y mas rápida forma de manejar to taller mecanico"
 
 #: core/templates/landing.html:18
 msgid "We are simple, that means time saver, not complex interfaces."
-msgstr "Somos simples, lo que quiere decir que te ahorramos tiempos ademas de no ser complejos"
+msgstr ""
+"Somos simples, lo que quiere decir que te ahorramos tiempos ademas de no ser "
+"complejos"
 
 #: core/templates/landing.html:23
 msgid "Signup"
@@ -311,23 +321,29 @@ msgstr "Seguimos el concepto de KISS (Keep It Simple)"
 msgid "Client and Car catalogs"
 msgstr "Catalogo de clientes y carros"
 
-#: core/templates/landing.html:75
+#: core/templates/landing.html:65
+msgid ""
+"You don't want to know how many website uls, fax number or job position from "
+"clients. We only need name, email and phone."
+msgstr ""
+
+#: core/templates/landing.html:74
 msgid "Service catalog"
 msgstr "Catalogo de servicio"
 
-#: core/templates/landing.html:77
+#: core/templates/landing.html:76
 msgid "Client, Reception datetime, status and total."
 msgstr "Cliente, fecha de recipción, status y total"
 
-#: core/templates/landing.html:101
+#: core/templates/landing.html:100
 msgid "Add a Service"
 msgstr "Agregar Servicio"
 
-#: core/templates/landing.html:103
+#: core/templates/landing.html:102
 msgid "Diagnostic, final repairs and notes. No more!"
 msgstr "Dianostico, reparación final, notas. Nada mas!"
 
-#: core/templates/landing.html:111
+#: core/templates/landing.html:110
 msgid "Printing support"
 msgstr "Soporte para impresión"
 
@@ -412,9 +428,14 @@ msgstr "client no tiene carros, agrega uno nuevo."
 msgid "Conf set"
 msgstr "configuraciones"
 
+#: core/views/services.py:94
+#| msgid "status change to {}"
+msgid "Status not change, total empty"
+msgstr "El status no fue cambiado, el total es cero"
+
 #: core/views/services.py:103
 msgid "status change to {}"
-msgstr "el status fue cambiado a {}"
+msgstr "El status fue cambiado a {}"
 
 #: core/views/services.py:186
 msgid "Service edited"

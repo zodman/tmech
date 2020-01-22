@@ -91,7 +91,7 @@ def service_change_status(request, pk):
     if request.POST:
         status = request.POST.get("status")
         if service.total() == 0:
-            messages.error(request, "Status not change, total empty")
+            messages.error(request, _("Status not change, total empty"))
             r = HttpResponse()
             r["X-IC-Redirect"] = reverse("service_detail", kwargs={'pk': service.id})
             service.status = Diagnostic.STATUS[0][0]
