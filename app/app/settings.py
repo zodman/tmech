@@ -175,3 +175,5 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.INFO: 'info'
 }
+
+PAYPAL_BUSSINES="zodman@gmail.com"
