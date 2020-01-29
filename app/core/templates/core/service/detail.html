@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n core_tags %}
+{% load i18n core_tags markdownify  %}
 
 {% block container %}
 
@@ -8,6 +8,11 @@
         <h1 class="title">
            {% trans "Service Detail" %} 
         </h1>
+    </div>
+    <div class="level-left">
+        <p class="is-size-7	is-family-sans-serif has-text-centered		">
+           {{request.user.conf.address|markdownify|linebreaksbr  }}
+        </p>
     </div>
     <div class="level-right">
         {% if request.user.conf %} 
@@ -50,7 +55,7 @@
         <p class="title is-4">
                         {{object.car.client.name}}
                     </p>
-                    <p class="subtitle is-5">
+                    <p class="subtitle is-5 is-size-6">
                             {% if object.car.client.phone %}
                                 
                                 {{object.car.client.phone|phone_number|default:""}} <a href="https://wa.me/{{object.car.client.phone}}"> 
@@ -67,18 +72,34 @@
         </p>
     </div>
     <div class="column">
-            <p class="">
+            <p class="is-size-6">
                 {% trans "Reception at" %} {{object.reception_datetime}}    
             </p>
     </div>
-    <div class="column">
+    <div class="column is-size-6             98 im89 89imkl¡                                         l,pl,pl,pl,pl,pl,pl,pl,pl,pl,pl,pl,pl,pl,pl,pl,pl,pl,pl,pl,pl,pl,phone_number
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ">
         {{object.car}} 
     </div>
 
 </div>
 
 
-<div class="columns" style="page-break-before:always">
+<div class="columns">
             <div class="column is-full">
             
             <div class="card">
@@ -99,7 +120,7 @@
             </div>
         </div>
 
-        <div class="columns">
+        <div class="columns is-hidden-print">
             <div class="column is-full">
                   {% include "core/service/diagnostic_detail.html" %} 
             </div>

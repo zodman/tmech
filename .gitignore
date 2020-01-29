@@ -144,3 +144,4 @@ app/core/static/dist/*
 *.pyz
 app/static/
 tmech_conf.yaml
+.vscode/settings.json

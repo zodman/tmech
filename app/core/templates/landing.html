@@ -1,34 +1,36 @@
 {% extends 'base.html' %}
-{% load flatblocks %}
+{% load i18n %}
 
 {% block title %}
-    Your mechanical workshop management made easy
+Your mechanical workshop management made easy
 {% endblock title %}
 
 {% block body %}
 <div class="hero  is-primary is-bold is-fullheight">
     <div class="hero-body">
         <div class="container">
-                <div class="columns is-vcentered">
-                    <div class="column is-6 ">
-                            <h1 class="title is-spaced is-size-1-desktop">
-                               The smarter, faster and easier way to manage you mechanical workshop
-                            </h1>
-                            <h2 class="subtitle">
-                            Exist a lot of other softwares outsite, We are different and the 
-                               most simple as possible!
-                            </h2>
-                            <div class="buttons centered">
-                                    <a href="{% url 'registration_register' %}" class="button is-success is-light is-large">Signup</a>
-                                    <a href="{% url 'auth_login' %}" class="button is-outlined is-info is-light is-large">Login</a>
-                            </div>
+            <div class="columns is-vcentered">
+                <div class="column is-6 ">
+                    <h1 class="title is-spaced is-size-1-desktop">
+                        {% trans "The smarter, faster and easier way to manage you mechanical workshop" %}
+                    </h1>
+                    <h2 class="subtitle">
+                        {% trans "We are simple, that means time saver, not complex interfaces." %}
+                    </h2>
+                    <div class="buttons centered">
+                        <a href="{% url 'registration_register' %}"
+                            class="button is-success is-light is-large">
+                            {% trans "Signup" %}
+                            </a>
+                        <a href="{% url 'auth_login' %}" class="button is-outlined is-info is-light is-large">Login</a>
+                    </div>
 
-                    </div>
-                    
-                    <div class="column">
-                        <img class="card shadow" src="https://i.imgur.com/vVufWgn.png">
-                    </div>
                 </div>
+
+                <div class="column">
+                    <img class="card shadow" src="https://i.imgur.com/vVufWgn.png">
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -36,59 +38,81 @@
     <div class="hero-body">
         <div class="container">
 
-<h2 class="is-size-1 has-text-centered pb-0  is-family-sans-serif		has-text-weight-normal	 "> 
-    Features 
-</h2>
-<h3 class="is-size-3 has-text-centered pb-l  is-family-sans-serif		has-text-weight-light">
-We follow the concept: KISS (Keep It Simple Stupid!)
-</h3>
+            <h2 class="is-size-1 has-text-centered pb-0  is-family-sans-serif		has-text-weight-normal	 ">
+                {% trans "Features" %}
+            </h2>
+            <h3 class="is-size-3 has-text-centered pb-l  is-family-sans-serif		has-text-weight-light">
+                {% trans "We follow the concept: KISS concept (Keep It Stupid Simple)" %}
+            </h3>
 
-                 <div class="columns has-text-centered is-family-sans-serif		has-text-weight-light	">
-                        <div class="column ">
-                            <img src="https://i.imgur.com/3D3q76j.png" alt="" class="card shadow">
-                          <h3 class="is-size-3"> Client and car catalogs</h3>
-                                <p class="is-size-4	">
-                                   You don't want to know how many website uls, fax number or job position. We only need name, email and phone.  
-                                </p>
-                        </div>
+           </div>
+        </div>
+    </div>
 
-                        <div class="column is-half has-text-centered">
+<div class="hero  is-bold is-light  ">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns has-text-centered is-family-sans-serif		has-text-weight-light is-vcentered	">
+                <div class="column ">
+                    <img src="https://i.imgur.com/3D3q76j.png" alt="" class="card shadow">
 
-                
-                            <img src="https://i.imgur.com/jLJgSiP.png" alt="" class="card shadow">
-                            
-                          <h3 class="is-size-3"> Add a Service </h3>
-                                <p class="is-size-4	">
-                                    Diagnostic, final repairs and notes. No more!
-                                </p>
-                        </div>
-                    </div>
+                </div>
 
+                <div class="column is-half has-text-centered ">
 
-                    
-                 <div class="columns has-text-centered is-family-sans-serif		has-text-weight-light	">
-                        <div class="column ">
-                            <img src="https://i.imgur.com/MNFtFNY.png" alt="" class="card shadow">
-                          <h3 class="is-size-3">Printing support</h3>
-                                <p class="is-size-4	">
-                                 
-                                </p>
-                        </div>
-
-                        <div class="column is-half has-text-centered">
-
-                
-                            <img src="https://i.imgur.com/SMVAOm8.png" alt="" class="card shadow">
-                            
-                          <h3 class="is-size-3"> Service catalog</h3>
-                                <p class="is-size-4	">
-                                    Diagnostic, final repairs and notes. No more!
-                                </p>
-                        </div>
-                    </div>
+                    <h3 class="is-size-3"> {% trans "Client and Car catalogs" %}</h3>
+                    <p class="is-size-4	">
+                        {% trans "You don't want to know how many website uls, fax number or job position from clients. We only need name, email and phone." %}
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+            <div class="columns has-text-centered is-family-sans-serif	 pt-m is-vcentered	has-text-weight-light	">
+                <div class="column ">
+                    <h3 class="is-size-3">{% trans "Service catalog" %}</h3>
+                    <p class="is-size-4	">
+                      {% trans "Client, Reception datetime, status and total." %}
+                    </p>
+
+                </div>
+
+                
+                <div class="column is-half has-text-centered pt-m is-vcentered">
+                
+                 <img src="https://i.imgur.com/SMVAOm8.png" alt="" class="card shadow">
+            
+                </div>
+            </div>
+
+
+            <div class="columns has-text-centered is-family-sans-serif	pt-m	has-text-weight-light pt-m is-vcentered	">
+                <div class="column ">
+
+                        <img src="https://i.imgur.com/jLJgSiP.png" alt="" class="card shadow">
+
+                </div>
+
+                <div class="column is-half has-text-centered">
+              
+
+                      <h3 class="is-size-3"> {% trans "Add a Service" %} </h3>
+                    <p class="is-size-4	">
+                        {% trans "Diagnostic, final repairs and notes. No more!" %}
+                    </p>
+                </div>
+            </div>
+
+            <div class="columns has-text-centered is-family-sans-serif pt-m		has-text-weight-light  is-vcentered	">
+                <div class="column is-6 is-offset-one-quarter ">
+                    <img src="https://i.imgur.com/MNFtFNY.png" alt="" class="card shadow">
+                    <h3 class="is-size-3">{% trans "Printing support" %}</h3>
+                    <p class="is-size-4	">
+
+                    </p>
+                </div>
+            </div>
 
 
 

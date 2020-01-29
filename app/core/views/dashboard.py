@@ -1,9 +1,11 @@
 from django.views.generic import TemplateView
 from core.models import Diagnostic, Client
+
 from django.contrib.auth.decorators import login_required
 from .utils import filter_by_date, FILTERS
 from paypal_restrictor.views import paypal_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 decors = [
     login_required,
@@ -22,7 +24,7 @@ class Dashboard(TemplateView):
         ds =( Diagnostic.objects
             .filter(user=self.request.user)
         )
-        q_time = self.request.GET.get("search_time","m")
+        q_time = self.request.GET.get("search_time","t")
         if q_time:
             ds = filter_by_date(ds, q_time)
         context.update({
