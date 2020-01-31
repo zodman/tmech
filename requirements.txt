@@ -28,3 +28,4 @@ git+https://github.com/zodman/faker-car.git
 django-test-plus
 coverage
 git+https://github.com/jazzband/django-widget-tweaks.git
+honcho

@@ -1,5 +1,6 @@
 from invoke import task as task_local
 from invoke import run as local
+from fabric import task
 
 @task_local
 def gen_conf(c):
@@ -26,3 +27,11 @@ def test(c):
     local("coverage run manage.py test -n --failfast  ")
     local("coverage report -m")
     local("coverage html")
+
+@task
+def deploy(c):
+    with c.cd("apps/tmech/app"):
+        c.run("git pull")
+        # c.run("pipenv run manage.py migrate ")
+        c.run("sudo supervisorctl status")
+
