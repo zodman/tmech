@@ -23,6 +23,6 @@ def make(c):
 
 @task_local
 def test(c):
-    c.run("coverage run manage.py test -n --failfast  ")
-    c.run("coverage report -m")
-    c.run("coverage html")
+    local("coverage run manage.py test -n --failfast  ")
+    local("coverage report -m")
+    local("coverage html")
