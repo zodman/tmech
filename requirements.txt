@@ -1,5 +1,5 @@
 dj-email-url==0.2.0
-Django==2.1.7
+Django==2.2.10
 django-active-link==0.1.6
 django-autofixture==0.12.1
 django-bsync==1.4.3
